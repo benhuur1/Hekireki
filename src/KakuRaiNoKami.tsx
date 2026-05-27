@@ -39,17 +39,17 @@ const golpes: Golpe[] = [
     numero: 'V',
     titulo: 'Order null ou undefined',
     resumo:
-      '`canEditScrapCover(null)` e `canEditScrapCover(undefined)` → `false`. Encerra a árvore — sem inputs, sem janela.',
+      '`algumaFuncao(null)` e `algumaFuncao(undefined)` → `false`. Encerra a árvore — sem inputs, sem janela.',
   },
 ]
 
 const arvore = `# Sétima Forma — Trovão do Núcleo
 
-ecommerce-frontend/
+repo-cliente/
 ├── src/utils/
-│   ├── scrap-cover-window.ts        # canEditScrapCover + janela 24h
-│   └── scrap-cover-window.test.ts   # 5 unit tests (node:test)
-├── tsconfig.json                    # allowImportingTsExtensions: true
+│   ├── janela.ts        # algumaFuncao + JANELA_HORAS
+│   └── janela.test.ts   # 5 unit tests (node:test)
+├── tsconfig.json        # allowImportingTsExtensions: true
 └── package.json
     └── "test": "node --test --experimental-strip-types 'src/**/*.test.ts'"
 
@@ -98,7 +98,7 @@ function KakuRaiNoKami() {
         <SectionLabel num="01" tag="O contrato do gate" />
         <h2 className="hk-h2">Cinco casos, uma função pura.</h2>
         <p className="hk-sub">
-          O revisor automatizado pediu cobertura para <code>canEditScrapCover</code>:
+          O revisor automatizado pediu cobertura para <code>algumaFuncao</code>:
           dentro da janela, fora da janela, <code>paidAt</code> presente,
           <code> createdAt</code> ausente, <code>order</code> null. Função pura,
           oito linhas executáveis, quatro branches lineares com <em>early return</em>.
@@ -112,7 +112,7 @@ function KakuRaiNoKami() {
         <SectionLabel num="02" tag="A política do repo" />
         <h2 className="hk-h2">O repositório fechou a porta — de propósito.</h2>
         <p className="hk-sub">
-          O <code>CLAUDE.md</code> do <em>ecommerce-frontend</em> declara
+          O <code>CLAUDE.md</code> do <em>repo cliente</em> declara
           textualmente: <em>"No test framework configured. Verification after
           changes: <code>npm run lint</code> + <code>npm run build</code>"</em>.
           Não é omissão. É decisão arquitetural deliberada. Adicionar Jest ou
@@ -134,12 +134,12 @@ function KakuRaiNoKami() {
           Nada novo precisava ser instalado. O caminho foi:
         </p>
         <ul className="hk-imp-bullets">
-          <li>Mover <code>canEditScrapCover</code> + <code>SCRAP_COVER_EDIT_WINDOW_HOURS</code> para
-          módulo próprio <code>scrap-cover-window.ts</code>, isolando-os de qualquer dependência
+          <li>Mover <code>algumaFuncao</code> + <code>JANELA_HORAS</code> para
+          módulo próprio <code>janela.ts</code>, isolando-os de qualquer dependência
           de <em>path alias</em> que o runner nativo não resolveria.</li>
           <li>Adicionar <code>allowImportingTsExtensions: true</code> no <code>tsconfig.json</code> —
           permite o import com extensão <code>.ts</code> exigido pelo strip-types.</li>
-          <li>Criar <code>scrap-cover-window.test.ts</code> usando <code>describe</code>,
+          <li>Criar <code>janela.test.ts</code> usando <code>describe</code>,
           <code> it</code>, <code>mock.timers</code> e <code>assert</code> — todos
           importados de <code>node:test</code> e <code>node:assert/strict</code>.</li>
           <li>Adicionar o script <code>npm run test</code>: <code>node --test
