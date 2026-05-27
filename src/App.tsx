@@ -39,6 +39,17 @@ function App() {
     return () => window.removeEventListener('hashchange', sync)
   }, [])
 
+  /* centra o botão ativo no topbar — defesa para deep-link e mobile com
+     menos itens visíveis na viewport. scrollLeft direto no .topbar evita
+     que scrollIntoView tente também mexer no scroll vertical da página. */
+  useEffect(() => {
+    const topbar = document.querySelector<HTMLElement>('.topbar')
+    const btn = document.querySelector<HTMLElement>('.topbar-btn.active')
+    if (!topbar || !btn) return
+    const target = btn.offsetLeft + btn.offsetWidth / 2 - topbar.clientWidth / 2
+    topbar.scrollTo({ left: Math.max(0, target), behavior: 'smooth' })
+  }, [view])
+
   function navigateTo(v: View) {
     window.location.hash = `/${v}`
   }

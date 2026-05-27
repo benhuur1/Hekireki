@@ -134,9 +134,12 @@
 }
 
 @media (max-width: 640px) {
-  .topbar-btn { padding: 14px 14px 12px; gap: 8px; font-size: 10px; letter-spacing: 0.22em; }
-  .topbar-num { font-size: 13px; }
-  .topbar-btn::after { left: 14px; right: 14px; }
+  /* kanji-only no mobile estreito: os 9 botões cabem na viewport. fade do
+     wrap continua como cinto de segurança em viewports ainda menores. */
+  .topbar-btn { padding: 14px 12px 12px; gap: 0; font-size: 10px; letter-spacing: 0.22em; }
+  .topbar-num { font-size: 18px; }
+  .topbar-label { display: none; }
+  .topbar-btn::after { left: 12px; right: 12px; }
 
   .topbar-wrap { position: relative; }
   .topbar-wrap::after {
