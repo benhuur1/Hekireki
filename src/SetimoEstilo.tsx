@@ -412,7 +412,7 @@ function SetimaForma() {
             <figure key={r.arquivo} className="hk-galeria-item">
               <div className="hk-galeria-frame">
                 <img
-                  src={`/imagens/samurai/${encodeURI(r.arquivo)}`}
+                  src={`${import.meta.env.BASE_URL}imagens/samurai/${encodeURI(r.arquivo)}`}
                   alt={r.titulo}
                   loading="lazy"
                   decoding="async"
@@ -473,7 +473,7 @@ function CompetitivoSection() {
   const [erro, setErro] = useState<string | null>(null)
 
   useEffect(() => {
-    fetch('/competitivo.json')
+    fetch(`${import.meta.env.BASE_URL}competitivo.json`)
       .then((r) => {
         if (!r.ok) throw new Error(`HTTP ${r.status}`)
         return r.json()
