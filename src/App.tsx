@@ -18,10 +18,22 @@ const VIEWS = [
 ] as const
 type View = (typeof VIEWS)[number]
 
-/* The active view lives in the URL hash (#/o-corte) so every forma is
-   deep-linkable, shareable and works with browser back/forward. Accepts the
-   legacy #cronica (no slash); A Crônica stays out of the topbar, reachable
-   only by typing its hash directly. */
+/* As 9 formas do menu (a Crônica fica fora — só acessível por #cronica direto).
+   Centralizado aqui pra alimentar topbar (desktop) + drawer (mobile) da mesma fonte. */
+const FORMS = [
+  { view: 'primeira', kanji: '壱', label: 'Primeira Forma',   desc: 'A essência — uma técnica, executada com perfeição' },
+  { view: 'lentes',   kanji: '質', label: 'As Quatro Lentes', desc: 'Os quatro donos da qualidade' },
+  { view: 'corte',    kanji: '道', label: 'O Corte',          desc: 'A Primeira Forma aplicada a stack, infra e carreira' },
+  { view: 'espelho',  kanji: '鏡', label: 'O Espelho',        desc: 'Auto-audit: 20 perguntas pro próprio código' },
+  { view: 'lexico',   kanji: '辞', label: 'O Léxico',         desc: 'Dicionário do trovão pra devs' },
+  { view: 'portao',   kanji: '門', label: 'O Portão',         desc: 'Onde o contrato é forjado' },
+  { view: 'tanren',   kanji: '鍛', label: 'A Têmpera',        desc: 'A disciplina virando reflexo' },
+  { view: 'setimo',   kanji: '漆', label: 'Sétima Forma',     desc: 'A forma que nasce da repetição da primeira' },
+  { view: 'kakurai',  kanji: '核', label: 'Trovão do Núcleo', desc: 'A forma que nasce do limite — usar o que o runtime já tem' },
+] as const
+
+/* A view ativa vive no hash da URL (#/setimo) — toda forma é deep-linkable,
+   compartilhável, e back/forward do browser funcionam. */
 function viewFromHash(): View {
   const slug = window.location.hash.replace(/^#\/?/, '')
   return (VIEWS as readonly string[]).includes(slug) ? (slug as View) : 'primeira'
@@ -29,6 +41,7 @@ function viewFromHash(): View {
 
 function App() {
   const [view, setView] = useState<View>(viewFromHash)
+  const [drawerOpen, setDrawerOpen] = useState(false)
 
   useEffect(() => {
     function sync() {
@@ -39,8 +52,8 @@ function App() {
     return () => window.removeEventListener('hashchange', sync)
   }, [])
 
-  /* centra o botão ativo no topbar — defesa para deep-link e mobile com
-     menos itens visíveis na viewport. scrollLeft direto no .topbar evita
+  /* centra o botão ativo no topbar desktop — defesa pra deep-link onde a ativa
+     pode estar fora da viewport horizontal. scrollLeft direto no .topbar evita
      que scrollIntoView tente também mexer no scroll vertical da página. */
   useEffect(() => {
     const topbar = document.querySelector<HTMLElement>('.topbar')
@@ -50,79 +63,106 @@ function App() {
     topbar.scrollTo({ left: Math.max(0, target), behavior: 'smooth' })
   }, [view])
 
+  /* drawer: Esc fecha + scroll-lock no body enquanto aberto */
+  useEffect(() => {
+    if (!drawerOpen) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') setDrawerOpen(false)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => {
+      document.body.style.overflow = prev
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [drawerOpen])
+
   function navigateTo(v: View) {
+    // eslint-disable-next-line react-hooks/immutability
     window.location.hash = `/${v}`
+    setDrawerOpen(false)
   }
+
+  const currentForm = FORMS.find((f) => f.view === view)
+  const currentLabel = currentForm?.label ?? 'A Crônica'
 
   return (
     <>
       <div className="topbar-wrap">
-      <nav className="topbar">
-        <button
-          className={view === 'primeira' ? 'topbar-btn active' : 'topbar-btn'}
-          onClick={() => navigateTo('primeira')}
-        >
-          <span className="topbar-num">壱</span>
-          <span className="topbar-label">Primeira Forma</span>
-        </button>
-        <button
-          className={view === 'lentes' ? 'topbar-btn active' : 'topbar-btn'}
-          onClick={() => navigateTo('lentes')}
-        >
-          <span className="topbar-num">質</span>
-          <span className="topbar-label">As Quatro Lentes</span>
-        </button>
-        <button
-          className={view === 'corte' ? 'topbar-btn active' : 'topbar-btn'}
-          onClick={() => navigateTo('corte')}
-        >
-          <span className="topbar-num">道</span>
-          <span className="topbar-label">O Corte</span>
-        </button>
-        <button
-          className={view === 'espelho' ? 'topbar-btn active' : 'topbar-btn'}
-          onClick={() => navigateTo('espelho')}
-        >
-          <span className="topbar-num">鏡</span>
-          <span className="topbar-label">O Espelho</span>
-        </button>
-        <button
-          className={view === 'lexico' ? 'topbar-btn active' : 'topbar-btn'}
-          onClick={() => navigateTo('lexico')}
-        >
-          <span className="topbar-num">辞</span>
-          <span className="topbar-label">O Léxico</span>
-        </button>
-        <button
-          className={view === 'portao' ? 'topbar-btn active' : 'topbar-btn'}
-          onClick={() => navigateTo('portao')}
-        >
-          <span className="topbar-num">門</span>
-          <span className="topbar-label">O Portão</span>
-        </button>
-        <button
-          className={view === 'tanren' ? 'topbar-btn active' : 'topbar-btn'}
-          onClick={() => navigateTo('tanren')}
-        >
-          <span className="topbar-num">鍛</span>
-          <span className="topbar-label">A Têmpera</span>
-        </button>
-        <button
-          className={view === 'setimo' ? 'topbar-btn active' : 'topbar-btn'}
-          onClick={() => navigateTo('setimo')}
-        >
-          <span className="topbar-num">漆</span>
-          <span className="topbar-label">Sétima Forma</span>
-        </button>
-        <button
-          className={view === 'kakurai' ? 'topbar-btn active' : 'topbar-btn'}
-          onClick={() => navigateTo('kakurai')}
-        >
-          <span className="topbar-num">核</span>
-          <span className="topbar-label">Trovão do Núcleo</span>
-        </button>
-      </nav>
+        {/* Desktop: topbar horizontal com 9 botões */}
+        <nav className="topbar" aria-label="Formas do manifesto">
+          {FORMS.map((f) => (
+            <button
+              key={f.view}
+              className={view === f.view ? 'topbar-btn active' : 'topbar-btn'}
+              onClick={() => navigateTo(f.view)}
+            >
+              <span className="topbar-num" aria-hidden>{f.kanji}</span>
+              <span className="topbar-label">{f.label}</span>
+            </button>
+          ))}
+        </nav>
+
+        {/* Mobile: barra compacta com forma atual + menu icon */}
+        <div className="topbar-mobile">
+          <span className="topbar-mobile-current">{currentLabel}</span>
+          <button
+            className="topbar-mobile-menu"
+            aria-label="Abrir índice das formas"
+            aria-expanded={drawerOpen}
+            onClick={() => setDrawerOpen(true)}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden width="22" height="22">
+              <line x1="4" y1="8"  x2="20" y2="8"  stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+              <line x1="4" y1="13" x2="20" y2="13" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+              <line x1="4" y1="18" x2="20" y2="18" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+            </svg>
+          </button>
+        </div>
       </div>
+
+      {/* Drawer (só renderiza enquanto aberto) */}
+      {drawerOpen && (
+        <div className="topbar-drawer" role="dialog" aria-modal="true" aria-label="Índice das formas">
+          <button
+            type="button"
+            className="topbar-drawer-backdrop"
+            aria-label="Fechar índice"
+            onClick={() => setDrawerOpen(false)}
+          />
+          <div className="topbar-drawer-panel">
+            <header className="topbar-drawer-header">
+              <span className="topbar-drawer-title">壱ノ型 · índice</span>
+              <button
+                type="button"
+                className="topbar-drawer-close"
+                aria-label="Fechar índice"
+                onClick={() => setDrawerOpen(false)}
+              >
+                ×
+              </button>
+            </header>
+            <ul className="topbar-drawer-list">
+              {FORMS.map((f) => (
+                <li key={f.view}>
+                  <button
+                    type="button"
+                    className={view === f.view ? 'topbar-drawer-item active' : 'topbar-drawer-item'}
+                    onClick={() => navigateTo(f.view)}
+                  >
+                    <span className="topbar-drawer-kanji" aria-hidden>{f.kanji}</span>
+                    <span className="topbar-drawer-meta">
+                      <span className="topbar-drawer-label">{f.label}</span>
+                      <span className="topbar-drawer-desc">{f.desc}</span>
+                    </span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
 
       {view === 'primeira' && <PrimeiraForma />}
       {view === 'lentes' && (

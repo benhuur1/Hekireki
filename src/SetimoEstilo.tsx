@@ -236,6 +236,18 @@ const direitos: { titulo: string; corpo: React.ReactNode }[] = [
     ),
   },
   {
+    titulo: 'Dados do visitante',
+    corpo: (
+      <>
+        Sem coleta. Nada de formulário, login, analytics, cookie próprio. O contador
+        de marteladas da Primeira Forma vive no <code>localStorage</code> do seu próprio
+        browser — fica com você, ninguém mais vê. O único request externo que sai daqui
+        é pro CSS do Google Fonts, que registra seu IP no log deles uma vez por sessão.
+        Pra evitar até isso, basta um bloqueador como <em>uBlock Origin</em>.
+      </>
+    ),
+  },
+  {
     titulo: 'Código do projeto',
     corpo: (
       <>

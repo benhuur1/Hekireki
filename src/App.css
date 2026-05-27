@@ -1,5 +1,5 @@
 /* ================================================================
-   App shell — topbar editorial
+   App shell — topbar (desktop) + barra compacta + drawer (mobile)
    indicador de seleção: hairline dourada, sem fill
    ================================================================ */
 
@@ -92,6 +92,205 @@
 }
 
 /* ================================================================
+   MOBILE — barra compacta (forma atual + menu icon)
+   .topbar fica escondida; .topbar-mobile entra
+   ================================================================ */
+
+.topbar-mobile {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .topbar { display: none; }
+  .topbar-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(10, 8, 7, 0.96);
+    border-bottom: 1px solid rgba(255, 216, 77, 0.18);
+    padding: 14px 18px;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+  }
+}
+
+.topbar-mobile-current {
+  font-family: 'Shippori Mincho', 'Hiragino Mincho ProN', serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #ece4d2;
+  letter-spacing: 0.01em;
+}
+.topbar-mobile-menu {
+  border: 0;
+  background: transparent;
+  color: #ffd84d;
+  padding: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease;
+}
+.topbar-mobile-menu:hover { opacity: 0.7; }
+
+/* ================================================================
+   DRAWER — overlay com lista vertical das 9 formas
+   ================================================================ */
+
+.topbar-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  animation: drawer-fade 0.2s ease-out;
+}
+.topbar-drawer-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 8, 7, 0.72);
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+.topbar-drawer-panel {
+  position: relative;
+  margin-left: auto;
+  width: min(92vw, 420px);
+  height: 100%;
+  background: #0a0807;
+  border-left: 1px solid rgba(255, 216, 77, 0.18);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  animation: drawer-slide 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: -32px 0 64px -16px rgba(0, 0, 0, 0.6);
+}
+.topbar-drawer-header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px 14px;
+  border-bottom: 1px solid rgba(255, 216, 77, 0.10);
+  background: #0a0807;
+  z-index: 1;
+}
+.topbar-drawer-title {
+  font-family: 'Shippori Mincho', 'Hiragino Mincho ProN', serif;
+  font-size: 11px;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: rgba(255, 216, 77, 0.55);
+}
+.topbar-drawer-close {
+  border: 0;
+  background: transparent;
+  color: #ece4d2;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 6px;
+  transition: color 0.2s ease;
+  font-family: inherit;
+}
+.topbar-drawer-close:hover { color: #ffd84d; }
+
+.topbar-drawer-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.topbar-drawer-item {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 18px;
+  align-items: start;
+  padding: 18px 24px;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 216, 77, 0.08);
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s ease, padding-left 0.25s ease;
+}
+.topbar-drawer-item:hover {
+  background: rgba(255, 216, 77, 0.05);
+}
+.topbar-drawer-item.active {
+  background: rgba(255, 216, 77, 0.08);
+  padding-left: 28px;
+}
+.topbar-drawer-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 14px;
+  bottom: 14px;
+  width: 2px;
+  background: #ffd84d;
+}
+.topbar-drawer-item { position: relative; }
+
+.topbar-drawer-kanji {
+  font-family: 'Shippori Mincho', 'Hiragino Mincho ProN', serif;
+  font-size: 36px;
+  font-weight: 500;
+  color: rgba(255, 216, 77, 0.6);
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+.topbar-drawer-item.active .topbar-drawer-kanji {
+  color: #ffd84d;
+}
+.topbar-drawer-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.topbar-drawer-label {
+  font-family: 'Shippori Mincho', 'Hiragino Mincho ProN', serif;
+  font-size: 17px;
+  font-weight: 500;
+  color: #ece4d2;
+  letter-spacing: -0.005em;
+  line-height: 1.2;
+}
+.topbar-drawer-item.active .topbar-drawer-label {
+  color: #ffd84d;
+}
+.topbar-drawer-desc {
+  font-family: 'Shippori Mincho', 'Hiragino Mincho ProN', serif;
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.45;
+  color: rgba(236, 228, 210, 0.55);
+}
+
+@keyframes drawer-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes drawer-slide {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .topbar-drawer,
+  .topbar-drawer-panel { animation: none; }
+}
+
+/* ================================================================
    ASSINATURA — meu corte. um único traço com ponto.
    aparece no rodapé das três páginas. classe global.
    ================================================================ */
@@ -129,31 +328,4 @@
   letter-spacing: 0.36em;
   color: rgba(255, 216, 77, 0.55);
   text-transform: uppercase;
-}
-
-@media (max-width: 640px) {
-  /* kanji-only no mobile estreito: os 9 botões cabem na viewport. fade do
-     wrap continua como cinto de segurança em viewports ainda menores. */
-  .topbar-btn { padding: 14px 12px 12px; gap: 0; font-size: 10px; letter-spacing: 0.22em; }
-  .topbar-num { font-size: 18px; }
-  .topbar-label { display: none; }
-  .topbar-btn::after { left: 12px; right: 12px; }
-
-  .topbar-wrap { position: relative; }
-  .topbar-wrap::after {
-    content: '›';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 1px;
-    width: 36px;
-    display: grid;
-    place-items: center;
-    font-family: 'Shippori Mincho', serif;
-    font-size: 22px;
-    color: #ffd84d;
-    background: linear-gradient(to left, rgba(10, 8, 7, 0.94) 40%, rgba(10, 8, 7, 0));
-    pointer-events: none;
-    opacity: 0.85;
-  }
 }
