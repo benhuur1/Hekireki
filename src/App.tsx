@@ -11,9 +11,10 @@ const TanRen = lazy(() => import('./TanRen'))
 const ACronica = lazy(() => import('./ACronica'))
 const SetimoEstilo = lazy(() => import('./SetimoEstilo'))
 const KakuRaiNoKami = lazy(() => import('./KakuRaiNoKami'))
+const AsQuatroLentes = lazy(() => import('./AsQuatroLentes'))
 
 const VIEWS = [
-  'diagrama', 'primeira', 'corte', 'espelho', 'lexico',
+  'diagrama', 'primeira', 'lentes', 'corte', 'espelho', 'lexico',
   'portao', 'tanren', 'setimo', 'kakurai', 'cronica',
 ] as const
 type View = (typeof VIEWS)[number]
@@ -59,6 +60,13 @@ function App() {
         >
           <span className="topbar-num">壱</span>
           <span className="topbar-label">Primeira Forma</span>
+        </button>
+        <button
+          className={view === 'lentes' ? 'topbar-btn active' : 'topbar-btn'}
+          onClick={() => navigateTo('lentes')}
+        >
+          <span className="topbar-num">質</span>
+          <span className="topbar-label">As Quatro Lentes</span>
         </button>
         <button
           className={view === 'corte' ? 'topbar-btn active' : 'topbar-btn'}
@@ -112,6 +120,11 @@ function App() {
       </nav>
 
       {view === 'primeira' && <PrimeiraForma />}
+      {view === 'lentes' && (
+        <Suspense fallback={<div className="topbar-loading">carregando as quatro lentes…</div>}>
+          <AsQuatroLentes />
+        </Suspense>
+      )}
       {view === 'diagrama' && (
         <Suspense fallback={<div className="topbar-loading">carregando diagrama…</div>}>
           <DiagramaRAG />

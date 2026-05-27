@@ -1,73 +1,50 @@
-# React + TypeScript + Vite
+# Hekireki · 壱ノ型
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> 霹靂一閃 — *Trovão e Relâmpago*. Manifesto da **Primeira Forma** em código: padrões que enxerguei usando tecnologia pra desenvolver software, destilados numa régua única — **entregar task com qualidade.**
 
-Currently, two official plugins are available:
+Site de página única (SPA) que apresenta o manifesto como uma série de "formas", no visual *Hekireki Issen*. Começou como um relatório de 2 páginas (o Diagrama RAG + a Sétima Forma) e cresceu virando o manifesto inteiro.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## A régua: as 4 lentes da qualidade
 
-## React Compiler
+No fim, toda entrega responde a **quatro donos** — e qualidade é servir os quatro de uma vez:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Dono | Critério |
+| --- | --- |
+| **Quem usa** | UX/UI: resolve sem fricção |
+| **O computador** | o código compila e roda correto |
+| **O dono** | reflete a necessidade que ele propõe resolver |
+| **O dev (você, depois)** | dá pra evoluir e manter a qualquer momento |
 
-## Expanding the ESLint configuration
+A maioria dos problemas de software é servir um dono e esquecer outro: UX linda que não compila, código limpo que não resolve a dor, solução perfeita que ninguém mantém.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## As formas (páginas)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Cada forma tem URL própria via hash (`#/o-corte`) — deep-link e back/forward funcionam.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+| Forma | Rota | Sobre |
+| --- | --- | --- |
+| Diagrama RAG | `#/diagrama` | O relatório original (fluxo de RAG, com `@xyflow/react`) |
+| Primeira Forma | `#/primeira` | A essência: uma técnica, executada com perfeição |
+| As Quatro Lentes | `#/lentes` | Os quatro donos da qualidade |
+| O Corte | `#/corte` | A Primeira Forma aplicada a stack, infra e carreira |
+| O Espelho | `#/espelho` | Auto-audit: 20 perguntas pro próprio código |
+| O Léxico | `#/lexico` | Dicionário do trovão pra devs |
+| O Portão | `#/portao` | Onde o contrato é forjado (validação na borda) |
+| A Têmpera | `#/tanren` | A disciplina virando reflexo |
+| Sétima Forma | `#/setimo` | A forma que nasce da repetição da primeira |
+| Trovão do Núcleo | `#/kakurai` | — |
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+> Esta régua e estas formas alimentam a skill `/primeira-forma` do Claude Code — cada pergunta dela tem seu gabarito numa destas páginas.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Stack
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Vite 8 · React 19 · TypeScript 6 · `@xyflow/react` (Diagrama RAG). Sem framework de roteamento — a view vive no hash da URL.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Rodar
+
+```bash
+npm install
+npm run dev      # servidor de dev
+npm run build    # tsc -b + build de produção
+npm run lint     # ESLint
 ```

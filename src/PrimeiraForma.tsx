@@ -93,48 +93,42 @@ const impurezas: Impureza[] = [
 ]
 
 function PrimeiraForma() {
-  const [marteladas, setMarteladas] = useState(0)
+  const [marteladas, setMarteladas] = useState(readMarteladas)
   const [sussurro, setSussurro] = useState<string | null>(null)
-  const usuarioBateuRef = useRef(false)
   const sussurroTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  useEffect(() => {
-    setMarteladas(readMarteladas())
-  }, [])
-
   function bata() {
-    usuarioBateuRef.current = true
-    setMarteladas((prev) => {
-      const next = prev + 1
-      try {
-        localStorage.setItem(STORAGE_KEY, String(next))
-      } catch {
-        /* localStorage indisponível — segue sem persistir */
-      }
-      return next
-    })
+    const next = marteladas + 1
+    setMarteladas(next)
+    try {
+      localStorage.setItem(STORAGE_KEY, String(next))
+    } catch {
+      /* localStorage indisponível — segue sem persistir */
+    }
+    /* sussurro nos marcos — disparado pela ação do usuário, nunca na carga */
+    const msg = SUSSURROS[next]
+    if (msg) {
+      setSussurro(msg)
+      if (sussurroTimeoutRef.current) clearTimeout(sussurroTimeoutRef.current)
+      sussurroTimeoutRef.current = setTimeout(() => setSussurro(null), 4000)
+    }
   }
 
-  /* sussurros nos marcos — só dispara quando o usuário realmente bateu,
-     nunca no carregamento inicial via localStorage */
+  /* SPACE em qualquer lugar = bata o martelo (pula campos editáveis e botões).
+     bataRef guarda a última versão de bata pra o listener (deps []) não
+     capturar uma closure obsoleta de marteladas. */
+  const bataRef = useRef(bata)
   useEffect(() => {
-    if (!usuarioBateuRef.current) return
-    const msg = SUSSURROS[marteladas]
-    if (!msg) return
-    setSussurro(msg)
-    if (sussurroTimeoutRef.current) clearTimeout(sussurroTimeoutRef.current)
-    sussurroTimeoutRef.current = setTimeout(() => setSussurro(null), 4000)
-  }, [marteladas])
+    bataRef.current = bata
+  })
 
-  /* SPACE em qualquer lugar = bata o martelo
-     pula se o foco estiver num campo editável ou num botão (que já trata) */
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.code !== 'Space') return
       const target = e.target as HTMLElement | null
       if (target?.matches('button, input, textarea, select, [contenteditable="true"]')) return
       e.preventDefault()
-      bata()
+      bataRef.current()
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
