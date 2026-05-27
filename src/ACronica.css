@@ -1,0 +1,96 @@
+/* ================================================================
+   A Crônica — área exclusiva, sem botão no topbar
+   feel de evolução por episódios — cada arco recebe respiração extra
+   ================================================================ */
+
+/* o eyebrow ganha um marcador de "área exclusiva" — pequeno mas distinto */
+.hk-cronica .hk-eyebrow {
+  position: relative;
+  padding-left: 18px;
+}
+.hk-cronica .hk-eyebrow::before {
+  content: '◆';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 8px;
+  color: var(--gold);
+  filter: drop-shadow(0 0 4px rgba(255, 216, 77, 0.6));
+}
+
+/* episódios têm divisor extra entre eles — sensação de "fim de ato" */
+.hk-cronica .hk-episodio {
+  border-bottom: 1px solid var(--rule-strong);
+}
+.hk-cronica .hk-episodio:last-of-type {
+  border-bottom: 1px solid var(--rule);
+}
+
+/* tag do episódio fica mais respirada */
+.hk-cronica .hk-section-tag {
+  font-size: 10px;
+  letter-spacing: 0.32em;
+}
+
+/* h2 do episódio com slide-in da esquerda — ar de "next chapter" */
+.hk-cronica .hk-episodio .hk-h2 {
+  font-style: italic;
+}
+
+/* link de entrada da Crônica (vive na Sétima Forma) */
+.hk-cronica-entrada {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 32px;
+  padding: 14px 22px 12px 18px;
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--paper-dim);
+  text-decoration: none;
+  transition:
+    border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.4s ease,
+    background 0.4s ease;
+}
+.hk-cronica-entrada:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: linear-gradient(90deg, rgba(255, 216, 77, 0.06), transparent 90%);
+}
+.hk-cronica-entrada::before {
+  content: '跡';
+  font-family: var(--serif);
+  font-size: 16px;
+  color: var(--gold);
+  letter-spacing: 0;
+  line-height: 1;
+}
+.hk-cronica-entrada::after {
+  content: '→';
+  font-size: 14px;
+  letter-spacing: 0;
+  margin-left: 6px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hk-cronica-entrada:hover::after {
+  transform: translateX(4px);
+}
+
+@media (max-width: 600px) {
+  .hk-cronica-entrada {
+    padding: 12px 16px 11px 14px;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+  }
+  .hk-cronica .hk-eyebrow { padding-left: 14px; letter-spacing: 0.22em; }
+}

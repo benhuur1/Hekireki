@@ -1,0 +1,32 @@
+/* ================================================================
+   reset global mínimo — cada página define seu próprio mundo
+   tudo que era light/dark mode genérico foi cortado:
+   as 4 páginas são editorial dark autocontidas.
+   ================================================================ */
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #0a0807;
+  color: #ece4d2;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-synthesis: none;
+}
+
+#root {
+  width: 100%;
+  max-width: 1800px;
+  margin: 0 auto;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}

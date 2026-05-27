@@ -1,0 +1,1052 @@
+/* ================================================================
+   Primeira Forma · Hekireki Issen
+   editorial japonês — minimalismo brutal, um único corte
+   ================================================================ */
+
+.hk {
+  /* paleta: tinta, papel, ouro */
+  --ink: #0a0807;
+  --ink-2: #15110d;
+  --ink-3: #1f1a13;
+  --paper: #ece4d2;
+  --paper-dim: #a89e8a;
+  --paper-faint: #6b6253;
+  --gold: #ffd84d;
+  --gold-soft: #fff1a8;
+  --gold-deep: #c89a2a;
+  --gold-leaf: #e9b53d;
+  --rule: rgba(236, 228, 210, 0.10);
+  --rule-strong: rgba(236, 228, 210, 0.22);
+  --rule-gold: rgba(255, 216, 77, 0.32);
+
+  /* tipografia */
+  --serif: 'Shippori Mincho', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+  --mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  position: relative;
+  min-height: 100vh;
+  background: var(--ink);
+  background-image:
+    radial-gradient(ellipse 70% 45% at 22% 0%, rgba(255, 216, 77, 0.07), transparent 65%),
+    radial-gradient(ellipse 50% 35% at 95% 100%, rgba(122, 79, 0, 0.10), transparent 70%);
+  color: var(--paper);
+  font-family: var(--serif);
+  font-feature-settings: 'palt' 1;
+  overflow-x: hidden;
+  letter-spacing: normal;
+}
+
+.hk *,
+.hk *::before,
+.hk *::after {
+  box-sizing: border-box;
+}
+
+/* grain — papel envelhecido */
+.hk::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+}
+
+.hk > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* ================ SCAR — relâmpago único ================ */
+
+.hk-scar {
+  position: absolute;
+  top: 0;
+  left: 14%;
+  width: 220px;
+  height: 105vh;
+  z-index: 1;
+  pointer-events: none;
+}
+.hk-scar-glow {
+  stroke-dasharray: 2400;
+  stroke-dashoffset: 2400;
+  opacity: 0;
+  animation: scar-flash 1.8s 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.hk-scar-line {
+  stroke-dasharray: 2400;
+  stroke-dashoffset: 2400;
+  opacity: 0;
+  animation: scar-trace 1.8s 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes scar-flash {
+  0%   { stroke-dashoffset: 2400; opacity: 0; }
+  20%  { stroke-dashoffset: 0; opacity: 1; }
+  35%  { opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0.18; }
+}
+@keyframes scar-trace {
+  0%   { stroke-dashoffset: 2400; opacity: 0; }
+  20%  { stroke-dashoffset: 0; opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0.85; }
+}
+
+/* ================ HERO ================ */
+
+.hk-hero {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 600px) 64px;
+  align-items: center;
+  min-height: 92vh;
+  padding: 80px 64px 120px;
+  position: relative;
+  border-bottom: 1px solid var(--rule);
+}
+
+.hk-kanji-art {
+  position: absolute;
+  left: -2.5vw;
+  top: 50%;
+  transform: translateY(-52%);
+  font-family: var(--serif);
+  font-size: clamp(280px, 44vw, 680px);
+  font-weight: 500;
+  line-height: 0.78;
+  letter-spacing: -0.05em;
+  color: rgba(255, 216, 77, 0.04);
+  -webkit-text-stroke: 1.5px var(--gold-deep);
+  user-select: none;
+  pointer-events: none;
+  z-index: 0;
+  text-shadow:
+    0 0 80px rgba(255, 216, 77, 0.10),
+    0 0 200px rgba(255, 216, 77, 0.05);
+}
+
+.hk-hero-meta {
+  grid-column: 2;
+  position: relative;
+  z-index: 3;
+  padding: 56px 0 56px 56px;
+  border-left: 1px solid var(--rule-gold);
+  background: linear-gradient(90deg, rgba(10, 8, 7, 0.55), transparent 90%);
+  backdrop-filter: blur(2px);
+}
+
+.hk-eyebrow {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.36em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin: 0 0 36px;
+}
+
+.hk-title {
+  margin: 0 0 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-weight: 500;
+}
+.hk-title-kanji {
+  font-family: var(--serif);
+  font-size: clamp(48px, 6vw, 84px);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  line-height: 1;
+  text-shadow: 0 0 40px rgba(255, 216, 77, 0.30);
+}
+.hk-title-rom {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(28px, 3.4vw, 42px);
+  font-weight: 400;
+  color: var(--paper);
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+}
+.hk-title-trans {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--paper-dim);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.hk-lead {
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.72;
+  color: var(--paper);
+  max-width: 480px;
+  margin: 0 0 36px;
+  font-weight: 400;
+}
+.hk-lead em {
+  font-style: italic;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+.hk-quote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.5;
+  color: var(--gold-soft);
+  max-width: 460px;
+  margin: 0 0 32px;
+  padding: 4px 0 4px 26px;
+  border-left: 2px solid var(--gold);
+  font-weight: 400;
+}
+
+/* ================ A BIGORNA — única interação da página ================ */
+
+.hk-anvil {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 13px 22px 12px 18px;
+  margin: 0;
+  background: transparent;
+  border: 1px solid var(--rule-gold);
+  border-radius: 0;
+  cursor: pointer;
+  font-family: var(--mono);
+  color: var(--paper-dim);
+  text-align: left;
+  transition:
+    border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.4s ease,
+    background 0.4s ease,
+    transform 0.18s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.hk-anvil:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: linear-gradient(90deg, rgba(255, 216, 77, 0.06), transparent 90%);
+}
+.hk-anvil:active {
+  transform: translateY(1px);
+  background: rgba(255, 216, 77, 0.10);
+}
+.hk-anvil:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+.hk-anvil .signature-mark {
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  opacity: 0.7;
+  color: var(--gold);
+  flex-shrink: 0;
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hk-anvil:hover .signature-mark {
+  opacity: 1;
+  transform: rotate(-6deg);
+}
+.hk-anvil:active .signature-mark {
+  transform: rotate(-12deg) scale(0.92);
+  opacity: 1;
+}
+
+.hk-anvil-text {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 18px;
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  line-height: 1;
+  flex-wrap: wrap;
+  row-gap: 6px;
+}
+.hk-anvil-label {
+  display: inline-block;
+}
+.hk-anvil-count {
+  display: inline-block;
+  font-weight: 500;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.18em;
+  font-size: 12px;
+  padding-left: 18px;
+  border-left: 1px solid var(--rule-gold);
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+.hk-anvil:hover .hk-anvil-count {
+  border-left-color: var(--gold);
+}
+
+/* contador no rodapé — espelho silencioso da bigorna */
+.hk-foot-num {
+  font-weight: 500;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.22em;
+  margin-left: 4px;
+}
+
+/* tecla SPACE — affordance pro atalho */
+.hk-anvil-key {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: lowercase;
+  color: var(--paper-faint);
+  padding: 3px 7px 2px;
+  border: 1px solid var(--rule);
+  border-radius: 0;
+  margin-left: 2px;
+  background: rgba(0, 0, 0, 0.3);
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+.hk-anvil:hover .hk-anvil-key {
+  color: var(--gold-soft);
+  border-color: var(--rule-gold);
+}
+
+/* sussurros nos marcos — overlay efêmero no canto inferior */
+.hk-sussurro {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  z-index: 100;
+  padding: 14px 28px 12px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(10, 8, 7, 0.92);
+  border: 1px solid var(--rule-gold);
+  backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
+  box-shadow:
+    0 12px 32px -8px rgba(0, 0, 0, 0.6),
+    0 0 24px -6px rgba(255, 216, 77, 0.35);
+  pointer-events: none;
+  white-space: nowrap;
+  animation:
+    sussurro-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+    sussurro-out 0.6s cubic-bezier(0.65, 0, 0.35, 1) 3.4s forwards;
+}
+@keyframes sussurro-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+    filter: blur(0);
+  }
+}
+@keyframes sussurro-out {
+  to {
+    opacity: 0;
+    transform: translate(-50%, 12px);
+    filter: blur(2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hk-sussurro {
+    animation: none;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 600px) {
+  .hk-sussurro {
+    bottom: 20px;
+    font-size: 10px;
+    padding: 12px 20px 10px;
+    letter-spacing: 0.28em;
+    max-width: calc(100vw - 32px);
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+/* coluna vertical à direita */
+.hk-vertical {
+  grid-column: 3;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.36em;
+  color: var(--paper-faint);
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  padding: 0;
+  border-left: 1px solid var(--rule);
+}
+.hk-vertical-dot {
+  letter-spacing: 0;
+  color: var(--gold);
+  writing-mode: horizontal-tb;
+  font-size: 10px;
+}
+
+/* ================ SECTIONS ================ */
+
+.hk-section {
+  padding: 128px 64px;
+  max-width: 1320px;
+  margin: 0 auto;
+  position: relative;
+  border-bottom: 1px solid var(--rule);
+  /* containment: cada section é uma ilha — mudança aqui não dispara reflow no resto.
+     content-visibility deixa o browser pular layout/paint quando off-screen. */
+  contain: layout style;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
+}
+
+.hk-section-label {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: center;
+  gap: 24px;
+  margin: 0 0 64px;
+}
+.hk-section-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: 0.28em;
+  padding: 5px 11px 4px;
+  border: 1px solid var(--rule-gold);
+  background: rgba(255, 216, 77, 0.04);
+}
+.hk-section-tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--paper-dim);
+}
+.hk-section-rule {
+  height: 1px;
+  background: linear-gradient(to right, var(--rule-strong), transparent);
+}
+
+.hk-h2 {
+  font-family: var(--serif);
+  font-size: clamp(40px, 5.4vw, 68px);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  color: var(--paper);
+  margin: 0 0 24px;
+  max-width: 880px;
+}
+
+.hk-sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 19px;
+  line-height: 1.65;
+  color: var(--paper-dim);
+  max-width: 640px;
+  margin: 0 0 64px;
+}
+
+/* ================ ANATOMIA — padrão Impurezas ================ */
+
+.hk-tempos {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid var(--rule);
+}
+.hk-tempos li {
+  display: grid;
+  grid-template-columns: 80px 1fr 2fr;
+  gap: 40px;
+  padding: 36px 16px 36px 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: baseline;
+  transition: padding 0.4s ease, background 0.4s ease;
+}
+.hk-tempos li:hover {
+  padding-left: 16px;
+  background: linear-gradient(to right, rgba(255, 216, 77, 0.04), transparent 75%);
+}
+.hk-tempo-num {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.32em;
+  color: var(--gold);
+  font-weight: 500;
+  align-self: baseline;
+}
+.hk-tempos h4 {
+  font-family: var(--serif);
+  font-style: normal;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  margin: 0;
+  color: var(--paper);
+  line-height: 1.2;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+.hk-tempo-kanji {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: 0;
+  text-shadow: 0 0 16px rgba(255, 216, 77, 0.4);
+  line-height: 1;
+}
+.hk-tempos p {
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--paper-dim);
+  margin: 0;
+  max-width: 580px;
+}
+
+/* ================ MULTI — padrão Impurezas ================ */
+
+.hk-multi-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid var(--rule);
+}
+.hk-multi-list li {
+  display: grid;
+  grid-template-columns: 80px 1fr 2fr;
+  gap: 40px;
+  padding: 36px 16px 36px 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: baseline;
+  position: relative;
+  transition: padding 0.4s ease, background 0.4s ease;
+}
+.hk-multi-list li:hover {
+  padding-left: 16px;
+  background: linear-gradient(to right, rgba(255, 216, 77, 0.04), transparent 75%);
+}
+.hk-multi-list li[data-pico='true'] {
+  background: linear-gradient(to right, rgba(255, 216, 77, 0.045), transparent 70%);
+}
+.hk-multi-list li[data-pico='true']::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold) 10%, var(--gold) 90%, transparent);
+  box-shadow: 0 0 14px rgba(255, 216, 77, 0.5);
+}
+.hk-multi-numero {
+  font-family: var(--mono);
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--paper);
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+  align-self: baseline;
+}
+.hk-multi-list li[data-pico='true'] .hk-multi-numero {
+  color: var(--gold);
+}
+.hk-multi-list h3 {
+  font-family: var(--serif);
+  font-style: normal;
+  font-size: 22px;
+  font-weight: 500;
+  margin: 0;
+  color: var(--paper);
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.hk-multi-kanji {
+  font-family: var(--serif);
+  font-size: 16px;
+  color: var(--gold);
+  letter-spacing: 0.14em;
+  font-weight: 500;
+  line-height: 1;
+}
+.hk-multi-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-self: baseline;
+}
+.hk-multi-body p {
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--paper-dim);
+  margin: 0;
+  max-width: 580px;
+}
+
+.hk-cortes {
+  color: var(--gold);
+  height: 32px;
+  display: flex;
+  align-items: center;
+}
+.hk-cortes svg {
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  display: block;
+  filter: drop-shadow(0 0 6px rgba(255, 216, 77, 0.55));
+  overflow: visible;
+}
+.hk-corte {
+  stroke-dasharray: 80;
+  stroke-dashoffset: 80;
+  opacity: 0;
+  animation: corte-in 0.55s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+@keyframes corte-in {
+  0%   { stroke-dashoffset: 80; opacity: 0; }
+  40%  { opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 1; }
+}
+
+/* ================ FORJA ================ */
+
+.hk-forja .hk-h2 { max-width: 600px; }
+
+.hk-epigrafe {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(22px, 2.4vw, 28px);
+  line-height: 1.5;
+  color: var(--paper);
+  max-width: 580px;
+  margin: 0 0 88px;
+  padding: 28px 0;
+  border-top: 1px solid var(--rule-strong);
+  border-bottom: 1px solid var(--rule-strong);
+  font-weight: 400;
+}
+
+.hk-impurezas {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 96px;
+  border-top: 1px solid var(--rule);
+}
+.hk-impurezas li {
+  display: grid;
+  grid-template-columns: 80px 1fr 2fr;
+  gap: 40px;
+  padding: 36px 16px 36px 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: baseline;
+  transition: padding 0.4s ease, background 0.4s ease;
+}
+.hk-impurezas li:hover {
+  padding-left: 16px;
+  background: linear-gradient(to right, rgba(255, 216, 77, 0.04), transparent 75%);
+}
+.hk-imp-num {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--gold);
+  letter-spacing: 0.22em;
+}
+.hk-impurezas h4 {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 500;
+  margin: 0;
+  color: var(--paper);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.hk-impurezas p {
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--paper-dim);
+  margin: 0;
+  max-width: 620px;
+}
+
+/* ---- extensões da impurezas list para conteúdo mais rico ---- */
+
+.hk-imp-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 400;
+  padding: 2px 8px 1px;
+  margin-left: 14px;
+  background: rgba(255, 216, 77, 0.05);
+  border: 1px solid var(--rule-gold);
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-radius: 0;
+  vertical-align: middle;
+}
+.hk-imp-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 620px;
+}
+.hk-imp-bullets li {
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--paper-dim);
+  padding-left: 18px;
+  position: relative;
+  border: 0;
+  display: block;
+  background: none;
+  transition: none;
+}
+.hk-imp-bullets li::before {
+  content: '·';
+  position: absolute;
+  left: 4px;
+  top: -2px;
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 18px;
+  font-family: inherit;
+  letter-spacing: 0;
+}
+.hk-imp-bullets li:hover {
+  padding-left: 18px;
+  background: none;
+}
+.hk-imp-codigo {
+  margin: 18px 0 0;
+  padding: 16px 20px;
+  background: var(--ink-2);
+  border: 1px solid var(--rule-gold);
+  border-radius: 0;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--paper);
+  overflow-x: auto;
+  max-width: 720px;
+}
+.hk-imp-codigo code {
+  font-family: inherit;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: inherit;
+}
+.hk-impurezas em {
+  color: var(--gold);
+  font-style: italic;
+  font-weight: 500;
+}
+.hk-impurezas code {
+  font-family: var(--mono);
+  font-size: 13px;
+  padding: 2px 6px;
+  background: rgba(255, 216, 77, 0.06);
+  border: 1px solid var(--rule-gold);
+  color: var(--gold);
+  border-radius: 0;
+}
+.hk-impurezas strong {
+  color: var(--paper);
+  font-weight: 500;
+}
+
+.hk-citacao {
+  margin: 0;
+  padding: 64px 0 32px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1.3;
+  color: var(--gold-leaf);
+  text-align: center;
+  letter-spacing: -0.015em;
+  font-weight: 400;
+  position: relative;
+}
+.hk-citacao span {
+  display: block;
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  color: var(--paper-faint);
+  margin-bottom: 28px;
+  text-transform: uppercase;
+}
+
+/* ================ RITUAL ================ */
+
+.hk-codigo {
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--paper);
+  background: var(--ink-2);
+  background-image:
+    linear-gradient(180deg, rgba(255, 216, 77, 0.025), transparent 30%);
+  border: 1px solid var(--rule-gold);
+  padding: 56px 56px 48px;
+  margin: 0;
+  overflow-x: auto;
+  white-space: pre;
+  position: relative;
+  font-weight: 400;
+}
+.hk-codigo::before {
+  content: '— inscrição';
+  position: absolute;
+  top: 18px;
+  left: 32px;
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  color: var(--gold);
+  text-transform: uppercase;
+  background: transparent;
+  padding: 0;
+}
+.hk-codigo code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* ================ FOOTER ================ */
+
+.hk-foot {
+  padding: 56px 64px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.34em;
+  color: var(--paper-faint);
+  text-transform: uppercase;
+}
+.hk-foot-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.hk-foot-rule {
+  display: inline-block;
+  width: 32px;
+  height: 1px;
+  background: var(--rule-strong);
+}
+.hk-foot .signature-mark {
+  color: var(--gold);
+}
+
+/* ================ entrance choreography ================ */
+
+.hk-eyebrow,
+.hk-title-kanji,
+.hk-title-rom,
+.hk-title-trans,
+.hk-lead,
+.hk-quote,
+.hk-anvil,
+.hk-vertical {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: settle 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.hk-eyebrow      { animation-delay: 0.50s; }
+.hk-title-kanji  { animation-delay: 0.95s; }
+.hk-title-rom    { animation-delay: 1.15s; }
+.hk-title-trans  { animation-delay: 1.30s; }
+.hk-lead         { animation-delay: 1.55s; }
+.hk-quote        { animation-delay: 1.95s; }
+.hk-anvil        { animation-delay: 2.25s; }
+.hk-vertical     { animation-delay: 2.45s; }
+
+.hk-kanji-art {
+  opacity: 0;
+  animation: kanji-emerge 2.8s 1.2s ease-out forwards;
+}
+
+@keyframes settle {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes kanji-emerge {
+  to { opacity: 1; }
+}
+
+/* scroll-driven reveals (onde suportado, sem JS) */
+@supports (animation-timeline: view()) {
+  .hk-tempos li,
+  .hk-multi-card,
+  .hk-impurezas li {
+    animation: scroll-reveal 1s linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 35%;
+  }
+  @keyframes scroll-reveal {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* respeitar quem prefere menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  .hk *,
+  .hk *::before,
+  .hk *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .hk-eyebrow,
+  .hk-title-kanji,
+  .hk-title-rom,
+  .hk-title-trans,
+  .hk-lead,
+  .hk-quote,
+  .hk-anvil,
+  .hk-vertical,
+  .hk-kanji-art,
+  .hk-corte,
+  .hk-scar-glow,
+  .hk-scar-line {
+    opacity: 1 !important;
+    transform: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+}
+
+/* ================ responsivo ================ */
+
+@media (max-width: 1024px) {
+  .hk-hero {
+    grid-template-columns: 1fr;
+    padding: 56px 24px 80px;
+    min-height: auto;
+    gap: 0;
+  }
+  .hk-vertical { display: none; }
+  .hk-hero-meta {
+    grid-column: 1;
+    border-left: 0;
+    padding: 32px 0 0;
+    background: none;
+    backdrop-filter: none;
+  }
+  .hk-kanji-art {
+    font-size: clamp(220px, 80vw, 460px);
+    left: 50%;
+    transform: translate(-50%, -45%);
+    opacity: 0.55;
+  }
+  .hk-scar { left: 4%; opacity: 0.6; }
+  .hk-section { padding: 80px 24px; }
+  .hk-impurezas li,
+  .hk-tempos li,
+  .hk-multi-list li {
+    grid-template-columns: 50px 1fr;
+    gap: 12px 20px;
+    padding: 28px 0;
+  }
+  .hk-impurezas h4,
+  .hk-impurezas p,
+  .hk-tempos h4,
+  .hk-tempos p,
+  .hk-multi-list h3,
+  .hk-multi-body { grid-column: 2; }
+  .hk-multi-numero { font-size: 28px; }
+  .hk-codigo { padding: 36px 24px; font-size: 13px; }
+  .hk-foot { padding: 40px 24px 56px; flex-wrap: wrap; gap: 16px; }
+}
+
+@media (max-width: 600px) {
+  .hk-section-label { gap: 14px; }
+  .hk-section-tag { display: none; }
+  .hk-multi-numero { font-size: 28px; }
+  .hk-citacao { padding: 40px 0 24px; }
+  .hk-anvil { width: 100%; padding: 13px 16px 12px; }
+  .hk-anvil-text { gap: 12px; font-size: 10px; letter-spacing: 0.26em; }
+  .hk-anvil-count { padding-left: 12px; font-size: 11px; }
+  .hk-foot-row { flex-wrap: wrap; justify-content: center; gap: 14px; }
+  .hk-foot-rule { display: none; }
+  .hk-quote { font-size: 18px; padding-left: 18px; }
+  .hk-lead { font-size: 17px; }
+  .hk-eyebrow { letter-spacing: 0.24em; margin-bottom: 28px; }
+  .hk-kanji-art {
+    font-size: clamp(180px, 70vw, 360px);
+    transform: translate(-50%, -42%);
+    opacity: 0.4;
+  }
+  .hk-imp-tag { letter-spacing: 0.14em; margin-left: 0; display: inline-block; margin-top: 4px; }
+  .hk-impurezas h4 { flex-wrap: wrap; gap: 6px; }
+}
+
+@media (max-width: 480px) {
+  .hk-hero { padding: 40px 18px 56px; }
+  .hk-section { padding: 56px 18px; }
+  .hk-foot { padding: 32px 18px 48px; }
+  .hk-codigo { padding: 32px 18px; font-size: 12px; line-height: 1.7; }
+  .hk-codigo::before { left: 18px; top: 14px; font-size: 9px; letter-spacing: 0.32em; }
+  .hk-imp-codigo { padding: 14px 16px; font-size: 11.5px; line-height: 1.6; }
+  .hk-imp-bullets li { font-size: 14px; }
+  .hk-anvil-text { letter-spacing: 0.22em; }
+  .hk-impurezas li,
+  .hk-tempos li,
+  .hk-multi-list li {
+    grid-template-columns: 36px 1fr;
+    gap: 10px 14px;
+    padding: 24px 0;
+  }
+}

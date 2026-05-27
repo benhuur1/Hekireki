@@ -1,0 +1,140 @@
+/* ================================================================
+   App shell — topbar editorial
+   indicador de seleção: hairline dourada, sem fill
+   ================================================================ */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  gap: 0;
+  padding: 0;
+  background: rgba(10, 8, 7, 0.92);
+  backdrop-filter: blur(10px) saturate(140%);
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+  border-bottom: 1px solid rgba(255, 216, 77, 0.18);
+  font-family: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-snap-type: x proximity;
+}
+.topbar::-webkit-scrollbar { display: none; }
+.topbar-btn { scroll-snap-align: start; flex-shrink: 0; }
+
+.topbar-btn {
+  border: 0;
+  background: transparent;
+  color: rgba(236, 228, 210, 0.55);
+  padding: 16px 24px 14px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: inherit;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  transition: color 0.25s ease;
+}
+.topbar-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 1px;
+  background: rgba(236, 228, 210, 0.08);
+}
+.topbar-btn:last-child::before { display: none; }
+
+.topbar-btn::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 24px;
+  right: 24px;
+  height: 1px;
+  background: #ffd84d;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.topbar-btn:hover {
+  color: #ece4d2;
+}
+.topbar-btn:hover::after {
+  transform: scaleX(0.45);
+}
+.topbar-btn.active {
+  color: #ffd84d;
+}
+.topbar-btn.active::after {
+  transform: scaleX(1);
+  box-shadow: 0 0 10px rgba(255, 216, 77, 0.55);
+}
+
+.topbar-num {
+  font-family: 'Shippori Mincho', 'Hiragino Mincho ProN', serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: rgba(255, 216, 77, 0.6);
+  line-height: 1;
+  transition: color 0.25s ease;
+}
+.topbar-btn.active .topbar-num {
+  color: #ffd84d;
+}
+.topbar-label {
+  letter-spacing: inherit;
+}
+
+/* ================================================================
+   ASSINATURA — meu corte. um único traço com ponto.
+   aparece no rodapé das três páginas. classe global.
+   ================================================================ */
+
+.signature-mark {
+  width: 28px;
+  height: 28px;
+  color: #ffd84d;
+  opacity: 0.45;
+  display: block;
+  margin: 0 auto 20px;
+  cursor: default;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.signature-mark:hover {
+  opacity: 1;
+  transform: rotate(-3deg);
+}
+.signature-mark line {
+  stroke-linecap: round;
+}
+.signature-mark circle {
+  filter: drop-shadow(0 0 4px currentColor);
+}
+
+/* fallback Suspense — on-theme com a Primeira Forma */
+.topbar-loading {
+  min-height: calc(100vh - 50px);
+  display: grid;
+  place-items: center;
+  background: #0a0807;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.36em;
+  color: rgba(255, 216, 77, 0.55);
+  text-transform: uppercase;
+}
+
+@media (max-width: 640px) {
+  .topbar-btn { padding: 14px 14px 12px; gap: 8px; font-size: 10px; letter-spacing: 0.22em; }
+  .topbar-num { font-size: 13px; }
+  .topbar-btn::after { left: 14px; right: 14px; }
+}
