@@ -71,7 +71,7 @@ function AsQuatroLentes() {
           {donos.map((d, i) => (
             <li key={d.titulo}>
               <span className="hk-imp-num">{String(i + 1).padStart(2, '0')}</span>
-              <h4>{d.titulo}</h4>
+              <h3>{d.titulo}</h3>
               <p>{d.texto}</p>
             </li>
           ))}

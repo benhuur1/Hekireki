@@ -89,7 +89,7 @@ export function Secao({
         {items.map((item, i) => (
           <li key={item.titulo}>
             <span className="hk-imp-num">{String(i + 1).padStart(2, '0')}</span>
-            <h4>{item.titulo}</h4>
+            <h3>{item.titulo}</h3>
             <p>{item.texto}</p>
           </li>
         ))}

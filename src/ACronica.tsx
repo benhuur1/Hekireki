@@ -353,7 +353,7 @@ function ACronica() {
               {itens.map((m) => (
                 <li key={m.n}>
                   <span className="hk-imp-num">{String(m.n).padStart(2, '0')}</span>
-                  <h4>{m.voce}</h4>
+                  <h3>{m.voce}</h3>
                   <p>{m.eu}</p>
                 </li>
               ))}

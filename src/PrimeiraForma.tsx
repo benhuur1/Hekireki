@@ -200,10 +200,10 @@ function PrimeiraForma() {
           {tempos.map((t) => (
             <li key={t.num}>
               <span className="hk-tempo-num">{t.num}</span>
-              <h4>
+              <h3>
                 <span className="hk-tempo-kanji" aria-hidden>{t.kanji}</span>
                 {t.titulo}
-              </h4>
+              </h3>
               <p>{t.texto}</p>
             </li>
           ))}
@@ -251,7 +251,7 @@ function PrimeiraForma() {
           {impurezas.map((imp, i) => (
             <li key={imp.titulo}>
               <span className="hk-imp-num">{String(i + 1).padStart(2, '0')}</span>
-              <h4>{imp.titulo}</h4>
+              <h3>{imp.titulo}</h3>
               <p>{imp.texto}</p>
             </li>
           ))}

@@ -181,7 +181,7 @@ function OCorte() {
           {monstros.map((m, i) => (
             <li key={m.titulo}>
               <span className="hk-imp-num">{String(i + 1).padStart(2, '0')}</span>
-              <h4>{m.titulo}</h4>
+              <h3>{m.titulo}</h3>
               <p>{m.texto}</p>
             </li>
           ))}
@@ -201,7 +201,7 @@ function OCorte() {
           {leis.map((l, i) => (
             <li key={l.titulo}>
               <span className="hk-imp-num">{String(i + 1).padStart(2, '0')}</span>
-              <h4>{l.titulo}</h4>
+              <h3>{l.titulo}</h3>
               <p>{l.texto}</p>
             </li>
           ))}
@@ -221,7 +221,7 @@ function OCorte() {
           {estocadas.map((e, i) => (
             <li key={e.titulo}>
               <span className="hk-imp-num">{String(i + 1).padStart(2, '0')}</span>
-              <h4>{e.titulo}</h4>
+              <h3>{e.titulo}</h3>
               <p>{e.texto}</p>
             </li>
           ))}
@@ -240,7 +240,7 @@ function OCorte() {
           {caminhos.map((c, i) => (
             <li key={c.titulo}>
               <span className="hk-imp-num">{String(i + 1).padStart(2, '0')}</span>
-              <h4>{c.titulo}</h4>
+              <h3>{c.titulo}</h3>
               <p>{c.texto}</p>
             </li>
           ))}

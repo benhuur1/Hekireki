@@ -147,7 +147,7 @@ function TanRen() {
           {confissoes.map((c, i) => (
             <li key={c.titulo}>
               <span className="hk-imp-num">{String(i + 1).padStart(2, '0')}</span>
-              <h4>{c.titulo}</h4>
+              <h3>{c.titulo}</h3>
               <p>{c.texto}</p>
             </li>
           ))}
@@ -166,7 +166,7 @@ function TanRen() {
           {juramentos.map((j, i) => (
             <li key={j.titulo}>
               <span className="hk-imp-num">{String(i + 1).padStart(2, '0')}</span>
-              <h4>{j.titulo}</h4>
+              <h3>{j.titulo}</h3>
               <p>{j.texto}</p>
             </li>
           ))}
@@ -186,7 +186,7 @@ function TanRen() {
           {testes.map((t, i) => (
             <li key={t.titulo}>
               <span className="hk-imp-num">{String(i + 1).padStart(2, '0')}</span>
-              <h4>{t.titulo}</h4>
+              <h3>{t.titulo}</h3>
               <p>{t.texto}</p>
             </li>
           ))}
@@ -206,7 +206,7 @@ function TanRen() {
           {tempera.map((t, i) => (
             <li key={t.titulo}>
               <span className="hk-imp-num">{String(i + 1).padStart(2, '0')}</span>
-              <h4>{t.titulo}</h4>
+              <h3>{t.titulo}</h3>
               <p>{t.texto}</p>
             </li>
           ))}

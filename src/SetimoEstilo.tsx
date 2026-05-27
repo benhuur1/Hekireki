@@ -296,10 +296,10 @@ function SetimaForma() {
           {golpes.map((g, i) => (
             <li key={g.numero}>
               <span className="hk-imp-num">{String(i + 1).padStart(2, '0')}</span>
-              <h4>
+              <h3>
                 {g.titulo}
                 <code className="hk-imp-tag">{g.arquivo}</code>
-              </h4>
+              </h3>
               <div>
                 <p>{g.resumo}</p>
                 {g.bullets.length > 0 && (
@@ -328,7 +328,7 @@ function SetimaForma() {
           {perguntas.map((p, i) => (
             <li key={p.titulo}>
               <span className="hk-imp-num">{String(i + 1).padStart(2, '0')}</span>
-              <h4>{p.titulo}</h4>
+              <h3>{p.titulo}</h3>
               <p>{p.desc}</p>
             </li>
           ))}
@@ -358,7 +358,7 @@ function SetimaForma() {
           {ritual.map((r, i) => (
             <li key={r.titulo}>
               <span className="hk-imp-num">{String(i + 1).padStart(2, '0')}</span>
-              <h4>{r.titulo}</h4>
+              <h3>{r.titulo}</h3>
               <p>{r.detalhe}</p>
             </li>
           ))}
@@ -380,7 +380,7 @@ function SetimaForma() {
           {presaUnica.map((p, i) => (
             <li key={p.titulo}>
               <span className="hk-imp-num">{String(i + 1).padStart(2, '0')}</span>
-              <h4>{p.titulo}</h4>
+              <h3>{p.titulo}</h3>
               <p>{p.texto}</p>
             </li>
           ))}
@@ -403,7 +403,7 @@ function SetimaForma() {
                 <span className="hk-galeria-num">{String(i + 1).padStart(2, '0')}</span>
               </div>
               <figcaption>
-                <h4>{r.titulo}</h4>
+                <h3>{r.titulo}</h3>
                 <p>{r.legenda}</p>
               </figcaption>
             </figure>
@@ -419,7 +419,7 @@ function SetimaForma() {
           {direitos.map((d, i) => (
             <li key={d.titulo}>
               <span className="hk-imp-num">{String(i + 1).padStart(2, '0')}</span>
-              <h4>{d.titulo}</h4>
+              <h3>{d.titulo}</h3>
               <p>{d.corpo}</p>
             </li>
           ))}
@@ -573,7 +573,7 @@ function CompetitivoSection() {
             <ol className="hk-impurezas" key={h.label} style={{ marginTop: 24, borderTop: 'none' }}>
               <li>
                 <span className="hk-imp-num">{h.num}</span>
-                <h4>{h.label}</h4>
+                <h3>{h.label}</h3>
                 <div>
                   {h.items.length === 0 ? (
                     <p>{h.fallback}</p>

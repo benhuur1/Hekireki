@@ -45,6 +45,7 @@ function App() {
 
   return (
     <>
+      <div className="topbar-wrap">
       <nav className="topbar">
         <button
           className={view === 'primeira' ? 'topbar-btn active' : 'topbar-btn'}
@@ -110,6 +111,7 @@ function App() {
           <span className="topbar-label">Trovão do Núcleo</span>
         </button>
       </nav>
+      </div>
 
       {view === 'primeira' && <PrimeiraForma />}
       {view === 'lentes' && (

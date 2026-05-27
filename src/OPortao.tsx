@@ -143,7 +143,7 @@ function OPortao() {
           {contratos.map((c, i) => (
             <li key={c.titulo}>
               <span className="hk-imp-num">{String(i + 1).padStart(2, '0')}</span>
-              <h4>{c.titulo}</h4>
+              <h3>{c.titulo}</h3>
               <p>{c.texto}</p>
             </li>
           ))}
@@ -163,7 +163,7 @@ function OPortao() {
           {comodos.map((c, i) => (
             <li key={c.titulo}>
               <span className="hk-imp-num">{String(i + 1).padStart(2, '0')}</span>
-              <h4>{c.titulo}</h4>
+              <h3>{c.titulo}</h3>
               <p>{c.texto}</p>
             </li>
           ))}
@@ -183,7 +183,7 @@ function OPortao() {
           {defesas.map((d, i) => (
             <li key={d.titulo}>
               <span className="hk-imp-num">{String(i + 1).padStart(2, '0')}</span>
-              <h4>{d.titulo}</h4>
+              <h3>{d.titulo}</h3>
               <p>{d.texto}</p>
             </li>
           ))}
@@ -203,7 +203,7 @@ function OPortao() {
           {testes.map((t, i) => (
             <li key={t.titulo}>
               <span className="hk-imp-num">{String(i + 1).padStart(2, '0')}</span>
-              <h4>{t.titulo}</h4>
+              <h3>{t.titulo}</h3>
               <p>{t.texto}</p>
             </li>
           ))}

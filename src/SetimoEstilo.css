@@ -65,7 +65,7 @@
   background: var(--gold);
   border-radius: 0;
 }
-.hk-galeria-item figcaption h4 {
+.hk-galeria-item figcaption h3 {
   font-family: var(--serif);
   font-style: normal;
   font-size: 18px;
@@ -297,7 +297,7 @@
   .hk-matriz td { padding: 12px 14px; font-size: 13px; }
   .hk-matriz th { font-size: 10px; letter-spacing: 0.18em; }
   .hk-kpi-comp li { font-size: 10px; letter-spacing: 0.04em; }
-  .hk-galeria-item figcaption h4 { font-size: 16px; }
+  .hk-galeria-item figcaption h3 { font-size: 16px; }
   .hk-galeria-item figcaption p { font-size: 13px; }
   .hk-galeria-num { padding: 3px 7px 2px; font-size: 10px; letter-spacing: 0.18em; }
 }

@@ -137,4 +137,22 @@
   .topbar-btn { padding: 14px 14px 12px; gap: 8px; font-size: 10px; letter-spacing: 0.22em; }
   .topbar-num { font-size: 13px; }
   .topbar-btn::after { left: 14px; right: 14px; }
+
+  .topbar-wrap { position: relative; }
+  .topbar-wrap::after {
+    content: '›';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 1px;
+    width: 36px;
+    display: grid;
+    place-items: center;
+    font-family: 'Shippori Mincho', serif;
+    font-size: 22px;
+    color: #ffd84d;
+    background: linear-gradient(to left, rgba(10, 8, 7, 0.94) 40%, rgba(10, 8, 7, 0));
+    pointer-events: none;
+    opacity: 0.85;
+  }
 }

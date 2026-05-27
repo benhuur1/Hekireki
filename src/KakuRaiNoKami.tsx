@@ -165,7 +165,7 @@ function KakuRaiNoKami() {
           {golpes.map((g, i) => (
             <li key={g.numero}>
               <span className="hk-imp-num">{String(i + 1).padStart(2, '0')}</span>
-              <h4>{g.titulo}</h4>
+              <h3>{g.titulo}</h3>
               <div>
                 <p>{g.resumo}</p>
               </div>

@@ -505,7 +505,7 @@
   font-weight: 500;
   align-self: baseline;
 }
-.hk-tempos h4 {
+.hk-tempos h3 {
   font-family: var(--serif);
   font-style: normal;
   font-size: 22px;
@@ -691,7 +691,7 @@
   color: var(--gold);
   letter-spacing: 0.22em;
 }
-.hk-impurezas h4 {
+.hk-impurezas h3 {
   font-family: var(--serif);
   font-size: 22px;
   font-weight: 500;
@@ -1000,9 +1000,9 @@
     gap: 12px 20px;
     padding: 28px 0;
   }
-  .hk-impurezas h4,
+  .hk-impurezas h3,
   .hk-impurezas p,
-  .hk-tempos h4,
+  .hk-tempos h3,
   .hk-tempos p,
   .hk-multi-list h3,
   .hk-multi-body { grid-column: 2; }
@@ -1030,7 +1030,7 @@
     opacity: 0.4;
   }
   .hk-imp-tag { letter-spacing: 0.14em; margin-left: 0; display: inline-block; margin-top: 4px; }
-  .hk-impurezas h4 { flex-wrap: wrap; gap: 6px; }
+  .hk-impurezas h3 { flex-wrap: wrap; gap: 6px; }
 }
 
 @media (max-width: 480px) {
