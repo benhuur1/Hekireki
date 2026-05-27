@@ -29,9 +29,6 @@ export function Scar() {
           <stop offset="78%" stopColor="#f6a93c" stopOpacity="0.85" />
           <stop offset="100%" stopColor="#7a4f00" stopOpacity="0" />
         </linearGradient>
-        <filter id="hk-scar-glow">
-          <feGaussianBlur stdDeviation="3" />
-        </filter>
       </defs>
       <path
         className="hk-scar-glow"
@@ -41,7 +38,6 @@ export function Scar() {
         fill="none"
         strokeLinecap="round"
         strokeLinejoin="round"
-        filter="url(#hk-scar-glow)"
       />
       <path
         className="hk-scar-line"

@@ -75,6 +75,7 @@
   stroke-dashoffset: 2400;
   opacity: 0;
   animation: scar-flash 1.8s 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  filter: drop-shadow(0 0 6px rgba(255, 216, 77, 0.4));
 }
 .hk-scar-line {
   stroke-dasharray: 2400;
@@ -915,15 +916,11 @@
 .hk-vertical     { animation-delay: 2.45s; }
 
 .hk-kanji-art {
-  opacity: 0;
-  animation: kanji-emerge 2.8s 1.2s ease-out forwards;
+  opacity: 0.55;
 }
 
 @keyframes settle {
   to { opacity: 1; transform: translateY(0); }
-}
-@keyframes kanji-emerge {
-  to { opacity: 1; }
 }
 
 /* scroll-driven reveals (onde suportado, sem JS) */
