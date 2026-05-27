@@ -19,7 +19,7 @@ A maioria dos problemas de software é servir um dono e esquecer outro: UX linda
 
 ## As formas (páginas)
 
-Cada forma tem URL própria via hash (`#/o-corte`) — deep-link e back/forward funcionam.
+Cada forma tem URL própria via hash (`#/corte`) — deep-link e back/forward funcionam.
 
 | Forma | Rota | Sobre |
 | --- | --- | --- |
