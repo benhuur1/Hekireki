@@ -64,3 +64,36 @@ export function SignatureMark() {
     </svg>
   )
 }
+
+export type SecaoItem = { titulo: string; texto: string }
+
+export function Secao({
+  num,
+  tag,
+  h2,
+  sub,
+  items,
+}: {
+  num: string
+  tag: string
+  h2: string
+  sub: string
+  items: SecaoItem[]
+}) {
+  return (
+    <section className="hk-section">
+      <SectionLabel num={num} tag={tag} />
+      <h2 className="hk-h2">{h2}</h2>
+      <p className="hk-sub">{sub}</p>
+      <ol className="hk-impurezas">
+        {items.map((item, i) => (
+          <li key={item.titulo}>
+            <span className="hk-imp-num">{String(i + 1).padStart(2, '0')}</span>
+            <h4>{item.titulo}</h4>
+            <p>{item.texto}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+  )
+}

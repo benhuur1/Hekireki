@@ -1,9 +1,7 @@
 import './PrimeiraForma.css'
-import { Scar, SectionLabel, SignatureMark } from './marks'
+import { Scar, Secao, SignatureMark, type SecaoItem } from './marks'
 
-type Termo = { titulo: string; texto: string }
-
-const aForja: Termo[] = [
+const aForja: SecaoItem[] = [
   {
     titulo: 'Bigorna',
     texto:
@@ -36,7 +34,7 @@ const aForja: Termo[] = [
   },
 ]
 
-const aTecnica: Termo[] = [
+const aTecnica: SecaoItem[] = [
   {
     titulo: 'Primeira Forma',
     texto:
@@ -64,7 +62,7 @@ const aTecnica: Termo[] = [
   },
 ]
 
-const osPersonagens: Termo[] = [
+const osPersonagens: SecaoItem[] = [
   {
     titulo: 'Zenitsu Agatsuma',
     texto:
@@ -92,7 +90,7 @@ const osPersonagens: Termo[] = [
   },
 ]
 
-const osAtos: Termo[] = [
+const osAtos: SecaoItem[] = [
   {
     titulo: 'Cortar',
     texto:
@@ -119,37 +117,6 @@ const osAtos: Termo[] = [
       'A recompensa final. Não fama, não reconhecimento, não LinkedIn. Oito horas seguidas sem PagerDuty vibrando. O verdadeiro KPI da carreira de software — e o único que ninguém mede.',
   },
 ]
-
-function Secao({
-  num,
-  tag,
-  h2,
-  sub,
-  items,
-}: {
-  num: string
-  tag: string
-  h2: string
-  sub: string
-  items: Termo[]
-}) {
-  return (
-    <section className="hk-section">
-      <SectionLabel num={num} tag={tag} />
-      <h2 className="hk-h2">{h2}</h2>
-      <p className="hk-sub">{sub}</p>
-      <ol className="hk-impurezas">
-        {items.map((t, i) => (
-          <li key={t.titulo}>
-            <span className="hk-imp-num">{String(i + 1).padStart(2, '0')}</span>
-            <h4>{t.titulo}</h4>
-            <p>{t.texto}</p>
-          </li>
-        ))}
-      </ol>
-    </section>
-  )
-}
 
 function OLexico() {
   return (

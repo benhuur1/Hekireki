@@ -1,130 +1,97 @@
 import './PrimeiraForma.css'
-import { Scar, SectionLabel, SignatureMark } from './marks'
+import { Scar, Secao, SignatureMark, type SecaoItem } from './marks'
 
-type Pergunta = { texto: string; nota: string }
-
-const aLamina: Pergunta[] = [
+const aLamina: SecaoItem[] = [
   {
-    texto: 'Qual é a UMA coisa que seu produto faz?',
-    nota: 'Se você precisar de duas frases, ele já faz duas coisas. Cuidado.',
+    titulo: 'Qual é a UMA coisa que seu produto faz?',
+    texto: 'Se você precisar de duas frases, ele já faz duas coisas. Cuidado.',
   },
   {
-    texto: 'Você consegue explicar a arquitetura em uma única frase?',
-    nota: 'Se a frase começa com "depende", a arquitetura já está overengineered.',
+    titulo: 'Você consegue explicar a arquitetura em uma única frase?',
+    texto: 'Se a frase começa com "depende", a arquitetura já está overengineered.',
   },
   {
-    texto: 'Quanto tempo do git clone até a primeira execução?',
-    nota: 'Mais de cinco minutos é dívida técnica não amortizada — e o novo dev já desistiu.',
+    titulo: 'Quanto tempo do git clone até a primeira execução?',
+    texto: 'Mais de cinco minutos é dívida técnica não amortizada — e o novo dev já desistiu.',
   },
   {
-    texto: 'Quantos arquivos de configuração existem na raiz?',
-    nota: 'Você entende o que cada um faz, sem consultar a internet?',
+    titulo: 'Quantos arquivos de configuração existem na raiz?',
+    texto: 'Você entende o que cada um faz, sem consultar a internet?',
   },
   {
-    texto: 'Se você sumir amanhã, quem mantém isso?',
-    nota: 'Se a resposta sincera é "ninguém", então você é a impureza — e o projeto não sobrevive a você.',
+    titulo: 'Se você sumir amanhã, quem mantém isso?',
+    texto: 'Se a resposta sincera é "ninguém", então você é a impureza — e o projeto não sobrevive a você.',
   },
 ]
 
-const asDependencias: Pergunta[] = [
+const asDependencias: SecaoItem[] = [
   {
-    texto: 'Quantas deps no package.json? Quantas você realmente usa?',
-    nota: 'A diferença é o seu débito invisível — bytes pra rede, tempo pra build, superfície pra CVE.',
+    titulo: 'Quantas deps no package.json? Quantas você realmente usa?',
+    texto: 'A diferença é o seu débito invisível — bytes pra rede, tempo pra build, superfície pra CVE.',
   },
   {
-    texto: 'Tem alguma dependência que sobrou depois que a feature foi cortada?',
-    nota: 'Cemitério de imports é o segundo maior tipo de impureza — só perde pra código morto.',
+    titulo: 'Tem alguma dependência que sobrou depois que a feature foi cortada?',
+    texto: 'Cemitério de imports é o segundo maior tipo de impureza — só perde pra código morto.',
   },
   {
-    texto: 'Tem ferramenta resolvendo problema que outra ferramenta da pilha já resolve?',
-    nota: 'Webpack + esbuild. Lodash + métodos nativos. Axios + fetch. Moment + Date. Pague-se um café e arruma isso.',
+    titulo: 'Tem ferramenta resolvendo problema que outra ferramenta da pilha já resolve?',
+    texto: 'Webpack + esbuild. Lodash + métodos nativos. Axios + fetch. Moment + Date. Pague-se um café e arruma isso.',
   },
   {
-    texto: 'Você consegue rodar npm install offline e o build passar?',
-    nota: 'Se não, sua stack está pendurada num CDN que pode cair amanhã.',
+    titulo: 'Você consegue rodar npm install offline e o build passar?',
+    texto: 'Se não, sua stack está pendurada num CDN que pode cair amanhã.',
   },
   {
-    texto: 'Quanto da bundle final é dependência vs código seu?',
-    nota: 'Geralmente 90/10 a favor das deps. Pense por quê — e o que daria pra cortar.',
-  },
-]
-
-const asImpurezas: Pergunta[] = [
-  {
-    texto: 'Qual feature dos últimos seis meses ninguém usa?',
-    nota: 'Você sabe a resposta. Tem coragem de cortar?',
-  },
-  {
-    texto: 'Tem código que você tem medo de tocar há mais de um ano?',
-    nota: 'Medo é o sintoma — impureza acumulada é a doença.',
-  },
-  {
-    texto: 'Tem abstração criada pensando em "necessidades futuras" que nunca chegaram?',
-    nota: 'DRY prematuro é overengineering disfarçado de boa prática. Três linhas iguais é melhor que uma fábrica errada.',
-  },
-  {
-    texto: 'Tem duplicação que você sabe que existe mas nunca consolidou?',
-    nota: 'Três cópias da mesma coisa fingindo ser três coisas — esperando você reconhecer.',
-  },
-  {
-    texto: 'Quantos comentários "TODO: refactor later" o repo tem?',
-    nota: 'Roda um grep agora. "later" significa "nunca" em qualquer base de código com mais de seis meses.',
+    titulo: 'Quanto da bundle final é dependência vs código seu?',
+    texto: 'Geralmente 90/10 a favor das deps. Pense por quê — e o que daria pra cortar.',
   },
 ]
 
-const aForja: Pergunta[] = [
+const asImpurezas: SecaoItem[] = [
   {
-    texto: 'Quando foi a última vez que você deletou código?',
-    nota: 'Não foi escrevendo — foi apagando. Se faz mais de duas semanas, a forja está fria.',
+    titulo: 'Qual feature dos últimos seis meses ninguém usa?',
+    texto: 'Você sabe a resposta. Tem coragem de cortar?',
   },
   {
-    texto: 'Você tem coragem de remover a feature mais antiga se ninguém a usa?',
-    nota: 'Tem ou não tem. Sentimentalismo técnico custa em manutenção.',
+    titulo: 'Tem código que você tem medo de tocar há mais de um ano?',
+    texto: 'Medo é o sintoma — impureza acumulada é a doença.',
   },
   {
-    texto: 'Você tem coragem de trocar a stack se a atual já não serve mais?',
-    nota: 'Lealdade à ferramenta é vaidade disfarçada. A lealdade certa é com o problema.',
+    titulo: 'Tem abstração criada pensando em "necessidades futuras" que nunca chegaram?',
+    texto: 'DRY prematuro é overengineering disfarçado de boa prática. Três linhas iguais é melhor que uma fábrica errada.',
   },
   {
-    texto: 'Você sabe quando o projeto está pronto, ou só empilha pra sempre?',
-    nota: 'Se a resposta é "nunca está pronto", o projeto está te dirigindo, e não o contrário.',
+    titulo: 'Tem duplicação que você sabe que existe mas nunca consolidou?',
+    texto: 'Três cópias da mesma coisa fingindo ser três coisas — esperando você reconhecer.',
   },
   {
-    texto: 'Quanto do seu tempo é forja vs construção?',
-    nota: 'Boas lâminas exigem tempo igual nas duas. Quem só constrói acumula impureza. Quem só forja não entrega.',
+    titulo: 'Quantos comentários "TODO: refactor later" o repo tem?',
+    texto: 'Roda um grep agora. "later" significa "nunca" em qualquer base de código com mais de seis meses.',
   },
 ]
 
-function Secao({
-  num,
-  tag,
-  h2,
-  sub,
-  items,
-}: {
-  num: string
-  tag: string
-  h2: string
-  sub: string
-  items: Pergunta[]
-}) {
-  return (
-    <section className="hk-section">
-      <SectionLabel num={num} tag={tag} />
-      <h2 className="hk-h2">{h2}</h2>
-      <p className="hk-sub">{sub}</p>
-      <ol className="hk-impurezas">
-        {items.map((p, i) => (
-          <li key={p.texto}>
-            <span className="hk-imp-num">{String(i + 1).padStart(2, '0')}</span>
-            <h4>{p.texto}</h4>
-            <p>{p.nota}</p>
-          </li>
-        ))}
-      </ol>
-    </section>
-  )
-}
+const aForja: SecaoItem[] = [
+  {
+    titulo: 'Quando foi a última vez que você deletou código?',
+    texto: 'Não foi escrevendo — foi apagando. Se faz mais de duas semanas, a forja está fria.',
+  },
+  {
+    titulo: 'Você tem coragem de remover a feature mais antiga se ninguém a usa?',
+    texto: 'Tem ou não tem. Sentimentalismo técnico custa em manutenção.',
+  },
+  {
+    titulo: 'Você tem coragem de trocar a stack se a atual já não serve mais?',
+    texto: 'Lealdade à ferramenta é vaidade disfarçada. A lealdade certa é com o problema.',
+  },
+  {
+    titulo: 'Você sabe quando o projeto está pronto, ou só empilha pra sempre?',
+    texto: 'Se a resposta é "nunca está pronto", o projeto está te dirigindo, e não o contrário.',
+  },
+  {
+    titulo: 'Quanto do seu tempo é forja vs construção?',
+    texto: 'Boas lâminas exigem tempo igual nas duas. Quem só constrói acumula impureza. Quem só forja não entrega.',
+  },
+]
 
 function OEspelho() {
   return (
