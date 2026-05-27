@@ -82,7 +82,7 @@ function KakuRaiNoKami() {
             armadura — bastou estender a mão pra dentro.
           </p>
           <p className="hk-quote">
-            A forma que vence sem importar nada vem de fora.
+            A forma que vence sem importar nada já estava dentro.
           </p>
         </div>
 
@@ -190,7 +190,7 @@ function KakuRaiNoKami() {
         <SectionLabel num="06" tag="Princípio" />
         <h2 className="hk-h2">A Sétima é a Primeira levada ao limite.</h2>
         <p className="hk-sub">
-          Zenitsu não aprendeu as seis formas que não conseguiu dominar. Polishou
+          Zenitsu não aprendeu as seis formas que não conseguiu dominar. Poliu
           a Primeira até criar a Sétima. Aqui o paralelo é literal: a Primeira
           Forma já havia produzido o argumento técnico denso contra adicionar
           framework. Quando o adversário insistiu — pattern match em loop fechado —

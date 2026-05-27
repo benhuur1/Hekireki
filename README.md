@@ -31,7 +31,7 @@ Cada forma tem URL própria via hash (`#/corte`) — deep-link e back/forward fu
 | O Portão | `#/portao` | Onde o contrato é forjado (validação na borda) |
 | A Têmpera | `#/tanren` | A disciplina virando reflexo |
 | Sétima Forma | `#/setimo` | A forma que nasce da repetição da primeira |
-| Trovão do Núcleo | `#/kakurai` | — |
+| Trovão do Núcleo | `#/kakurai` | A forma que nasce do limite — usar o que o runtime já tem |
 
 > Esta régua e estas formas alimentam a skill `/primeira-forma` do Claude Code — cada pergunta dela tem seu gabarito numa destas páginas.
 

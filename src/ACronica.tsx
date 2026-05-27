@@ -316,7 +316,7 @@ function ACronica() {
           <h1 className="hk-title">
             <span className="hk-title-kanji">跡</span>
             <span className="hk-title-rom">A Crônica</span>
-            <span className="hk-title-trans">a evolução do projeto até aqui · seis episódios</span>
+            <span className="hk-title-trans">a evolução do projeto até aqui</span>
           </h1>
           <p className="hk-lead">
             Você chegou na sala dos fundos. Aqui não é vitrine — é o registro de como a
