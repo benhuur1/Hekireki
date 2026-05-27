@@ -162,7 +162,7 @@
   letter-spacing: 0.18em;
   color: var(--gold);
   line-height: 1;
-  text-shadow: 0 0 40px rgba(255, 216, 77, 0.30);
+  text-shadow: 0 0 14px rgba(255, 216, 77, 0.35);
 }
 .hk-title-rom {
   font-family: var(--serif);
