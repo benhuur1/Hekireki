@@ -47,3 +47,23 @@ npm run dev      # servidor de dev
 npm run build    # tsc -b + build de produção
 npm run lint     # ESLint
 ```
+
+## Deploy
+
+Hospedado em **Hostinger**, subpasta `/hekireki/` sob `infotechjs.com.br` (WordPress na raiz convive sem conflito).
+
+1. `npm run build` — gera `dist/` com paths reescritos para `/hekireki/`.
+2. Pelo **File Manager** do hPanel (ou FTP), abrir `public_html/`.
+3. Garantir que a pasta `hekireki/` existe na raiz pública. Limpar se quiser substituir.
+4. Subir **o conteúdo** de `dist/` (não a pasta) para `public_html/hekireki/`:
+   - `index.html`, `og-image.svg`, `favicon.svg`, `competitivo.json`, `sw.js`, `.htaccess`
+   - pasta `assets/` inteira
+5. Conferir https://infotechjs.com.br/hekireki/ no browser. Em caso de cache antigo do SW, hard refresh (Ctrl+Shift+R).
+
+O `public/.htaccess` (incluso no `dist/`) define:
+- `Cache-Control: public, max-age=31536000, immutable` em assets hashados (Vite já gera nome com hash → seguro)
+- `Cache-Control: no-cache, must-revalidate` em `index.html` e `sw.js` (deploy novo visto na hora)
+- `Options -Indexes` (sem listagem de diretório)
+- Compressão gzip via `mod_deflate`
+
+Mudar a subpasta no futuro? Edite `vite.config.ts` (`base`) **e** `public/sw.js` (`SCOPE`) para o mesmo slug, depois `npm run build`.

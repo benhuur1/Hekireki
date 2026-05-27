@@ -5,7 +5,7 @@
  * Para forçar invalidação de todo o cache antigo num deploy, bumpe CACHE.
  */
 const CACHE = 'hekireki-v1'
-const SCOPE = '/Hekireki/'
+const SCOPE = '/hekireki/'
 
 self.addEventListener('install', () => {
   self.skipWaiting()

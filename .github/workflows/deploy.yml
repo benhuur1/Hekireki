@@ -1,8 +1,9 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches: [main]
+  # Desativado o auto-deploy: o site agora vive em Hostinger (subpasta /hekireki/)
+  # e o repo está privado (GitHub Pages exigiria GitHub Pro). Mantemos o workflow
+  # acessível via Actions → Run workflow caso volte a publicar via Pages.
   workflow_dispatch:
 
 permissions:
