@@ -2,7 +2,7 @@
 
 > 霹靂一閃 — *Trovão e Relâmpago*. Manifesto da **Primeira Forma** em código: padrões que enxerguei usando tecnologia pra desenvolver software, destilados numa régua única — **entregar task com qualidade.**
 
-Site de página única (SPA) que apresenta o manifesto como uma série de "formas", no visual *Hekireki Issen*. Começou como um relatório de 2 páginas (o Diagrama RAG + a Sétima Forma) e cresceu virando o manifesto inteiro.
+Site de página única (SPA) que apresenta o manifesto como uma série de "formas", no visual *Hekireki Issen*. Começou como um relatório técnico e virou o manifesto inteiro — o diagrama de RAG original foi aposentado no caminho.
 
 ## A régua: as 4 lentes da qualidade
 
@@ -23,7 +23,6 @@ Cada forma tem URL própria via hash (`#/o-corte`) — deep-link e back/forward 
 
 | Forma | Rota | Sobre |
 | --- | --- | --- |
-| Diagrama RAG | `#/diagrama` | O relatório original (fluxo de RAG, com `@xyflow/react`) |
 | Primeira Forma | `#/primeira` | A essência: uma técnica, executada com perfeição |
 | As Quatro Lentes | `#/lentes` | Os quatro donos da qualidade |
 | O Corte | `#/corte` | A Primeira Forma aplicada a stack, infra e carreira |
@@ -38,7 +37,7 @@ Cada forma tem URL própria via hash (`#/o-corte`) — deep-link e back/forward 
 
 ## Stack
 
-Vite 8 · React 19 · TypeScript 6 · `@xyflow/react` (Diagrama RAG). Sem framework de roteamento — a view vive no hash da URL.
+Vite 8 · React 19 · TypeScript 6. Sem framework de roteamento — a view vive no hash da URL. Zero dependência de runtime além do React.
 
 ## Rodar
 

@@ -2,7 +2,6 @@ import { lazy, Suspense, useEffect, useState } from 'react'
 import PrimeiraForma from './PrimeiraForma'
 import './App.css'
 
-const DiagramaRAG = lazy(() => import('./DiagramaRAG'))
 const OCorte = lazy(() => import('./OCorte'))
 const OEspelho = lazy(() => import('./OEspelho'))
 const OLexico = lazy(() => import('./OLexico'))
@@ -14,7 +13,7 @@ const KakuRaiNoKami = lazy(() => import('./KakuRaiNoKami'))
 const AsQuatroLentes = lazy(() => import('./AsQuatroLentes'))
 
 const VIEWS = [
-  'diagrama', 'primeira', 'lentes', 'corte', 'espelho', 'lexico',
+  'primeira', 'lentes', 'corte', 'espelho', 'lexico',
   'portao', 'tanren', 'setimo', 'kakurai', 'cronica',
 ] as const
 type View = (typeof VIEWS)[number]
@@ -47,13 +46,6 @@ function App() {
   return (
     <>
       <nav className="topbar">
-        <button
-          className={view === 'diagrama' ? 'topbar-btn active' : 'topbar-btn'}
-          onClick={() => navigateTo('diagrama')}
-        >
-          <span className="topbar-num">01</span>
-          <span className="topbar-label">Diagrama RAG</span>
-        </button>
         <button
           className={view === 'primeira' ? 'topbar-btn active' : 'topbar-btn'}
           onClick={() => navigateTo('primeira')}
@@ -123,11 +115,6 @@ function App() {
       {view === 'lentes' && (
         <Suspense fallback={<div className="topbar-loading">carregando as quatro lentes…</div>}>
           <AsQuatroLentes />
-        </Suspense>
-      )}
-      {view === 'diagrama' && (
-        <Suspense fallback={<div className="topbar-loading">carregando diagrama…</div>}>
-          <DiagramaRAG />
         </Suspense>
       )}
       {view === 'corte' && (
