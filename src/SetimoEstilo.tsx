@@ -204,13 +204,13 @@ const presaUnica = [
 ]
 
 const respiracoes = [
-  { arquivo: 'Zenitsu-concentrado.png', titulo: 'Concentração', legenda: 'Antes do golpe, a quietude. Ouvidos atentos, olhos fechados.' },
-  { arquivo: 'Zenitsu-olhos-fecchados.png', titulo: 'A escuta', legenda: 'Quando os olhos não veem, o som guia a lâmina.' },
-  { arquivo: 'Zenitsu-primeiro-movimento.jpeg', titulo: 'Primeiro Movimento', legenda: 'O passo único — rápido demais para ser visto.' },
-  { arquivo: 'zenitsu-preparado para o golpe.webp', titulo: 'Postura de ataque', legenda: 'Joelhos dobrados, lâmina pronta, raios convergindo.' },
-  { arquivo: 'zenitsu-do-trovao.webp', titulo: 'Sob a tempestade', legenda: 'A respiração entra em ressonância com o trovão.' },
-  { arquivo: 'zenitsu-7th-form-fanart.webp', titulo: 'Sétimo Estilo (fan art)', legenda: 'A técnica original — só executada uma vez.' },
-  { arquivo: 'Zenitsu-lendo-carta.png', titulo: 'A carta de Jigoro', legenda: 'Antes do raio, a memória do mestre.' },
+  { kanji: '静', titulo: 'Concentração', legenda: 'Antes do golpe, a quietude. Ouvidos atentos, olhos fechados.' },
+  { kanji: '聞', titulo: 'A escuta', legenda: 'Quando os olhos não veem, o som guia a lâmina.' },
+  { kanji: '歩', titulo: 'Primeiro Movimento', legenda: 'O passo único — rápido demais para ser visto.' },
+  { kanji: '構', titulo: 'Postura de ataque', legenda: 'Joelhos dobrados, lâmina pronta, raios convergindo.' },
+  { kanji: '嵐', titulo: 'Sob a tempestade', legenda: 'A respiração entra em ressonância com o trovão.' },
+  { kanji: '漆', titulo: 'Sétimo Estilo', legenda: 'A técnica original — só executada uma vez.' },
+  { kanji: '文', titulo: 'A carta de Jigoro', legenda: 'Antes do raio, a memória do mestre.' },
 ]
 
 const direitos: { titulo: string; corpo: React.ReactNode }[] = [
@@ -232,18 +232,6 @@ const direitos: { titulo: string; corpo: React.ReactNode }[] = [
         Koyoharu Gotouge — publicada pela Shueisha, animada pela Ufotable, licenciada pela
         Aniplex. Esta página é homenagem cultural / educacional, não reproduz arte oficial,
         não comercializa o IP citado.
-      </>
-    ),
-  },
-  {
-    titulo: 'Galeria Respirações do Trovão',
-    corpo: (
-      <>
-        Imagens em <code>public/imagens/samurai/</code> foram colocadas pelo dono do projeto
-        como <strong>referência pessoal / educacional</strong>. Direitos pertencem aos
-        detentores originais — autor da obra, editora, animação, licenciamento e / ou
-        artistas das fan arts. Uso aqui não é comercial, não substitui o material oficial e
-        pode ser removido a qualquer pedido.
       </>
     ),
   },
@@ -404,21 +392,14 @@ function SetimaForma() {
         <SectionLabel num="08" tag="Respirações" />
         <h2 className="hk-h2">Sete momentos da técnica.</h2>
         <p className="hk-sub">
-          Imagens de referência pessoal — direitos pertencem aos detentores originais da
-          obra. Veja a seção <em>Direitos &amp; Inspiração</em> abaixo.
+          Sete momentos da técnica, em vinhetas originais. Os kanjis carregam a ação
+          que a imagem mostraria.
         </p>
         <div className="hk-galeria">
           {respiracoes.map((r, i) => (
-            <figure key={r.arquivo} className="hk-galeria-item">
+            <figure key={r.titulo} className="hk-galeria-item">
               <div className="hk-galeria-frame">
-                <img
-                  src={`${import.meta.env.BASE_URL}imagens/samurai/${encodeURI(r.arquivo)}`}
-                  alt={r.titulo}
-                  loading="lazy"
-                  decoding="async"
-                  width="800"
-                  height="600"
-                />
+                <div className="hk-galeria-glyph" aria-hidden>{r.kanji}</div>
                 <span className="hk-galeria-num">{String(i + 1).padStart(2, '0')}</span>
               </div>
               <figcaption>

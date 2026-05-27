@@ -214,29 +214,6 @@ function KakuRaiNoKami() {
           o bot pediu armadura, recebeu silêncio técnico, registrou
           <code> APPROVED</code> sem entender por onde passou.
         </p>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            margin: '2rem 0',
-          }}
-        >
-          <iframe
-            src="https://www.youtube.com/embed/yHsMJs5TtnA"
-            title="Zenitsu — Sétima Forma"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-            loading="lazy"
-            style={{
-              width: '100%',
-              maxWidth: '360px',
-              aspectRatio: '9 / 16',
-              border: '1px solid var(--hk-line, #2a2a2a)',
-              borderRadius: '4px',
-              background: '#000',
-            }}
-          />
-        </div>
       </section>
 
       <SignatureMark />
