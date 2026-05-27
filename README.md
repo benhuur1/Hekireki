@@ -50,15 +50,14 @@ npm run lint     # ESLint
 
 ## Deploy
 
-Hospedado em **Hostinger**, subpasta `/hekireki/` sob `infotechjs.com.br` (WordPress na raiz convive sem conflito).
+Hospedado em **Hostinger** no subdomain `hekireki.infotechjs.com.br` (doc root próprio, isolado do WordPress na raiz).
 
-1. `npm run build` — gera `dist/` com paths reescritos para `/hekireki/`.
-2. Pelo **File Manager** do hPanel (ou FTP), abrir `public_html/`.
-3. Garantir que a pasta `hekireki/` existe na raiz pública. Limpar se quiser substituir.
-4. Subir **o conteúdo** de `dist/` (não a pasta) para `public_html/hekireki/`:
+1. `npm run build` — gera `dist/` com paths apontando pra `/`.
+2. No **hPanel da Hostinger**, abrir o File Manager e navegar até o doc root do subdomain (geralmente `domains/hekireki.infotechjs.com.br/public_html/`).
+3. Subir **o conteúdo** de `dist/` (não a pasta) — sobrescreve se já houver versão anterior:
    - `index.html`, `og-image.svg`, `favicon.svg`, `competitivo.json`, `sw.js`, `.htaccess`
    - pasta `assets/` inteira
-5. Conferir https://infotechjs.com.br/hekireki/ no browser. Em caso de cache antigo do SW, hard refresh (Ctrl+Shift+R).
+4. Conferir https://hekireki.infotechjs.com.br no browser.
 
 O `public/.htaccess` (incluso no `dist/`) define:
 - `Cache-Control: public, max-age=31536000, immutable` em assets hashados (Vite já gera nome com hash → seguro)
@@ -66,4 +65,4 @@ O `public/.htaccess` (incluso no `dist/`) define:
 - `Options -Indexes` (sem listagem de diretório)
 - Compressão gzip via `mod_deflate`
 
-Mudar a subpasta no futuro? Edite `vite.config.ts` (`base`) **e** `public/sw.js` (`SCOPE`) para o mesmo slug, depois `npm run build`.
+Pra rodar localmente em dev com a mesma base do prod, o `vite.config.ts` usa `base: '/'`. Se um dia mover pra subpasta ou outro host, ajuste `base` no `vite.config.ts` **e** `SCOPE` no `public/sw.js` para o mesmo valor.

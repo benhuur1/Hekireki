@@ -1,5 +1,5 @@
 # Hekireki — manifesto da Primeira Forma
-# Apache/LiteSpeed config para Hostinger (subpasta /hekireki/ sob WordPress na raiz).
+# Apache/LiteSpeed config para Hostinger (subdomain hekireki.infotechjs.com.br).
 
 Options -Indexes
 
@@ -22,7 +22,7 @@ Options -Indexes
   # Service Worker — sempre fresco, senão usuários ficam presos numa versão antiga
   <FilesMatch "sw\.js$">
     Header set Cache-Control "no-cache, must-revalidate"
-    Header set Service-Worker-Allowed "/hekireki/"
+    Header set Service-Worker-Allowed "/"
   </FilesMatch>
 </IfModule>
 
