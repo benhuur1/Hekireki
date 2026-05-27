@@ -1,0 +1,161 @@
+{
+  "totais": {
+    "applauso": {
+      "rede": "Applauso (ecossistema)",
+      "lojas": 5,
+      "paginas": 369,
+      "composicao": [
+        {
+          "label": "lndo.site (staging)",
+          "paginas": 242
+        },
+        {
+          "fonte": "applauso_producao",
+          "label": "applausonissan.com.br",
+          "paginas": 43
+        },
+        {
+          "fonte": "applauso_seminovos",
+          "label": "applausoseminovos.com.br",
+          "paginas": 84
+        }
+      ]
+    },
+    "comeri": {
+      "rede": "Comeri Nissan",
+      "lojas": 3,
+      "paginas": 400
+    },
+    "oficial": {
+      "rede": "Nissan Brasil",
+      "lojas": "fabricante",
+      "paginas": 5
+    }
+  },
+  "matriz": [
+    {
+      "feature": "configurador",
+      "label": "Configurador",
+      "applauso": 0,
+      "comeri": 0,
+      "oficial": 0,
+      "applauso_eco": {}
+    },
+    {
+      "feature": "simulador_financiamento",
+      "label": "Simulador Financiamento",
+      "applauso": 0,
+      "comeri": 0,
+      "oficial": 0,
+      "applauso_eco": {}
+    },
+    {
+      "feature": "simulador_consorcio",
+      "label": "Simulador Consorcio",
+      "applauso": 0,
+      "comeri": 16,
+      "oficial": 0,
+      "applauso_eco": {}
+    },
+    {
+      "feature": "estoque_online",
+      "label": "Estoque Online",
+      "applauso": 83,
+      "comeri": 24,
+      "oficial": 0,
+      "applauso_eco": {
+        "applauso_seminovos": 77
+      }
+    },
+    {
+      "feature": "estoque_seminovos",
+      "label": "Estoque Seminovos",
+      "applauso": 84,
+      "comeri": 320,
+      "oficial": 0,
+      "applauso_eco": {
+        "applauso_seminovos": 84
+      }
+    },
+    {
+      "feature": "avaliacao_usado",
+      "label": "Avaliacao Usado",
+      "applauso": 0,
+      "comeri": 0,
+      "oficial": 0,
+      "applauso_eco": {}
+    },
+    {
+      "feature": "blog",
+      "label": "Blog",
+      "applauso": 60,
+      "comeri": 0,
+      "oficial": 0,
+      "applauso_eco": {
+        "applauso_producao": 30
+      }
+    },
+    {
+      "feature": "agendamento_online",
+      "label": "Agendamento Online",
+      "applauso": 6,
+      "comeri": 0,
+      "oficial": 0,
+      "applauso_eco": {
+        "applauso_producao": 1
+      }
+    },
+    {
+      "feature": "test_drive",
+      "label": "Test Drive",
+      "applauso": 0,
+      "comeri": 0,
+      "oficial": 1,
+      "applauso_eco": {}
+    },
+    {
+      "feature": "pcd",
+      "label": "Pcd",
+      "applauso": 6,
+      "comeri": 0,
+      "oficial": 0,
+      "applauso_eco": {
+        "applauso_producao": 1
+      }
+    },
+    {
+      "feature": "ofertas",
+      "label": "Ofertas",
+      "applauso": 19,
+      "comeri": 0,
+      "oficial": 0,
+      "applauso_eco": {
+        "applauso_producao": 2
+      }
+    },
+    {
+      "feature": "pecas",
+      "label": "Pecas",
+      "applauso": 6,
+      "comeri": 40,
+      "oficial": 0,
+      "applauso_eco": {
+        "applauso_producao": 1
+      }
+    }
+  ],
+  "vantagens_applauso": [
+    "blog",
+    "agendamento_online",
+    "pcd",
+    "ofertas"
+  ],
+  "gaps_applauso": [
+    "simulador_consorcio"
+  ],
+  "paridade": [
+    "estoque_online",
+    "estoque_seminovos",
+    "pecas"
+  ]
+}
