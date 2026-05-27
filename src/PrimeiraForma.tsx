@@ -35,7 +35,7 @@ const tempos: Tempo[] = [
     num: 'II',
     kanji: '弐',
     titulo: 'Aceleração',
-    texto: 'Um único shunpō. O deslocamento acontece antes da consciência registrar.',
+    texto: 'Um único passo. O deslocamento acontece antes da consciência registrar.',
   },
   {
     num: 'III',
