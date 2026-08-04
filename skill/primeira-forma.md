@@ -9,6 +9,10 @@ A melhor skill de todas em uma única coisa: entregar task com qualidade.
 Antes de qualquer linha de código numa task que adiciona, modifica ou conserta algo, responder em uma frase cada:
 
 
+**0. Cabe no WIP?**
+Teto: 2 frentes ativas (`tanren wip`). Não cabe → a task espera *explicitamente* (Todo, não In Progress). Multitarefa estrutural — 6 contextos numa daily, sprint vazando pro fim de semana — foi o padrão mais caro medido no diagnóstico de 04/08.
+
+
 **1. O ticket descreve problema ou solução?**
 Se descreve solução, qual problema ele assume? Se não consigo formular o problema em uma frase, a task não está pronta pra codar.
 
@@ -25,6 +29,10 @@ Arquivo existente que faz quase tudo é mais limpo que criar do zero. Pergunta d
 
 **4. Se a versão minimal não bastar, em quanto tempo eu descubro?**
 Horas → começa minimal. Semanas → o risco justifica investigar antes.
+
+**Estimativa é conta, não coragem.** Medo de errar já multiplicou estimativa por ~10 (primeiro deploy Shopify). Diga o número da conta e o risco em frase separada — nunca embutido no número.
+
+**Promessa dita em call ganha hora e registro.** "Subo hoje" sem hora deslizou 4 vezes em julho e foi cobrado no 1:1. Ou tem hora e entra no `tanren wip`, ou não é promessa — é intenção.
 
 **Se a barreira é decisão externa** (PO, copy, secret, acesso pendente), não trava — abre rascunho/draft com TODOs explícitos e segue. O bloqueio passa a ser do dono da decisão, não seu.
 
@@ -52,6 +60,17 @@ Depois de escrever qualquer comunicação (PR description, status, mensagem), re
 
 Eu sou de carne, não de ferro. Se aplicar este filtro me exausta em vez de me poupar trabalho, parou de funcionar — recalibra. Continuidade vence intensidade.
 
+
+## As outras formas
+
+A Primeira abre a task; as outras guardam o resto do caminho — cada uma nasceu de um gargalo medido no diagnóstico de 04/08/2026:
+
+- `/segunda-forma` 弐 — PR nasce pronta pra produção (35% morriam sem merge)
+- `/terceira-forma` 参 — blocker morre em 1h (só 3% de 179 resolvidos em daily)
+- `/quarta-forma` 肆 — comunicação proporcional à audiência (42% do tempo de call era status)
+- `/quinta-forma` 伍 — experimento morre no papel (3 semanas pra 2 dias de dados)
+
+O braço operacional é o `tanren` (`~/Documents/GitHub/tanren`): KPIs, pulso das 8h, faxina de PRs, blockers, WIP.
 
 ## Manifesto completo — Hekireki (霹靂)
 
