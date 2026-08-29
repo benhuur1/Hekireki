@@ -56,7 +56,7 @@ const marteladas: Martelada[] = [
   {
     n: 8,
     voce: 'AQUI. (foto dos Multi cards 01/06/08) Na verdade seja o melhor. Aprimore com tudo que sabe.',
-    eu: 'KPIs (Rede A × Rede B × Fabricante) e Highlights (vantagens/gaps/paridade) convertidos para o padrão Multi com top hairline dourada no vencedor.',
+    eu: 'KPIs e Highlights da Sétima Forma convertidos para o padrão Multi com top hairline dourada no vencedor.',
   },
   {
     n: 9,
@@ -200,38 +200,18 @@ const marteladas: Martelada[] = [
   },
   {
     n: 37,
-    voce: 'Entre no modo primeira forma e confira os textos de descrição da PR aberta por outro dev no repo cliente.',
-    eu: 'Auditei descrição da PR de outro dev no repo cliente. Quatro impurezas: título carregando prefixo do branch (duplica o que GitHub mostra), typo "raíz", "3 marteladas" desonesta — PR toca 8 arquivos, com 3 mini-features escondidas em uma linha solta como "polimentos de borda", e claim falso no test plan ("toast is not defined em main"). Forja sugerida: título conventional, scope honesto, test plan auditável.',
+    voce: 'Entre no modo primeira forma e confira a descrição de uma PR aberta por outro dev.',
+    eu: 'Primeira inspeção de forja alheia. O mesmo crivo da forja própria: título que diz o que a PR faz, descrição com escopo honesto, test plan auditável.',
   },
   {
     n: 38,
     voce: 'Execute com a respiração do trovão.',
-    eu: 'Modo plan. Verificação na branch de fix de outro dev revelou que `toast is not defined` nunca chegou em main — era estado intermediário de dev (import dinâmico vs estático). Os 3 "polimentos" eram regra de negócio nova: copy variável por tipo, botão fechar de modal, onCancel com redirect. Reescrevi título conventional e corpo honesto via gh pr edit. Backticks escapados na primeira tentativa pelo heredoc, têmpera segunda passou limpa.',
+    eu: 'Antes de tocar em qualquer linha, cada afirmação da descrição foi conferida contra o código — leitura estática primeiro, corte depois. O que não se confirmou saiu do texto.',
   },
   {
     n: 39,
-    voce: 'leia o contexto.md — o que a task pede foi feito na pr?',
-    eu: 'Li os 8 prints da atendente em alta resolução. A PR cobria apenas 2 dos 7 sintomas reportados. Quatro prazos errados (Produto C 5→3, Produto B 7→4, Produto D 5→4, Produto E "receberá" prometendo entrega) e o "em que momento é feita conferência Produto A" continuavam intocados. A causa-raiz declarada na PR atacava só uma cadeia (lineItem inválido → unknown → default 5 dias) — mas os prints mostravam a atendente em produtos válidos com números errados de fontes legítimas.',
-  },
-  {
-    n: 40,
-    voce: 'dos que estão com X no estado quais consegue conferir? — 1, ve o productionTime da API.',
-    eu: 'Confirmei estaticamente 5/5 sintomas com path:linha. Tracei a cadeia: success do upload de fotos → utils/checkout → endpoint de shipping-rates → controller no backend → service de carriers → campo de production time no modelo Variant. O seed de shipping infos no backend está correto (Produto C 3, Produto D 4, Produto B 4). Backend devolve undefined e o frontend cai em DEFAULT_PRODUCTION_DAYS=7 ou DEFAULT_REVELATION_DAYS=5. Bug é de seed-não-rodou ou lookup quebrado no service de carriers — fora do alcance do frontend.',
-  },
-  {
-    n: 41,
-    voce: 'gere na branch do fix — PR main não draft gera URL de preview, merge manda para homolog, release nova manda para produção.',
-    eu: 'Segunda Forma · Prazos honestos. Quatro cortes em 11 linhas: copy honesta nas 4 mensagens de sucesso (PT + EN) trocando "você receberá seu álbum" por "seu pedido será despachado" + sufixo "O prazo de entrega depende da transportadora e CEP escolhidos"; remoção do `+ deliveryTime` no {n} dos cases produto E e produto A; label condicional "Conferência do modelo" pra Produto A via ternário no OrderProgressTracker; key stepModelApproval em PT/EN. Lint e typecheck verdes. Commit + push direto na branch da PR. Descrição da PR atualizada listando os 4 cortes originais + os 2 novos + dívida conhecida (3 prazos errados ficam pra PR no backend).',
-  },
-  {
-    n: 42,
-    voce: 'O que ela quis dizer? Sem falar com ela, o que faria pra melhorar?',
-    eu: 'Versões em alta resolução dos prints permitiram leitura aguda. Decompus a queixa "em que momento é feita conferência" em três camadas: label vago (já cortado), modelo invisível no card, momento actionable ausente. Comparei as 3 páginas do Produto A (os três tamanhos) — achei assimetria suspeita no tamanho médio (Produto D 130 ≠ Produto A tradicional 160) que quebra o padrão dos outros modelos, possível typo de cadastro. Esbocei 7 estocadas ordenadas por custo/impacto pra evolução do detalhe do pedido — quatro pequenas (renomear card, card de próxima ação, decompor previsão, tooltips), duas médias (tela de conferência ativa, nudges automáticos), uma estrutural (galeria de modelos).',
-  },
-  {
-    n: 43,
-    voce: 'aqui a forja foi concluida respondendo as espectativas',
-    eu: 'Recebido. A primeira inspeção alheia fechou: descrição honesta, copy honesta, label honesto, dívida nomeada. A PR vai com seis cortes próprios e três prazos errados marcados como tarefa do backend. Selo do oitavo episódio — Kantei cumprida.',
+    voce: 'Aqui a forja foi concluída, respondendo às expectativas.',
+    eu: 'Cortes aplicados na própria PR: copy honesta, label honesto, e o que não cabia ali nomeado como dívida — não escondido. Selo do oitavo episódio: Kantei cumprida.',
   },
 ]
 
@@ -296,9 +276,9 @@ const episodios: Episodio[] = [
     num: 'VIII',
     romaji: 'Kantei',
     titulo: 'A inspeção',
-    descricao: 'Primeira vez que a lâmina sai da própria bigorna pra inspecionar trabalho alheio. Auditoria de PR aberta por outro dev, descoberta de impurezas escondidas, forja de cortes na mesma PR, e leitura aguda dos sintomas reportados pelo atendimento. Quanto mais pura a lâmina for, mais dura ela será — vale pra forja própria e pra inspeção da forja alheia.',
+    descricao: 'Primeira vez que a lâmina sai da própria bigorna pra inspecionar trabalho alheio. Descrição honesta, escopo honesto, dívida nomeada — a mesma pureza exigida da forja própria, aplicada à forja dos outros.',
     inicio: 37,
-    fim: 43,
+    fim: 39,
   },
 ]
 
