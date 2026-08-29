@@ -300,11 +300,12 @@ function ACronica() {
           </h1>
           <p className="hk-lead">
             Você chegou na sala dos fundos. Aqui não é vitrine — é o registro de como a
-            lâmina veio sendo dobrada sobre si mesma. <strong>{marteladas.length} marteladas</strong>{' '}
-            em <strong>{episodios.length} episódios</strong>, do esboço inicial até o
-            registro que você está lendo agora. À esquerda, o que <em>você</em> disse
-            (verbatim ou em síntese fiel). À direita, o que foi <em>forjado</em> em
-            resposta. Sem narração intermediária.
+            lâmina veio sendo dobrada sobre si mesma. Este site foi escrito em dupla
+            com IA: <strong>{marteladas.length} marteladas</strong> em{' '}
+            <strong>{episodios.length} episódios</strong>, do esboço inicial até o
+            registro que você está lendo agora. À esquerda, <em>os comandos do
+            autor</em> — verbatim ou em síntese fiel. À direita, <em>o que o agente
+            respondeu</em> a cada golpe. Sem narração intermediária.
           </p>
           <p className="hk-quote">
             A bigorna não tem nome, mas deixou marca em cada lâmina.
