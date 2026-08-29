@@ -164,6 +164,10 @@ function PrimeiraForma() {
           <p className="hk-quote">
             Tudo bem se for só uma. Se for só uma, faça dela a sua.
           </p>
+          <p className="hk-nota">
+            Escrito em dupla com IA a partir dos meus comandos.{' '}
+            <a href="/cronica/">A Crônica mostra o processo.</a>
+          </p>
 
           <button
             type="button"

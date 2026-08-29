@@ -45,7 +45,7 @@ const golpes: Golpe[] = [
 
 const arvore = `# Sétima Forma — Trovão do Núcleo
 
-repo-cliente/
+repo/
 ├── src/utils/
 │   ├── janela.ts        # algumaFuncao + JANELA_HORAS
 │   └── janela.test.ts   # 5 unit tests (node:test)
@@ -75,7 +75,7 @@ function KakuRaiNoKami() {
           </h1>
           <p className="hk-lead">
             A Segunda Sétima Forma — nasceu não da repetição da Primeira, mas do
-            limite imposto por um adversário automatizado. Pediu cobertura numa
+            limite imposto por um revisor automatizado. Pediu cobertura numa
             função pura de oito linhas. Pediu armadura inteira pra matar uma
             mosca. A resposta veio de dentro do próprio runtime: o núcleo do
             Node já tinha o que era preciso. Não foi necessário forjar nova
@@ -112,10 +112,9 @@ function KakuRaiNoKami() {
         <SectionLabel num="02" tag="A política do repo" />
         <h2 className="hk-h2">O repositório fechou a porta — de propósito.</h2>
         <p className="hk-sub">
-          O <code>CLAUDE.md</code> do <em>repo cliente</em> declara
-          textualmente: <em>"No test framework configured. Verification after
-          changes: <code>npm run lint</code> + <code>npm run build</code>"</em>.
-          Não é omissão. É decisão arquitetural deliberada. Adicionar Jest ou
+          O repositório não tem framework de teste — por decisão arquitetural
+          deliberada, não por omissão. A verificação após mudanças é
+          <code> lint</code> + <code>build</code>, e ponto. Adicionar Jest ou
           Vitest pra cobrir uma função isolada significava forjar uma armadura
           completa — runner, lock file, integração CI, decisão de ambiente,
           padrão de pasta — pra matar uma mosca de oito linhas. Armadura
@@ -147,7 +146,7 @@ function KakuRaiNoKami() {
         </ul>
         <p className="hk-sub">
           Resultado: cobertura entregue. Zero dependência nova. Zero lock file
-          alterado. <code>CLAUDE.md</code> permanece literalmente válido — não
+          alterado. A decisão do repositório permanece literalmente válida — não
           há framework instalado.
         </p>
       </section>
@@ -193,26 +192,13 @@ function KakuRaiNoKami() {
           Zenitsu não aprendeu as seis formas que não conseguiu dominar. Poliu
           a Primeira até criar a Sétima. Aqui o paralelo é literal: a Primeira
           Forma já havia produzido o argumento técnico denso contra adicionar
-          framework. Quando o adversário insistiu — pattern match em loop fechado —
+          framework. Quando o revisor insistiu,
           a saída não foi cair pra outra técnica. Foi aprofundar a mesma. O
           mesmo princípio que recusa armadura desnecessária revelou o caminho
           autoral: usar o que <em>já estava dentro</em> do runtime.
         </p>
         <p className="hk-quote">
           Não vence quem domina mais formas. Vence quem leva uma só ao núcleo.
-        </p>
-      </section>
-
-      {/* INSPIRAÇÃO */}
-      <section className="hk-section">
-        <SectionLabel num="07" tag="Inspiração" />
-        <h2 className="hk-h2">O movimento que ninguém viu.</h2>
-        <p className="hk-sub">
-          Zenitsu desfere a Sétima Forma diante de Kaigaku — o outro discípulo,
-          que dominou as seis e perdeu a primeira. Os espectadores não veem o
-          golpe: percebem só o silêncio depois. É o mesmo que aconteceu aqui —
-          o bot pediu armadura, recebeu silêncio técnico, registrou
-          <code> APPROVED</code> sem entender por onde passou.
         </p>
       </section>
 

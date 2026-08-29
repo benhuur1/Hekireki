@@ -32,24 +32,25 @@ const FORMS = [
   { view: 'kakurai',  kanji: '核', label: 'Trovão do Núcleo', desc: 'A forma que nasce do limite — usar o que o runtime já tem' },
 ] as const
 
-/* A view ativa vive no hash da URL (#/setimo) — toda forma é deep-linkable,
-   compartilhável, e back/forward do browser funcionam. */
-function viewFromHash(): View {
-  const slug = window.location.hash.replace(/^#\/?/, '')
+/* A view ativa vive no caminho da URL (/setimo) — toda forma é deep-linkable,
+   compartilhável, e back/forward do browser funcionam. Cada rota também existe
+   como HTML estático no servidor (ver scripts/prerender.mjs). */
+function viewFromPath(path?: string): View {
+  const slug = (path ?? window.location.pathname).replace(/^\/+|\/+$/g, '')
   return (VIEWS as readonly string[]).includes(slug) ? (slug as View) : 'primeira'
 }
 
-function App() {
-  const [view, setView] = useState<View>(viewFromHash)
+function App({ ssrPath }: { ssrPath?: string }) {
+  const [view, setView] = useState<View>(() => viewFromPath(ssrPath))
   const [drawerOpen, setDrawerOpen] = useState(false)
 
   useEffect(() => {
     function sync() {
-      setView(viewFromHash())
+      setView(viewFromPath())
       window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
     }
-    window.addEventListener('hashchange', sync)
-    return () => window.removeEventListener('hashchange', sync)
+    window.addEventListener('popstate', sync)
+    return () => window.removeEventListener('popstate', sync)
   }, [])
 
   /* centra o botão ativo no topbar desktop — defesa pra deep-link onde a ativa
@@ -79,8 +80,9 @@ function App() {
   }, [drawerOpen])
 
   function navigateTo(v: View) {
-    // eslint-disable-next-line react-hooks/immutability
-    window.location.hash = `/${v}`
+    window.history.pushState(null, '', v === 'primeira' ? '/' : `/${v}/`)
+    setView(v)
+    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
     setDrawerOpen(false)
   }
 

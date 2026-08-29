@@ -7,7 +7,7 @@ const monstros: Item[] = [
   {
     titulo: 'Kubernetes para um blog pessoal',
     texto:
-      'Cluster de três nodes, ingress controller, service mesh Istio, Helm charts, ArgoCD pra GitOps, Prometheus + Grafana, Velero pra backup. Custo: R$ 800/mês. Visitas: a sua mãe e um bot russo confuso.',
+      'Cluster de três nodes, ingress controller, service mesh Istio, Helm charts, ArgoCD pra GitOps, Prometheus + Grafana, Velero pra backup. Visitas: a sua mãe e um bot russo confuso.',
   },
   {
     titulo: 'Quarenta e sete microsserviços para um TODO',
@@ -15,29 +15,9 @@ const monstros: Item[] = [
       'auth-service · user-service · notification-service · todo-service · todo-search-service · todo-analytics-service · audit-service · BFF pra costurar tudo. Três sprints pra adicionar o campo "prioridade".',
   },
   {
-    titulo: 'SAP — quatorze meses para mudar a cor de um botão',
-    texto:
-      'Seis consultorias contratadas, comitê de governança, workshop em Düsseldorf, treinamento de 80h pros usuários finais. O TCO de 5 anos compra um prédio em Brooklin.',
-  },
-  {
-    titulo: 'Webpack mais quatro mil dependências para um Hello World',
-    texto:
-      'npx create-react-app baixa 1.487 pacotes, 387MB, antes da primeira linha de código. Existe um pacote chamado is-odd. Ele importa is-number. Três pacotes pra uma operação de módulo.',
-  },
-  {
     titulo: 'Jira — quatorze status num único workflow',
     texto:
       'To Do → Refinement → Ready for Dev → Blocked → In Dev → Code Review → QA → Blocked Again → Staging → UAT → Approved → Ready for Release → Deployed → Done. E ainda existe o status "Done Done", porque "Done" não era confiável.',
-  },
-  {
-    titulo: 'Hadoop para um CSV de cinco megabytes',
-    texto:
-      'Cluster de seis máquinas, particionamento, MapReduce, YARN, HDFS, Hive metastore. Pra processar uma planilha que o LibreOffice abre instantaneamente no notebook do estagiário.',
-  },
-  {
-    titulo: 'Emacs querendo gerenciar sua vida amorosa',
-    texto:
-      'Você instala pra editar um .conf. Sai catorze anos depois com cliente de email, leitor de RSS, IRC, navegador, jogo de aventura, terapeuta (M-x doctor — sério, existe) e Tetris. É overengineering elevado a religião.',
   },
 ]
 
@@ -98,7 +78,7 @@ const estocadas: Item[] = [
   {
     titulo: 'CMS',
     texto:
-      'Hugo (binário Go que gera o site em 0.3s), Astro, Eleventy, Kirby. Em vez de WordPress com 47 plugins instalados (12 desativados que ninguém ousa apagar).',
+      'Hugo (binário Go que gera o site em 0.3s), Astro, Eleventy, Kirby. Conteúdo em arquivos, build estático — zero painel de admin pra defender.',
   },
   {
     titulo: 'Infraestrutura',
@@ -111,7 +91,7 @@ const caminhos: Item[] = [
   {
     titulo: 'CLT bem feito — a forma mais subestimada',
     texto:
-      'Sênior em empresa boa: R$ 15-30k/mês. PJ em multinacional gringa: R$ 25-60k/mês. A maioria dos devs "que vive do que ama" no Twitter ganha menos que um pleno do Itaú. Trocar de empresa a cada dois anos é onde sai aumento de verdade.',
+      'Sênior em empresa boa e PJ em multinacional gringa pagam mais do que o Twitter admite. A maioria dos devs "que vive do que ama" ganha menos que um pleno de banco. Trocar de empresa a cada dois anos é onde sai aumento de verdade.',
   },
   {
     titulo: 'Contracting PJ em multinacional gringa',
@@ -131,7 +111,7 @@ const caminhos: Item[] = [
   {
     titulo: 'Plugin ou extensão paga em marketplace ativo',
     texto:
-      'Shopify Apps, WordPress plugins, VSCode extensions, templates Themeforest, plugins Figma. Renda passiva real existe aqui — tem dev brasileiro ganhando R$ 30-200k/mês com um único app na Shopify App Store.',
+      'Shopify Apps, WordPress plugins, VSCode extensions, templates Themeforest, plugins Figma. Renda passiva real existe aqui — tem dev vivendo de um único app bem posicionado num marketplace.',
   },
 ]
 

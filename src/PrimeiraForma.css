@@ -197,6 +197,23 @@
   font-weight: 500;
 }
 
+.hk-nota {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: var(--paper-dim);
+  margin: 0 0 32px;
+}
+.hk-nota a {
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule-gold);
+}
+.hk-nota a:hover {
+  border-bottom-color: var(--gold);
+}
+
 .hk-quote {
   font-family: var(--serif);
   font-style: italic;
@@ -900,6 +917,7 @@
 .hk-title-trans,
 .hk-lead,
 .hk-quote,
+.hk-nota,
 .hk-anvil,
 .hk-vertical {
   opacity: 0;
@@ -912,6 +930,7 @@
 .hk-title-trans  { animation-delay: 1.30s; }
 .hk-lead         { animation-delay: 1.55s; }
 .hk-quote        { animation-delay: 1.95s; }
+.hk-nota         { animation-delay: 2.10s; }
 .hk-anvil        { animation-delay: 2.25s; }
 .hk-vertical     { animation-delay: 2.45s; }
 

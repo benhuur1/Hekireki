@@ -14,7 +14,7 @@
 
   <text x="300" y="450" font-family="'Shippori Mincho', 'Hiragino Mincho ProN', 'Yu Mincho', serif" font-size="460" font-weight="500" fill="#ffd84d" text-anchor="middle">壱</text>
 
-  <text x="660" y="225" font-family="'Shippori Mincho', serif" font-size="32" letter-spacing="14" fill="#ffd84d" opacity="0.55">壱ノ型 · ICHI NO KATA</text>
+  <text x="660" y="225" font-family="'Shippori Mincho', serif" font-size="32" letter-spacing="11" fill="#ffd84d" opacity="0.55">壱ノ型 · ICHI NO KATA</text>
   <text x="660" y="305" font-family="'Shippori Mincho', serif" font-size="78" font-weight="500" fill="#ece4d2">Primeira Forma</text>
   <text x="660" y="380" font-family="'Shippori Mincho', serif" font-size="48" font-weight="400" fill="#ece4d2" opacity="0.7">霹靂一閃 · Hekireki Issen</text>
   <text x="660" y="465" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="22" letter-spacing="6" fill="#ece4d2" opacity="0.6">ENTREGAR TASK COM QUALIDADE</text>

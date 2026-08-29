@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // rotas antigas por hash (#/setimo) viram caminhos reais (/setimo/)
+      var hk = location.hash.replace(/^#\/?/, '').replace(/\/+$/, '')
+      if (['primeira','lentes','corte','espelho','lexico','portao','tanren','setimo','kakurai','cronica'].indexOf(hk) >= 0)
+        location.replace('/' + hk + '/')
+    </script>
     <meta name="theme-color" content="#0a0807" />
 
     <title>Primeira Forma · 壱ノ型</title>
@@ -20,14 +26,18 @@
       property="og:description"
       content="O manifesto da Primeira Forma: entregar task com qualidade. Do Portão ao Trovão do Núcleo."
     />
-    <meta property="og:image" content="/og-image.svg" />
+    <meta property="og:image" content="https://hekireki.infotechjs.com.br/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="https://hekireki.infotechjs.com.br/" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Primeira Forma · 壱ノ型" />
     <meta
       name="twitter:description"
       content="O manifesto da Primeira Forma: entregar task com qualidade."
     />
-    <meta name="twitter:image" content="/og-image.svg" />
+    <meta name="twitter:image" content="https://hekireki.infotechjs.com.br/og-image.png" />
+    <link rel="canonical" href="https://hekireki.infotechjs.com.br/" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
