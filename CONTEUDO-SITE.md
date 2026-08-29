@@ -4,28 +4,28 @@
 >
 > **Título:** Primeira Forma · 壱ノ型  
 > **Descrição:** 壱ノ型 — o manifesto da Primeira Forma: entregar task com qualidade. Do Portão ao Trovão do Núcleo, as formas do ofício.  
-> **Páginas:** 10 (rotas por hash — cada forma é deep-linkable)
+> **Páginas:** 10 (cada forma com URL própria, pré-renderizada)
 
 ---
 
 ## Índice
 
-1. **壱 Primeira Forma** — [`https://hekireki.infotechjs.com.br/#/primeira`](https://hekireki.infotechjs.com.br/#/primeira)
-2. **質 As Quatro Lentes** — [`https://hekireki.infotechjs.com.br/#/lentes`](https://hekireki.infotechjs.com.br/#/lentes)
-3. **道 O Corte** — [`https://hekireki.infotechjs.com.br/#/corte`](https://hekireki.infotechjs.com.br/#/corte)
-4. **鏡 O Espelho** — [`https://hekireki.infotechjs.com.br/#/espelho`](https://hekireki.infotechjs.com.br/#/espelho)
-5. **辞 O Léxico** — [`https://hekireki.infotechjs.com.br/#/lexico`](https://hekireki.infotechjs.com.br/#/lexico)
-6. **門 O Portão** — [`https://hekireki.infotechjs.com.br/#/portao`](https://hekireki.infotechjs.com.br/#/portao)
-7. **鍛 A Têmpera** — [`https://hekireki.infotechjs.com.br/#/tanren`](https://hekireki.infotechjs.com.br/#/tanren)
-8. **漆 Sétima Forma** — [`https://hekireki.infotechjs.com.br/#/setimo`](https://hekireki.infotechjs.com.br/#/setimo)
-9. **核 Trovão do Núcleo** — [`https://hekireki.infotechjs.com.br/#/kakurai`](https://hekireki.infotechjs.com.br/#/kakurai)
-10. **記 A Crônica** — [`https://hekireki.infotechjs.com.br/#/cronica`](https://hekireki.infotechjs.com.br/#/cronica)
+1. **壱 Primeira Forma** — [`https://hekireki.infotechjs.com.br/primeira/`](https://hekireki.infotechjs.com.br/primeira/)
+2. **質 As Quatro Lentes** — [`https://hekireki.infotechjs.com.br/lentes/`](https://hekireki.infotechjs.com.br/lentes/)
+3. **道 O Corte** — [`https://hekireki.infotechjs.com.br/corte/`](https://hekireki.infotechjs.com.br/corte/)
+4. **鏡 O Espelho** — [`https://hekireki.infotechjs.com.br/espelho/`](https://hekireki.infotechjs.com.br/espelho/)
+5. **辞 O Léxico** — [`https://hekireki.infotechjs.com.br/lexico/`](https://hekireki.infotechjs.com.br/lexico/)
+6. **門 O Portão** — [`https://hekireki.infotechjs.com.br/portao/`](https://hekireki.infotechjs.com.br/portao/)
+7. **鍛 A Têmpera** — [`https://hekireki.infotechjs.com.br/tanren/`](https://hekireki.infotechjs.com.br/tanren/)
+8. **漆 Sétima Forma** — [`https://hekireki.infotechjs.com.br/setimo/`](https://hekireki.infotechjs.com.br/setimo/)
+9. **核 Trovão do Núcleo** — [`https://hekireki.infotechjs.com.br/kakurai/`](https://hekireki.infotechjs.com.br/kakurai/)
+10. **記 A Crônica** — [`https://hekireki.infotechjs.com.br/cronica/`](https://hekireki.infotechjs.com.br/cronica/)
 
 ---
 
 ## 1. 壱 Primeira Forma
 
-`https://hekireki.infotechjs.com.br/#/primeira`
+`https://hekireki.infotechjs.com.br/primeira/`
 
 壱ノ型 — Ichi no Kata — 001
 
@@ -34,6 +34,8 @@
 Zenitsu Agatsuma só conseguiu aprender uma das seis formas da Respiração do Trovão. Nunca dominou as outras. Treinou essa única até virar a forma mais perfeita de toda a respiração — tão pura que dela nasceu a Sétima.
 
 Tudo bem se for só uma. Se for só uma, faça dela a sua.
+
+Escrito em dupla com IA a partir dos meus comandos. A Crônica mostra o processo.
 
 `[bata o martelo 0000 space]`
 
@@ -129,7 +131,7 @@ uma única lâmina
 
 ## 2. 質 As Quatro Lentes
 
-`https://hekireki.infotechjs.com.br/#/lentes`
+`https://hekireki.infotechjs.com.br/lentes/`
 
 質 — SHITSU — QUALIDADE
 
@@ -173,7 +175,7 @@ servir os quatro de uma vez
 
 ## 3. 道 O Corte
 
-`https://hekireki.infotechjs.com.br/#/corte`
+`https://hekireki.infotechjs.com.br/corte/`
 
 道 — A APLICAÇÃO — DESTILADO
 
@@ -191,31 +193,15 @@ Catálogo de extravagância arquitetural. Cada item começou como um problema pe
 
 ##### 01 · Kubernetes para um blog pessoal
 
-Cluster de três nodes, ingress controller, service mesh Istio, Helm charts, ArgoCD pra GitOps, Prometheus + Grafana, Velero pra backup. Custo: R$ 800/mês. Visitas: a sua mãe e um bot russo confuso.
+Cluster de três nodes, ingress controller, service mesh Istio, Helm charts, ArgoCD pra GitOps, Prometheus + Grafana, Velero pra backup. Visitas: a sua mãe e um bot russo confuso.
 
 ##### 02 · Quarenta e sete microsserviços para um TODO
 
 auth-service · user-service · notification-service · todo-service · todo-search-service · todo-analytics-service · audit-service · BFF pra costurar tudo. Três sprints pra adicionar o campo "prioridade".
 
-##### 03 · SAP — quatorze meses para mudar a cor de um botão
-
-Seis consultorias contratadas, comitê de governança, workshop em Düsseldorf, treinamento de 80h pros usuários finais. O TCO de 5 anos compra um prédio em Brooklin.
-
-##### 04 · Webpack mais quatro mil dependências para um Hello World
-
-npx create-react-app baixa 1.487 pacotes, 387MB, antes da primeira linha de código. Existe um pacote chamado is-odd. Ele importa is-number. Três pacotes pra uma operação de módulo.
-
-##### 05 · Jira — quatorze status num único workflow
+##### 03 · Jira — quatorze status num único workflow
 
 To Do → Refinement → Ready for Dev → Blocked → In Dev → Code Review → QA → Blocked Again → Staging → UAT → Approved → Ready for Release → Deployed → Done. E ainda existe o status "Done Done", porque "Done" não era confiável.
-
-##### 06 · Hadoop para um CSV de cinco megabytes
-
-Cluster de seis máquinas, particionamento, MapReduce, YARN, HDFS, Hive metastore. Pra processar uma planilha que o LibreOffice abre instantaneamente no notebook do estagiário.
-
-##### 07 · Emacs querendo gerenciar sua vida amorosa
-
-Você instala pra editar um .conf. Sai catorze anos depois com cliente de email, leitor de RSS, IRC, navegador, jogo de aventura, terapeuta (M-x doctor — sério, existe) e Tetris. É overengineering elevado a religião.
 
 *§ 03 · A lei*
 
@@ -271,7 +257,7 @@ SQLite (um arquivo, sem servidor — Discord usa em escala). Postgres com Drizzl
 
 ##### 07 · CMS
 
-Hugo (binário Go que gera o site em 0.3s), Astro, Eleventy, Kirby. Em vez de WordPress com 47 plugins instalados (12 desativados que ninguém ousa apagar).
+Hugo (binário Go que gera o site em 0.3s), Astro, Eleventy, Kirby. Conteúdo em arquivos, build estático — zero painel de admin pra defender.
 
 ##### 08 · Infraestrutura
 
@@ -285,7 +271,7 @@ Cinco rotas honestas pra ganhar dinheiro programando. Escolha uma. Viva dela por
 
 ##### 01 · CLT bem feito — a forma mais subestimada
 
-Sênior em empresa boa: R$ 15-30k/mês. PJ em multinacional gringa: R$ 25-60k/mês. A maioria dos devs "que vive do que ama" no Twitter ganha menos que um pleno do Itaú. Trocar de empresa a cada dois anos é onde sai aumento de verdade.
+Sênior em empresa boa e PJ em multinacional gringa pagam mais do que o Twitter admite. A maioria dos devs "que vive do que ama" ganha menos que um pleno de banco. Trocar de empresa a cada dois anos é onde sai aumento de verdade.
 
 ##### 02 · Contracting PJ em multinacional gringa
 
@@ -301,7 +287,7 @@ A loteria dos sonhos. Construir o produto é 10% do trabalho. Os outros 90% são
 
 ##### 05 · Plugin ou extensão paga em marketplace ativo
 
-Shopify Apps, WordPress plugins, VSCode extensions, templates Themeforest, plugins Figma. Renda passiva real existe aqui — tem dev brasileiro ganhando R$ 30-200k/mês com um único app na Shopify App Store.
+Shopify Apps, WordPress plugins, VSCode extensions, templates Themeforest, plugins Figma. Renda passiva real existe aqui — tem dev vivendo de um único app bem posicionado num marketplace.
 
 > — regra do trovão Estocada única. Foco absoluto. Sem firula.
 
@@ -315,7 +301,7 @@ Primeira Forma aplicada
 
 ## 4. 鏡 O Espelho
 
-`https://hekireki.infotechjs.com.br/#/espelho`
+`https://hekireki.infotechjs.com.br/espelho/`
 
 鏡 — KAGAMI — AUTO-AUDIT
 
@@ -441,7 +427,7 @@ vinte perguntas, zero respostas prontas
 
 ## 5. 辞 O Léxico
 
-`https://hekireki.infotechjs.com.br/#/lexico`
+`https://hekireki.infotechjs.com.br/lexico/`
 
 辞 — JITEN — VOCABULÁRIO
 
@@ -571,7 +557,7 @@ vinte e um termos pra levar embora
 
 ## 6. 門 O Portão
 
-`https://hekireki.infotechjs.com.br/#/portao`
+`https://hekireki.infotechjs.com.br/portao/`
 
 門 — A FRONTEIRA — DISCIPLINA
 
@@ -681,7 +667,7 @@ contrato no porteiro
 
 ## 7. 鍛 A Têmpera
 
-`https://hekireki.infotechjs.com.br/#/tanren`
+`https://hekireki.infotechjs.com.br/tanren/`
 
 鍛 — A INTERNALIZAÇÃO — DISCIPLINA
 
@@ -795,148 +781,51 @@ disciplina internalizada
 
 ## 8. 漆 Sétima Forma
 
-`https://hekireki.infotechjs.com.br/#/setimo`
+`https://hekireki.infotechjs.com.br/setimo/`
 
 漆ノ型 — SHICHI NO KATA — ORIGINAL
 
 ### 火 雷 神 Honoikazuchi no Kami Sétima Forma · Deus do Trovão Flamejante
 
-A forma que Zenitsu criou sozinho — não foi ensinada por mestre nenhum, nasceu da repetição infinita da Primeira. Aqui é a mesma coisa em código: o conjunto de ferramentas que floresceu da raiz simples ( RAG sobre um site cliente ) e se tornou um sistema que se monitora, se corrige e se explica sozinho.
+A forma que Zenitsu criou sozinho — não foi ensinada por mestre nenhum, nasceu da repetição infinita da Primeira. Aqui é a mesma coisa em código: um pipeline de auditoria para um multisite WordPress de varejo, que floresceu da raiz simples ( RAG sobre um site ) e se tornou um sistema que se monitora, se corrige e se explica sozinho.
 
 A maestria de uma forma única abre o caminho pra criar a sua própria.
 
-*§ 02 · Os sete golpes*
+*§ 02 · As camadas*
 
-#### Sete ferramentas, uma só técnica.
+#### Seis camadas, uma só técnica.
 
-Cada golpe é uma camada do pipeline. Juntos formam o Sétimo Estilo do código — um sistema que se monitora, se corrige e se explica sozinho.
+Cada camada faz uma coisa. Juntas formam o Sétimo Estilo do código — um sistema que se monitora, se corrige e se explica sozinho.
 
-##### 01 · Diffador Semântico 7_diff.py
+##### 01 · Crawl
 
-Compara dois snapshots datados e mostra o que melhorou, piorou ou apareceu de novo. Cada correção feita no site vira um delta visível.
+Sitemaps e páginas percorridos site a site — toda URL conhecida entra no funil.
 
-- Evolução numérica — "212 sem meta" → "180 sem meta" ↘ −32
+##### 02 · Extração
 
-- URLs específicas que ganharam ou perderam meta description, H1, alt-text
+Cada página vira dado estruturado: links, imagens, formulários, contatos, meta.
 
-- Mudanças no catálogo do fabricante (preço, ano, motor, modelo novo)
+##### 03 · Snapshot
 
-- Sumário executivo com melhorias, regressões e estáveis
+O estado do site num arquivo datado — o ponto fixo que torna qualquer comparação possível.
 
-```
-python 6_relatorio.py --tag baseline    # ponto inicial
-# ... mexe no site, corrige problemas ...
-python 6_relatorio.py                    # snapshot do dia
-python 7_diff.py                         # diff automático
-```
+##### 04 · Diff
 
-##### 02 · Modo Estrategista app.py · 4º modo
+Dois snapshots comparados; o que melhorou, piorou ou apareceu vira delta visível.
 
-Um quarto modo que dispensa chat livre. Você escolhe uma análise executiva, o app cruza site.db + catálogo oficial + chunks RAG e manda tudo num único prompt para o Sonnet.
+##### 05 · Auditoria visual
 
-- Seis perguntas executivas pré-prontas (plano de 30 dias, SWOT, ROI, …)
+Browser headless percorre as telas e grava a evidência — regressão visual deixa rastro.
 
-- Briefing automático com inventário, achados, catálogo e gaps
+##### 06 · Logs
 
-- Resposta no formato de consultoria sênior — direta e quantificada
-
-- Tudo gravado no histórico (data/chat.db) pra revisitar depois
-
-##### 03 · Sentinela One-shot update.sh
-
-Um comando que toca todo o pipeline em ordem: raspagem, reindex Chroma, crawl de sitemaps, extração estruturada, catálogo do fabricante, auditoria de telefones, snapshot e diff vs anterior.
-
-- Nove etapas em sequência, com log silencioso em /tmp/sentinela_*.log
-
-- Diff automático contra o snapshot anterior se houver
-
-- Modo --skip-rag pra rodar só auditoria (~1 min)
-
-- Pronto pra agendar via cron ou launchd
-
-```
-./update.sh             # versão completa (~5 min)
-./update.sh --skip-rag  # só auditoria (~1 min)
-```
-
-##### 04 · Castelo do Infinito (mu-plugins) wp-content/mu-plugins/castelo-infinito*.php
-
-O ataque deixou de ser análise — virou correção. Seis mu-plugins WordPress que arrumam o site na mesma marretada: meta description, alt-text, H1 fallback, contatos canônicos, schema.org AutoDealer e bloco dinâmico de loja em página de veículo.
-
-- Parte 1 — meta description + alt-text via output buffer (Elementor não usa wp_get_attachment_image)
-
-- Parte 2 — REPLACEMENTS_SAFE normaliza WhatsApps canônicos por loja
-
-- Parte 3 — H1 fallback + Schema.org AutoDealer JSON-LD por loja
-
-- Parte 4 — bloco "endereço · telefone · horário" injetado em /veiculo/* (hooks Elementor)
-
-- Parte 5 — patch_img_alt_in_html() varre HTML e injeta alt derivado de title/figcaption/filename
-
-- Parte 6 — admin dashboard em Tools → Castelo do Infinito (per-site + visão rede agregada)
-
-```
-lando wp rede audit-summary --network
-lando wp rede contacts diff
-# Tools → Castelo do Infinito (visão rede)
-```
-
-##### 05 · Inspetor de Conformidade app.py · modo Inspetor
-
-A política da rede mudou em relação a preço. O Inspetor virou guardião da conformidade — extrai catálogo da rede vs catálogo do fabricante e expõe vazamentos, cobertura por loja, cores divergentes e spec hero inconsistente.
-
-- Preço vazado contra política — lista cada URL que ainda mostra R$
-
-- Cobertura de modelos por loja (Modelo X ausente em 1 loja, Modelo Y legado em 3)
-
-- Cores publicadas vs oficiais — flagra grafias divergentes
-
-- Spec hero consistência — motor / potência batem entre lojas?
-
-- Tabela modelos_rede_a espelha modelos_fabricante (mesmas colunas, comparável)
-
-```
-python 4b_extract_rede_a_models.py    # 28 páginas, ~10 leak detectados
-# app.py → Inspetor → "Preço vazado contra política"
-```
-
-##### 06 · Visual UX (Playwright) app.py · modo Visual UX · 9_playwright_audit.py
-
-O olho do espadachim ganhou três viewports. Playwright headless atravessa Atendente, Inspetor e Estrategista, tira screenshot em 375 / 1024 / 1920 e grava em playwright_audits — sobrepor regressões fica trivial.
-
-- Três viewports simultâneos: 375 (mobile), 1024 (HD), 1920 (Full HD)
-
-- Subprocess streaming pro Streamlit — vê cada passo do crawler ao vivo
-
-- Detecta LCP > 4s e cumulative layout shift por viewport
-
-- Snapshots datados em data/playwright_audits/ — pronto pra diff visual
-
-##### 07 · Trovão ao Vivo app.py · sidebar · app_log.py
-
-O sétimo golpe: observabilidade total. Ring buffer compartilhado entre stdout e UI — cada busca RAG, cada chamada do Sonnet, cada linha do pipeline aparece colorida no painel da sidebar. E um botão único toca o pipeline inteiro.
-
-- Logs ao vivo na sidebar com slider 10–200 eventos · DEBUG / INFO / WARNING / ERROR coloridos
-
-- Botão "Rodar pipeline completo" — subprocess.Popen com streaming linha-a-linha
-
-- Checkboxes "pular RAG" / "pular concorrente" pra escolher peso do golpe
-
-- Mesmos eventos vão pro terminal — auditoria zero-touch via tail no journalctl
-
-- Status final: tempo total · código de saída + última linha
-
-```
-streamlit run app.py
-# sidebar → Pipeline → Rodar pipeline completo
-# (cada linha do update.sh vira evento INFO no painel)
-```
+Cada passo do pipeline aparece ao vivo — observabilidade sem ferramenta externa.
 
 *§ 03 · Modo Estrategista*
 
-#### Sete perguntas executivas.
+#### Cinco perguntas executivas.
 
-O Atendente conversa. O Inspetor audita. O Estrategista responde — sempre com dados cruzados de site.db , catálogo oficial e RAG num único prompt.
+O chat conversa. O Estrategista responde — sempre com os dados do pipeline cruzados num único prompt.
 
 ##### 01 · Plano de ação 30 dias
 
@@ -948,155 +837,17 @@ Forças, fraquezas, oportunidades e ameaças com dados do site real.
 
 ##### 03 · ROI das correções
 
-Cinco correções com horas-homem, ganho esperado e payback.
+Correções priorizadas com esforço, ganho esperado e payback.
 
-##### 04 · Posicionamento competitivo
-
-Rede A vs Fabricante vs concorrência, com três movimentos.
-
-##### 05 · Pauta para a direção
+##### 04 · Pauta para a direção
 
 Reunião de 30min — três dados + duas perguntas + uma recomendação.
 
-##### 06 · Riscos e bombas-relógio
+##### 05 · Riscos e bombas-relógio
 
 Severidade, mitigação imediata e mitigação definitiva.
 
-##### 07 · Catálogo Rede A vs Fabricante
-
-Cobertura, preço vazado contra política, cores e spec divergentes.
-
-*§ 04 · Estrutura*
-
-#### Mapa do tesouro.
-
-A árvore inteira do projeto, com cada arquivo e seu papel. A complexidade é só aparente — cada script faz uma coisa.
-
-```
-rag-rede/
-├── 1c_wp_loader.py             ─ raspa WP (texto pro RAG)
-├── 2_index.py                  ─ Chroma (vetores)
-├── 2b_sitemap_crawler.py       ─ descobre URLs
-├── 2c_concorrente_crawler.py   ─ concorrência (Rede B)
-├── 2d_rede_a_eco_crawler.py    ─ ecossistema Rede A (3 domínios)
-├── 3_site_extract.py           ─ links / imgs / forms / contatos / meta
-├── 3b_concorrente_extract.py   ─ extração concorrente
-├── 4_compare_oficial.py        ─ catálogo do fabricante
-├── 4b_extract_rede_a_models.py ─ catálogo Rede A (versões / cores / preço)
-├── 5_audit_telefones.py        ─ relatório de telefones
-├── 6_relatorio.py              ─ snapshot datado
-├── 7_diff.py                   ─ comparador entre snapshots
-├── 8_compare_concorrente.py    ─ matriz Rede A × Rede B × Fabricante
-├── 9_playwright_audit.py       ─ Playwright multi-viewport
-├── update.sh                   ─ sentinela one-shot
-├── app.py                      ─ 5 modos: Atendente · Auditor · Inspetor · Estrategista · Visual UX
-├── app_log.py                  ─ ring buffer logs (stdout + sidebar)
-├── db.py                       ─ chat history SQLite
-├── db_site.py                  ─ banco estruturado SQLite
-├── network.json                ─ config dos 5 sites
-└── data/
-    ├── chroma/                 ─ vetores
-    ├── site.db                 ─ pages + modelos_rede_a + modelos_fabricante
-    ├── chat.db                 ─ histórico conversas
-    └── COMPETITIVO.md          ─ matriz Rede A × Rede B × Fabricante
-```
-
-*§ 05 · Ritual*
-
-#### Ordem de demonstração.
-
-Os sete passos pra mostrar o sistema inteiro a quem nunca viu — em menos de quinze minutos.
-
-##### 01 · Sidebar · Logs do app
-
-Abre o painel. Cada movimento dali pra frente aparece colorido em tempo real — INFO azul, ERROR vermelho intenso.
-
-##### 02 · Modo Inspetor — preço vazado
-
-Flagra ~10 URLs que ainda mostram R$ contra a política da rede.
-
-##### 03 · Modo Inspetor — cobertura
-
-Confirma que Modelo X falta na matriz e Modelo Y é legado em 3 lojas.
-
-##### 04 · Modo Estrategista — catálogo
-
-Sonnet cruza modelos_rede_a × modelos_fabricante e devolve plano executivo.
-
-##### 05 · Modo Visual UX
-
-Roda Playwright em 375 / 1024 / 1920 — cada linha do crawler aparece no painel de logs ao vivo.
-
-##### 06 · WP Admin · Castelo do Infinito
-
-Abre /wp-admin/tools.php?page=castelo — visão rede agregada com tudo que o mu-plugin já corrigiu hoje.
-
-##### 07 · Sidebar · Pipeline completo
-
-Toca update.sh inteiro, cada linha vira evento de log. Ao final: tempo total e código de saída.
-
-*§ 06 · Resultado competitivo*
-
-#### Rede A × Rede B × Fabricante.
-
-Cruzamento direto entre Rede A , Rede B (concorrente multisite) e Fabricante (catálogo oficial). Dados gerados pelo 8_compare_concorrente.py .
-
-369
-
-Rede A (ecossistema)
-
-páginas indexadas
-
-5 lojas
-
-- staging local 242
-
-- produção (loja) 43
-
-- produção (seminovos) 84
-
-- 400 Rede B páginas indexadas 3 lojas
-
-- 5 Fabricante páginas indexadas fabricante
-
-| Feature | Rede A | Rede B | Fabricante |
-| --- | --- | --- | --- |
-| Configurador | — | — | — |
-| Simulador Financiamento | — | — | — |
-| Simulador Consorcio | — | ✓ 16 | — |
-| Estoque Online | ✓ 83 +77 eco | ✓ 24 | — |
-| Estoque Seminovos | ✓ 84 +84 eco | ✓ 320 | — |
-| Avaliacao Usado | — | — | — |
-| Blog | ✓ 60 +30 eco | — | — |
-| Agendamento Online | ✓ 6 +1 eco | — | — |
-| Test Drive | — | — | ✓ 1 |
-| Pcd | ✓ 6 +1 eco | — | — |
-| Ofertas | ✓ 19 +2 eco | — | — |
-| Pecas | ✓ 6 +1 eco | ✓ 40 | — |
-
-##### 01 · Vantagens da Rede A
-
-- blog
-
-- agendamento_online
-
-- pcd
-
-- ofertas
-
-##### 02 · Gaps a fechar (Rede B tem)
-
-- simulador_consorcio
-
-##### 03 · Paridade
-
-- estoque_online
-
-- estoque_seminovos
-
-- pecas
-
-*§ 07 · A presa única*
+*§ 04 · A presa única*
 
 #### Por que esse projeto cabe num servidor pequeno.
 
@@ -1104,15 +855,15 @@ Cada peça da pilha foi escolhida pela Primeira Presa do Inosuke : a estocada br
 
 ##### 01 · WordPress multisite com mu-plugins diretos
 
-Em vez de tema headless + Next.js SSR + plugin marketplace pago. Seis arquivos PHP no mu-plugins/ consertam o que precisava ser consertado, sem deploy ritual.
+Em vez de tema headless + Next.js SSR + plugin marketplace pago. Arquivos PHP no mu-plugins/ consertam o que precisava ser consertado, sem deploy ritual.
 
-##### 02 · update.sh — 9 etapas em sequência num único shell
+##### 02 · Pipeline em sequência num único shell
 
-Em vez de Airflow + DAG distribuído + Celery + Redis broker + Flower dashboard. Um ./update.sh e o pipeline inteiro roda do scraping ao snapshot.
+Em vez de Airflow + DAG distribuído + Celery + Redis broker + Flower dashboard. Um único script e o pipeline inteiro roda do crawl ao snapshot.
 
-##### 03 · Lando local em domínio de staging
+##### 03 · Lando local em domínio próprio
 
-Em vez de ambiente staging full stack + CI/CD multi-stage + Vault + feature flags. O /etc/hosts e o Docker do Lando dão conta do que um time inteiro de DevOps faria.
+Em vez de ambiente de homologação full stack + CI/CD multi-stage + Vault + feature flags. O /etc/hosts e o Docker do Lando dão conta do que um time inteiro de DevOps faria.
 
 ##### 04 · Snapshot file-based + diff semântico
 
@@ -1122,7 +873,7 @@ Em vez de Snowflake + dbt + Looker + DataDog + alerting cluster. Um arquivo JSON
 
 Em vez de API REST + GraphQL + Apollo + Redis cache + CDN edge functions. O dado é estático, o caminho é uma URL, o navegador resolve. A "API" é o sistema de arquivos.
 
-*§ 08 · Respirações*
+*§ 05 · Respirações*
 
 #### Sete momentos da técnica.
 
@@ -1170,7 +921,7 @@ A técnica original — só executada uma vez.
 
 Antes do raio, a memória do mestre.
 
-*§ 09 · Direitos*
+*§ 06 · Direitos*
 
 #### Direitos & Inspiração.
 
@@ -1188,7 +939,7 @@ Sem coleta. Nada de formulário, login, analytics, cookie próprio. O contador d
 
 ##### 04 · Código do projeto
 
-rag-rede é projeto pessoal de demonstração de RAG aplicado a uma rede multisite WordPress de varejo automotivo. Os dados raspados vêm de um ambiente local de staging do cliente, não do site público. Catálogo do fabricante usado apenas para comparação interna.
+Projeto pessoal de demonstração — RAG e auditoria aplicados a um multisite WordPress de varejo. Nenhum dado de terceiros é publicado nesta página.
 
 > — Honoikazuchi no Kami A maestria de uma forma única abre o caminho pra criar a sua própria.
 
@@ -1204,13 +955,13 @@ ver a trajetória até aqui
 
 ## 9. 核 Trovão do Núcleo
 
-`https://hekireki.infotechjs.com.br/#/kakurai`
+`https://hekireki.infotechjs.com.br/kakurai/`
 
 漆ノ型 — KAKU RAI NO KAMI — ORIGINAL
 
 ### 核 雷 神 Kaku Rai no Kami Sétima Forma · Deus do Trovão do Núcleo
 
-A Segunda Sétima Forma — nasceu não da repetição da Primeira, mas do limite imposto por um adversário automatizado. Pediu cobertura numa função pura de oito linhas. Pediu armadura inteira pra matar uma mosca. A resposta veio de dentro do próprio runtime: o núcleo do Node já tinha o que era preciso. Não foi necessário forjar nova armadura — bastou estender a mão pra dentro.
+A Segunda Sétima Forma — nasceu não da repetição da Primeira, mas do limite imposto por um revisor automatizado. Pediu cobertura numa função pura de oito linhas. Pediu armadura inteira pra matar uma mosca. A resposta veio de dentro do próprio runtime: o núcleo do Node já tinha o que era preciso. Não foi necessário forjar nova armadura — bastou estender a mão pra dentro.
 
 A forma que vence sem importar nada já estava dentro.
 
@@ -1224,7 +975,7 @@ O revisor automatizado pediu cobertura para algumaFuncao : dentro da janela, for
 
 #### O repositório fechou a porta — de propósito.
 
-O CLAUDE.md do repo cliente declara textualmente: "No test framework configured. Verification after changes: npm run lint + npm run build " . Não é omissão. É decisão arquitetural deliberada. Adicionar Jest ou Vitest pra cobrir uma função isolada significava forjar uma armadura completa — runner, lock file, integração CI, decisão de ambiente, padrão de pasta — pra matar uma mosca de oito linhas. Armadura inteira pra mosca. A Primeira Forma proíbe.
+O repositório não tem framework de teste — por decisão arquitetural deliberada, não por omissão. A verificação após mudanças é lint + build , e ponto. Adicionar Jest ou Vitest pra cobrir uma função isolada significava forjar uma armadura completa — runner, lock file, integração CI, decisão de ambiente, padrão de pasta — pra matar uma mosca de oito linhas. Armadura inteira pra mosca. A Primeira Forma proíbe.
 
 *§ 03 · O movimento autoral*
 
@@ -1240,7 +991,7 @@ O runtime do Node já oferecia, em sua engine 24, um test runner nativo ( node:t
 
 - Adicionar o script npm run test : node --test --experimental-strip-types 'src/**/*.test.ts' .
 
-Resultado: cobertura entregue. Zero dependência nova. Zero lock file alterado. CLAUDE.md permanece literalmente válido — não há framework instalado.
+Resultado: cobertura entregue. Zero dependência nova. Zero lock file alterado. A decisão do repositório permanece literalmente válida — não há framework instalado.
 
 *§ 04 · Os cinco golpes*
 
@@ -1277,7 +1028,7 @@ Tudo cabe em quatro arquivos. A força é a ausência: nenhuma pasta nova de tes
 ```
 # Sétima Forma — Trovão do Núcleo
 
-repo-cliente/
+repo/
 ├── src/utils/
 │   ├── janela.ts        # algumaFuncao + JANELA_HORAS
 │   └── janela.test.ts   # 5 unit tests (node:test)
@@ -1292,27 +1043,21 @@ repo-cliente/
 
 #### A Sétima é a Primeira levada ao limite.
 
-Zenitsu não aprendeu as seis formas que não conseguiu dominar. Poliu a Primeira até criar a Sétima. Aqui o paralelo é literal: a Primeira Forma já havia produzido o argumento técnico denso contra adicionar framework. Quando o adversário insistiu — pattern match em loop fechado — a saída não foi cair pra outra técnica. Foi aprofundar a mesma. O mesmo princípio que recusa armadura desnecessária revelou o caminho autoral: usar o que já estava dentro do runtime.
+Zenitsu não aprendeu as seis formas que não conseguiu dominar. Poliu a Primeira até criar a Sétima. Aqui o paralelo é literal: a Primeira Forma já havia produzido o argumento técnico denso contra adicionar framework. Quando o revisor insistiu, a saída não foi cair pra outra técnica. Foi aprofundar a mesma. O mesmo princípio que recusa armadura desnecessária revelou o caminho autoral: usar o que já estava dentro do runtime.
 
 Não vence quem domina mais formas. Vence quem leva uma só ao núcleo.
-
-*§ 07 · Inspiração*
-
-#### O movimento que ninguém viu.
-
-Zenitsu desfere a Sétima Forma diante de Kaigaku — o outro discípulo, que dominou as seis e perdeu a primeira. Os espectadores não veem o golpe: percebem só o silêncio depois. É o mesmo que aconteceu aqui — o bot pediu armadura, recebeu silêncio técnico, registrou APPROVED sem entender por onde passou.
 
 ---
 
 ## 10. 記 A Crônica
 
-`https://hekireki.infotechjs.com.br/#/cronica`
+`https://hekireki.infotechjs.com.br/cronica/`
 
 跡 — ATO — ÁREA EXCLUSIVA
 
 ### 跡 A Crônica a evolução do projeto até aqui
 
-Você chegou na sala dos fundos. Aqui não é vitrine — é o registro de como a lâmina veio sendo dobrada sobre si mesma. 43 marteladas em 8 episódios , do esboço inicial até o registro que você está lendo agora. À esquerda, o que você disse (verbatim ou em síntese fiel). À direita, o que foi forjado em resposta. Sem narração intermediária.
+Você chegou na sala dos fundos. Aqui não é vitrine — é o registro de como a lâmina veio sendo dobrada sobre si mesma. Este site foi escrito em dupla com IA: 39 marteladas em 8 episódios , do esboço inicial até o registro que você está lendo agora. À esquerda, os comandos do autor — verbatim ou em síntese fiel. À direita, o que o agente respondeu a cada golpe. Sem narração intermediária.
 
 A bigorna não tem nome, mas deixou marca em cada lâmina.
 
@@ -1352,7 +1097,7 @@ Sétimo Estilo recebeu têmpera completa: Mincho serif + JetBrains Mono, grain S
 
 ##### 08 · AQUI. (foto dos Multi cards 01/06/08) Na verdade seja o melhor. Aprimore com tudo que sabe.
 
-KPIs (Rede A × Rede B × Fabricante) e Highlights (vantagens/gaps/paridade) convertidos para o padrão Multi com top hairline dourada no vencedor.
+KPIs e Highlights da Sétima Forma convertidos para o padrão Multi com top hairline dourada no vencedor.
 
 ##### 09 · Lembre-se, trabalhe duro numa única coisa, deixe o layout uniforme num único padrão.
 
@@ -1502,39 +1247,23 @@ O epílogo cumprido: "cada nova martelada que você bater entra aqui também". S
 
 A epígrafe da Forja repetida — selo do sétimo episódio. Cada breakpoint que adicionei hoje foi uma impureza tirada, não uma camada acrescentada. A página passou a caber em qualquer mão porque tem menos coisa lá, não mais.
 
-*§ VIII · Episódio · Kantei · marteladas 37–43*
+*§ VIII · Episódio · Kantei · marteladas 37–39*
 
 #### A inspeção
 
-Primeira vez que a lâmina sai da própria bigorna pra inspecionar trabalho alheio. Auditoria de PR aberta por outro dev, descoberta de impurezas escondidas, forja de cortes na mesma PR, e leitura aguda dos sintomas reportados pelo atendimento. Quanto mais pura a lâmina for, mais dura ela será — vale pra forja própria e pra inspeção da forja alheia.
+Primeira vez que a lâmina sai da própria bigorna pra inspecionar trabalho alheio. Descrição honesta, escopo honesto, dívida nomeada — a mesma pureza exigida da forja própria, aplicada à forja dos outros.
 
-##### 37 · Entre no modo primeira forma e confira os textos de descrição da PR aberta por outro dev no repo cliente.
+##### 37 · Entre no modo primeira forma e confira a descrição de uma PR aberta por outro dev.
 
-Auditei descrição da PR de outro dev no repo cliente. Quatro impurezas: título carregando prefixo do branch (duplica o que GitHub mostra), typo "raíz", "3 marteladas" desonesta — PR toca 8 arquivos, com 3 mini-features escondidas em uma linha solta como "polimentos de borda", e claim falso no test plan ("toast is not defined em main"). Forja sugerida: título conventional, scope honesto, test plan auditável.
+Primeira inspeção de forja alheia. O mesmo crivo da forja própria: título que diz o que a PR faz, descrição com escopo honesto, test plan auditável.
 
 ##### 38 · Execute com a respiração do trovão.
 
-Modo plan. Verificação na branch de fix de outro dev revelou que `toast is not defined` nunca chegou em main — era estado intermediário de dev (import dinâmico vs estático). Os 3 "polimentos" eram regra de negócio nova: copy variável por tipo, botão fechar de modal, onCancel com redirect. Reescrevi título conventional e corpo honesto via gh pr edit. Backticks escapados na primeira tentativa pelo heredoc, têmpera segunda passou limpa.
+Antes de tocar em qualquer linha, cada afirmação da descrição foi conferida contra o código — leitura estática primeiro, corte depois. O que não se confirmou saiu do texto.
 
-##### 39 · leia o contexto.md — o que a task pede foi feito na pr?
+##### 39 · Aqui a forja foi concluída, respondendo às expectativas.
 
-Li os 8 prints da atendente em alta resolução. A PR cobria apenas 2 dos 7 sintomas reportados. Quatro prazos errados (Produto C 5→3, Produto B 7→4, Produto D 5→4, Produto E "receberá" prometendo entrega) e o "em que momento é feita conferência Produto A" continuavam intocados. A causa-raiz declarada na PR atacava só uma cadeia (lineItem inválido → unknown → default 5 dias) — mas os prints mostravam a atendente em produtos válidos com números errados de fontes legítimas.
-
-##### 40 · dos que estão com X no estado quais consegue conferir? — 1, ve o productionTime da API.
-
-Confirmei estaticamente 5/5 sintomas com path:linha. Tracei a cadeia: success do upload de fotos → utils/checkout → endpoint de shipping-rates → controller no backend → service de carriers → campo de production time no modelo Variant. O seed de shipping infos no backend está correto (Produto C 3, Produto D 4, Produto B 4). Backend devolve undefined e o frontend cai em DEFAULT_PRODUCTION_DAYS=7 ou DEFAULT_REVELATION_DAYS=5. Bug é de seed-não-rodou ou lookup quebrado no service de carriers — fora do alcance do frontend.
-
-##### 41 · gere na branch do fix — PR main não draft gera URL de preview, merge manda para homolog, release nova manda para produção.
-
-Segunda Forma · Prazos honestos. Quatro cortes em 11 linhas: copy honesta nas 4 mensagens de sucesso (PT + EN) trocando "você receberá seu álbum" por "seu pedido será despachado" + sufixo "O prazo de entrega depende da transportadora e CEP escolhidos"; remoção do `+ deliveryTime` no {n} dos cases produto E e produto A; label condicional "Conferência do modelo" pra Produto A via ternário no OrderProgressTracker; key stepModelApproval em PT/EN. Lint e typecheck verdes. Commit + push direto na branch da PR. Descrição da PR atualizada listando os 4 cortes originais + os 2 novos + dívida conhecida (3 prazos errados ficam pra PR no backend).
-
-##### 42 · O que ela quis dizer? Sem falar com ela, o que faria pra melhorar?
-
-Versões em alta resolução dos prints permitiram leitura aguda. Decompus a queixa "em que momento é feita conferência" em três camadas: label vago (já cortado), modelo invisível no card, momento actionable ausente. Comparei as 3 páginas do Produto A (os três tamanhos) — achei assimetria suspeita no tamanho médio (Produto D 130 ≠ Produto A tradicional 160) que quebra o padrão dos outros modelos, possível typo de cadastro. Esbocei 7 estocadas ordenadas por custo/impacto pra evolução do detalhe do pedido — quatro pequenas (renomear card, card de próxima ação, decompor previsão, tooltips), duas médias (tela de conferência ativa, nudges automáticos), uma estrutural (galeria de modelos).
-
-##### 43 · aqui a forja foi concluida respondendo as espectativas
-
-Recebido. A primeira inspeção alheia fechou: descrição honesta, copy honesta, label honesto, dívida nomeada. A PR vai com seis cortes próprios e três prazos errados marcados como tarefa do backend. Selo do oitavo episódio — Kantei cumprida.
+Cortes aplicados na própria PR: copy honesta, label honesto, e o que não cabia ali nomeado como dívida — não escondido. Selo do oitavo episódio: Kantei cumprida.
 
 > — epílogo da crônica O treino continua. Cada nova martelada que você bater entra aqui também — basta apontar onde, e a lâmina endurece mais um grau.
 
@@ -1542,7 +1271,7 @@ Recebido. A primeira inspeção alheia fechou: descrição honesta, copy honesta
 
 A Crônica · área exclusiva
 
-0043
+0039
 
 ---
 
