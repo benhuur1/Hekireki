@@ -166,7 +166,7 @@ function PrimeiraForma() {
           </p>
           <p className="hk-nota">
             Escrito em dupla com IA a partir dos meus comandos.{' '}
-            <a href="#/cronica">A Crônica mostra o processo.</a>
+            <a href="/cronica/">A Crônica mostra o processo.</a>
           </p>
 
           <button

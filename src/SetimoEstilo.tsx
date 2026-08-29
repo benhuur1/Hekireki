@@ -250,7 +250,7 @@ function SetimaForma() {
           <span className="hk-foot-rule" aria-hidden />
           <span>Honoikazuchi no Kami</span>
         </div>
-        <a href="#cronica" className="hk-cronica-entrada">
+        <a href="/cronica/" className="hk-cronica-entrada">
           ver a trajetória até aqui
         </a>
       </footer>
