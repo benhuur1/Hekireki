@@ -114,10 +114,10 @@ sitemap; 1 → 9 âncoras rastreáveis. Hidratação sem um único mismatch no C
 | # | Pendência | Depende de | Bloqueia |
 | --- | --- | --- | --- |
 | ~~1~~ | ~~Deploy na Hostinger~~ | — | **feito e verificado** |
+| ~~2~~ | ~~Ligar o GA4~~ | — | **no ar, verificado no servidor** |
 | 1 | Enviar sitemap no Search Console | você | indexação |
 | 2 | Recriar o repositório no GitHub | você (irreversível) | limpar o histórico |
-| 3 | ID do GA4 no `.env`, rebuild e novo deploy | criar a propriedade | métricas |
-| 4 | URL do LinkedIn no colofão | você | aquisição |
+| 3 | URL do LinkedIn no colofão | você | aquisição |
 
 Notas:
 
@@ -176,12 +176,25 @@ git log --oneline | wc -l                                    # 1
 git log -p | grep -ciE "applauso|comeri|nissan|fnlivros"     # 0
 ```
 
-### Ligar o GA4
+### Ligar o GA4 — já feito, mas o `.env` não viaja
+
+A propriedade existe e o build com analytics está no ar. **O `.env` está no `.gitignore`**,
+então ele não vem no clone: sem recriá-lo, qualquer build novo sai sem GA4 e o site volta
+a dizer "sem coleta".
 
 ```bash
-cp .env.example .env
-# editar: VITE_GA_ID=G-XXXXXXXXXX
+printf 'VITE_GA_ID=G-75J80JNEXR\n' > .env
 npm run build
+```
+
+O ID de medição não é segredo — ele aparece no código-fonte de toda página que usa GA4.
+Propriedade `552221505`, fluxo Web "Hekireki".
+
+Conferir que pegou:
+
+```bash
+grep -c "G-75J80JNEXR" dist/assets/index-*.js        # 1
+grep -c "Sem coleta" dist/setimo/index.html          # 0 — o texto troca sozinho
 ```
 
 ### Adicionar o LinkedIn
@@ -202,7 +215,24 @@ Em `src/App.tsx`, no bloco `.hk-colofao-links`, ao lado do link do GitHub:
 `lentes/`, `lexico/`, `portao/`, `tanren/`, `setimo/`, `kakurai/`, `cronica/`),
 `sitemap.xml`, `404.html`, `robots.txt`, `og-image.png`, `sw.js`, `.htaccess` e `assets/`.
 
-No File Manager do hPanel, no doc root do subdomain, subir **nesta ordem**:
+**O doc root certo — há dois `public_html` na conta:**
+
+```
+/home/u136865304/domains/hekireki.infotechjs.com.br/public_html   ← este
+/home/u136865304/domains/infotechjs.com.br/public_html            ← WordPress, NÃO
+```
+
+`hekireki` é domínio *addon*, com doc root próprio. Extrair no `public_html` do
+`infotechjs.com.br` faz o `index.html` passar na frente do `index.php` do WordPress e o
+`.htaccess` sobrescrever o de permalinks — derruba o site principal. Para ter certeza antes
+de extrair: a pasta certa tem `corte/`, `setimo/` e `sitemap.xml`; se aparecer `wp-content/`,
+é a errada.
+
+O `.htaccess` começa com ponto — ative "mostrar arquivos ocultos" no File Manager, senão
+você perde os headers de segurança e o `ErrorDocument 404`.
+
+Subir um `.zip` do conteúdo de `dist/` e usar **Extract** resolve tudo de uma vez. Se
+preferir arquivo a arquivo, **esta ordem**:
 
 1. `assets/` primeiro
 2. as pastas de rota e o `404.html`
@@ -211,6 +241,16 @@ No File Manager do hPanel, no doc root do subdomain, subir **nesta ordem**:
 
 **Não apague a `assets/` antiga por alguns dias.** Deixar os chunks com hash antigo no ar é
 o que impede o 404 de chunk nas abas que ficaram abertas — previne, em vez de remediar.
+
+**Apague o `.zip` da pasta depois de extrair** — ele ficaria acessível publicamente.
+
+**Limpe o cache ao final, sempre.** O site fica atrás do CDN da Hostinger; sem purgar, a
+versão anterior continua sendo servida — inclusive para o Googlebot. hPanel → Cache →
+Limpar, ou peça pelo conector.
+
+**Como verificar o deploy sem abrir o site**, pelo conector: o `CACHE` em `sw.js` carrega o
+timestamp do build, e o hash de `assets/index-*.js` tem que bater com o local. Foi assim que
+confirmei este.
 
 Depois do deploy, no Search Console: enviar `sitemap.xml` e usar Inspeção de URL em três
 rotas distintas, conferindo na aba **HTML** (não "renderizado") que a prosa está lá.
