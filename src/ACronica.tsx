@@ -56,7 +56,7 @@ const marteladas: Martelada[] = [
   {
     n: 8,
     voce: 'AQUI. (foto dos Multi cards 01/06/08) Na verdade seja o melhor. Aprimore com tudo que sabe.',
-    eu: 'KPIs (Rede A × Rede B × Fabricante) e Highlights (vantagens/gaps/paridade) convertidos para o padrão Multi com top hairline dourada no vencedor.',
+    eu: 'KPIs e Highlights (vantagens/gaps/paridade) convertidos para o padrão Multi com top hairline dourada no vencedor.',
   },
   {
     n: 9,
@@ -206,27 +206,27 @@ const marteladas: Martelada[] = [
   {
     n: 38,
     voce: 'Execute com a respiração do trovão.',
-    eu: 'Modo plan. Verificação na branch de fix de outro dev revelou que `toast is not defined` nunca chegou em main — era estado intermediário de dev (import dinâmico vs estático). Os 3 "polimentos" eram regra de negócio nova: copy variável por tipo, botão fechar de modal, onCancel com redirect. Reescrevi título conventional e corpo honesto via gh pr edit. Backticks escapados na primeira tentativa pelo heredoc, têmpera segunda passou limpa.',
+    eu: 'Modo plan. A verificação derrubou o erro declarado na descrição: ele nunca chegou na branch principal — era estado intermediário de desenvolvimento. E o que estava rotulado como "polimento" era regra de negócio nova, escondida numa linha solta. Reescrevi título conventional e corpo honesto. Backticks escapados na primeira tentativa pelo heredoc; a têmpera segunda passou limpa.',
   },
   {
     n: 39,
-    voce: 'leia o contexto.md — o que a task pede foi feito na pr?',
-    eu: 'Li os 8 prints da atendente em alta resolução. A PR cobria apenas 2 dos 7 sintomas reportados. Quatro prazos errados (Produto C 5→3, Produto B 7→4, Produto D 5→4, Produto E "receberá" prometendo entrega) e o "em que momento é feita conferência Produto A" continuavam intocados. A causa-raiz declarada na PR atacava só uma cadeia (lineItem inválido → unknown → default 5 dias) — mas os prints mostravam a atendente em produtos válidos com números errados de fontes legítimas.',
+    voce: 'leia o contexto — o que a task pede foi feito na PR?',
+    eu: 'Li o relato inteiro antes de olhar o diff. A PR cobria 2 dos 7 sintomas reportados: os prazos incorretos e a pergunta sobre o momento da conferência continuavam intocados. E a causa-raiz declarada atacava só um caminho — o das entradas inválidas — enquanto o relato mostrava o mesmo sintoma acontecendo em casos perfeitamente válidos. Causa-raiz que explica parte dos sintomas não é causa-raiz.',
   },
   {
     n: 40,
-    voce: 'dos que estão com X no estado quais consegue conferir? — 1, ve o productionTime da API.',
-    eu: 'Confirmei estaticamente 5/5 sintomas com path:linha. Tracei a cadeia: success do upload de fotos → utils/checkout → endpoint de shipping-rates → controller no backend → service de carriers → campo de production time no modelo Variant. O seed de shipping infos no backend está correto (Produto C 3, Produto D 4, Produto B 4). Backend devolve undefined e o frontend cai em DEFAULT_PRODUCTION_DAYS=7 ou DEFAULT_REVELATION_DAYS=5. Bug é de seed-não-rodou ou lookup quebrado no service de carriers — fora do alcance do frontend.',
+    voce: 'dos sintomas listados, quais você consegue conferir sem subir o ambiente?',
+    eu: 'Confirmei estaticamente 5 de 5 sintomas, cada um com path:linha. Tracei a cadeia inteira do evento de origem até o campo que alimenta a tela e parei onde a evidência parava: os dados de origem estavam corretos, a camada intermediária devolvia vazio, e a tela caía num valor padrão. Ou seja: o defeito não estava no frontend, e nenhum corte no frontend ia consertá-lo. Nomear o limite da própria camada é parte do corte.',
   },
   {
     n: 41,
-    voce: 'gere na branch do fix — PR main não draft gera URL de preview, merge manda para homolog, release nova manda para produção.',
-    eu: 'Segunda Forma · Prazos honestos. Quatro cortes em 11 linhas: copy honesta nas 4 mensagens de sucesso (PT + EN) trocando "você receberá seu álbum" por "seu pedido será despachado" + sufixo "O prazo de entrega depende da transportadora e CEP escolhidos"; remoção do `+ deliveryTime` no {n} dos cases produto E e produto A; label condicional "Conferência do modelo" pra Produto A via ternário no OrderProgressTracker; key stepModelApproval em PT/EN. Lint e typecheck verdes. Commit + push direto na branch da PR. Descrição da PR atualizada listando os 4 cortes originais + os 2 novos + dívida conhecida (3 prazos errados ficam pra PR no backend).',
+    voce: 'gere o corte na branch do fix e atualize a descrição da PR.',
+    eu: 'Segunda Forma · Prazos honestos. Quatro cortes em onze linhas, todos na mesma direção: parar de prometer o que o sistema não controla. As mensagens de sucesso deixaram de afirmar uma data de entrega e passaram a falar de despacho, com a ressalva de que o prazo final depende da transportadora; o número inflado saiu do cálculo exibido; e o passo ambíguo do acompanhamento ganhou label explícito, nos dois idiomas. Lint e typecheck verdes. Descrição da PR atualizada com os cortes e com a dívida nomeada — o que ficou fora era da outra camada, e ficou escrito que ficou.',
   },
   {
     n: 42,
     voce: 'O que ela quis dizer? Sem falar com ela, o que faria pra melhorar?',
-    eu: 'Versões em alta resolução dos prints permitiram leitura aguda. Decompus a queixa "em que momento é feita conferência" em três camadas: label vago (já cortado), modelo invisível no card, momento actionable ausente. Comparei as 3 páginas do Produto A (os três tamanhos) — achei assimetria suspeita no tamanho médio (Produto D 130 ≠ Produto A tradicional 160) que quebra o padrão dos outros modelos, possível typo de cadastro. Esbocei 7 estocadas ordenadas por custo/impacto pra evolução do detalhe do pedido — quatro pequenas (renomear card, card de próxima ação, decompor previsão, tooltips), duas médias (tela de conferência ativa, nudges automáticos), uma estrutural (galeria de modelos).',
+    eu: 'Decompus a queixa "em que momento é feita a conferência" em três camadas: label vago (já cortado), informação invisível no card, e ausência de um momento acionável. A pergunta do usuário raramente é a pergunta real — ela é o sintoma de onde a interface se calou. Esbocei sete estocadas ordenadas por custo e impacto: quatro pequenas (renomear o card, card de próxima ação, decompor a previsão, tooltips), duas médias (tela de conferência ativa, avisos automáticos), uma estrutural.',
   },
   {
     n: 43,
@@ -296,7 +296,7 @@ const episodios: Episodio[] = [
     num: 'VIII',
     romaji: 'Kantei',
     titulo: 'A inspeção',
-    descricao: 'Primeira vez que a lâmina sai da própria bigorna pra inspecionar trabalho alheio. Auditoria de PR aberta por outro dev, descoberta de impurezas escondidas, forja de cortes na mesma PR, e leitura aguda dos sintomas reportados pelo atendimento. Quanto mais pura a lâmina for, mais dura ela será — vale pra forja própria e pra inspeção da forja alheia.',
+    descricao: 'Primeira vez que a lâmina sai da própria bigorna pra inspecionar trabalho já feito. Auditoria de descrição de PR, impurezas escondidas sob rótulo vago, causa-raiz que explicava só parte dos sintomas, e cortes forjados na mesma PR. Quanto mais pura a lâmina for, mais dura ela será — vale pra forja própria e pra inspeção da forja alheia.',
     inicio: 37,
     fim: 43,
   },
