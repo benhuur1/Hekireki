@@ -1,0 +1,5 @@
+# Hekireki — manifesto da Primeira Forma
+User-agent: *
+Allow: /
+
+Sitemap: https://hekireki.infotechjs.com.br/sitemap.xml
