@@ -115,15 +115,18 @@ sitemap; 1 → 9 âncoras rastreáveis. Hidratação sem um único mismatch no C
 | --- | --- | --- | --- |
 | ~~1~~ | ~~Deploy na Hostinger~~ | — | **feito e verificado** |
 | ~~2~~ | ~~Ligar o GA4~~ | — | **no ar, verificado no servidor** |
-| 1 | Enviar sitemap no Search Console | você | indexação |
+| 1 | Criar a propriedade de Domínio e enviar o sitemap | você | indexação |
 | 2 | Recriar o repositório no GitHub | você (irreversível) | limpar o histórico |
 | 3 | URL do LinkedIn no colofão | você | aquisição |
 
 Notas:
 
-- **(1)** O DNS de `infotechjs.com.br` já tem um `google-site-verification`. Se a
-  propriedade no Search Console for do tipo **Domínio**, o subdomínio já está coberto e
-  basta enviar `https://hekireki.infotechjs.com.br/sitemap.xml`.
+- **(1)** O GA4 já está vinculado ao Search Console, mas a propriedade de **Domínio**
+  ainda não foi criada. Crie-a com `infotechjs.com.br` (não "Prefixo do URL": a de Domínio
+  cobre os três sites de uma vez) e envie
+  `https://hekireki.infotechjs.com.br/sitemap.xml`. O DNS já tem um
+  `google-site-verification`; se o Google pedir esse mesmo valor, a verificação passa na
+  hora. **Se pedir um valor novo, leia a armadilha do TXT abaixo antes de mexer no DNS.**
 - **(2)** Você aprovou recriar o histórico. Não deletei o repositório porque não tenho
   ferramenta para isso e é irreversível — comandos em §4.
 - **(4)** Não publiquei seu e-mail sem perguntar. Se quiser, é uma linha em `App.tsx`.
@@ -266,6 +269,20 @@ rotas distintas, conferindo na aba **HTML** (não "renderizado") que a prosa est
 - **Nenhum `useEffect` pode produzir conteúdo visível.** Ele não roda no `renderToString`,
   então vira buraco no HTML estático. Foi exatamente isso com o `competitivo.json`, que era
   `fetch` e virou import estático. Hoje só `App` e `PrimeiraForma` têm estado.
+- **NUNCA sobrescreva o TXT de `@` sem incluir o SPF.** O registro TXT do apex de
+  `infotechjs.com.br` guarda **dois valores no mesmo conjunto**:
+
+  ```
+  "google-site-verification=11sPQt3N30O2FshZ4dEUQ_Mna9BJR_3YQ2oE3tvLjUw"
+  "v=spf1 include:_spf.mail.hostinger.com ~all"
+  ```
+
+  Tanto o hPanel quanto a API (`DNS_updateDNSRecordsV1` com `overwrite: true`) apagam e
+  recriam **todos** os registros que casam name+type. Gravar só um token novo apagaria o
+  SPF junto — e o e-mail do domínio passa a falhar autenticação e cair em spam, **sem
+  nenhum aviso**. Ao adicionar qualquer verificação, envie o conjunto completo: SPF, token
+  antigo e token novo. Pela API, valide antes com `DNS_validateDNSRecordsV1`.
+  Não confunda com `_dmarc`, que é um TXT separado e não deve ser tocado.
 - **O site está atrás do CDN da Hostinger** (`cdn.hstgr.net`). Depois de subir arquivos, o
   CDN pode continuar servindo a versão anterior — inclusive para o Googlebot. Limpe o cache
   (hPanel → Cache → Limpar, ou pelo conector) sempre que fizer deploy.
