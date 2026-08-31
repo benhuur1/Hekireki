@@ -30,3 +30,59 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+/* Fallback do ErrorBoundary — vive no index.css porque precisa funcionar
+   mesmo quando o chunk que carrega PrimeiraForma.css é o que falhou. */
+.hk-erro {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 48px 24px;
+  text-align: center;
+  background: #0a0807;
+  color: #ece4d2;
+  font-family: 'Shippori Mincho', 'Hiragino Mincho ProN', serif;
+}
+.hk-erro-kanji {
+  margin: 0;
+  font-size: 96px;
+  line-height: 1;
+  color: #ffd84d;
+  opacity: 0.9;
+}
+.hk-erro-titulo {
+  margin: 0;
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.hk-erro-texto {
+  margin: 0;
+  max-width: 46ch;
+  font-size: 17px;
+  line-height: 1.7;
+  color: #a89e8a;
+}
+.hk-erro-botao {
+  margin-top: 8px;
+  padding: 14px 28px;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #0a0807;
+  background: #ffd84d;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.hk-erro-botao:hover {
+  opacity: 0.85;
+}
+.hk-erro-botao:focus-visible {
+  outline: 2px solid #ece4d2;
+  outline-offset: 3px;
+}

@@ -96,6 +96,7 @@ function PrimeiraForma() {
   const [marteladas, setMarteladas] = useState(readMarteladas)
   const [sussurro, setSussurro] = useState<string | null>(null)
   const sussurroTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const anvilRef = useRef<HTMLButtonElement | null>(null)
 
   function bata() {
     const next = marteladas + 1
@@ -127,6 +128,14 @@ function PrimeiraForma() {
       if (e.code !== 'Space') return
       const target = e.target as HTMLElement | null
       if (target?.matches('button, input, textarea, select, [contenteditable="true"]')) return
+      // Auto-repeat de Space segurado remontava o SVG do scar a cada
+      // repetição e inflava o contador.
+      if (e.repeat) return
+      /* O atalho só vale enquanto a bigorna está na tela. Fora daí, Space
+         é o page-down do usuário — sequestrá-lo durante a leitura das
+         seções quebrava a navegação por teclado da página inteira. */
+      const caixa = anvilRef.current?.getBoundingClientRect()
+      if (!caixa || caixa.bottom < 0 || caixa.top > window.innerHeight) return
       e.preventDefault()
       bataRef.current()
     }
@@ -166,6 +175,7 @@ function PrimeiraForma() {
           </p>
 
           <button
+            ref={anvilRef}
             type="button"
             className="hk-anvil"
             onClick={bata}

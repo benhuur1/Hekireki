@@ -733,7 +733,8 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  max-width: 620px;
+  /* 620px a 15px dava ~83 caracteres; 580 alinha com os ~77 da prosa. */
+  max-width: 580px;
 }
 .hk-imp-bullets li {
   font-family: var(--serif);
@@ -894,6 +895,10 @@
 
 /* ================ entrance choreography ================ */
 
+/* O estado inicial vive no keyframe (fill-mode: both), não na regra base.
+   Com opacity:0 na base, qualquer falha da animação — motor de animação
+   desligado, erro de parse, print — deixava o texto invisível para sempre.
+   Assim o padrão é visível e a animação só empresta o fade. */
 .hk-eyebrow,
 .hk-title-kanji,
 .hk-title-rom,
@@ -902,25 +907,26 @@
 .hk-quote,
 .hk-anvil,
 .hk-vertical {
-  opacity: 0;
-  transform: translateY(14px);
-  animation: settle 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: settle 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
-.hk-eyebrow      { animation-delay: 0.50s; }
-.hk-title-kanji  { animation-delay: 0.95s; }
-.hk-title-rom    { animation-delay: 1.15s; }
-.hk-title-trans  { animation-delay: 1.30s; }
-.hk-lead         { animation-delay: 1.55s; }
-.hk-quote        { animation-delay: 1.95s; }
-.hk-anvil        { animation-delay: 2.25s; }
-.hk-vertical     { animation-delay: 2.45s; }
+/* Atrasos encurtados: o hero fechava em 3,55s e o primeiro parágrafo
+   ficava 1,55s invisível. Agora fecha em ~1,7s. */
+.hk-eyebrow      { animation-delay: 0.20s; }
+.hk-title-kanji  { animation-delay: 0.36s; }
+.hk-title-rom    { animation-delay: 0.46s; }
+.hk-title-trans  { animation-delay: 0.54s; }
+.hk-lead         { animation-delay: 0.64s; }
+.hk-quote        { animation-delay: 0.74s; }
+.hk-anvil        { animation-delay: 0.82s; }
+.hk-vertical     { animation-delay: 0.88s; }
 
 .hk-kanji-art {
   opacity: 0.55;
 }
 
 @keyframes settle {
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* scroll-driven reveals (onde suportado, sem JS) */
@@ -958,10 +964,23 @@
   .hk-kanji-art,
   .hk-corte,
   .hk-scar-glow,
-  .hk-scar-line {
+  .hk-scar-line,
+  /* Os alvos do scroll-reveal faltavam aqui: com animation-timeline
+     o progresso é governado pelo scroll, não pela duração, então
+     zerar animation-duration acima não os tornava visíveis. */
+  .hk-tempos li,
+  .hk-multi-card,
+  .hk-impurezas li {
     opacity: 1 !important;
     transform: none !important;
     stroke-dashoffset: 0 !important;
+  }
+  /* Desliga a timeline de scroll de vez, senão ela reassume o controle. */
+  .hk-tempos li,
+  .hk-multi-card,
+  .hk-impurezas li {
+    animation-timeline: auto !important;
+    animation-name: none !important;
   }
 }
 

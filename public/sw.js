@@ -1,10 +1,13 @@
 /* Hekireki — Service Worker mínimo
  * Estratégia:
- *   - /Hekireki/assets/* (hashados pelo Vite): cache-first, imortal.
+ *   - /assets/* (hashados pelo Vite): cache-first, imortal.
  *   - Navegação / index.html: network-first, cache como fallback offline.
- * Para forçar invalidação de todo o cache antigo num deploy, bumpe CACHE.
+ *
+ * O sufixo de CACHE é reescrito a cada build por scripts/postbuild.mjs, de
+ * modo que o activate abaixo apaga sozinho o cache do deploy anterior.
+ * Não edite o literal à mão — o script depende do formato.
  */
-const CACHE = 'hekireki-v1'
+const CACHE = 'hekireki-dev'
 const SCOPE = '/'
 
 self.addEventListener('install', () => {
@@ -22,6 +25,9 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return
   const url = new URL(event.request.url)
+  // pathname.startsWith('/') casa com QUALQUER url, inclusive cross-origin
+  // (Google Fonts, analytics) — só a origem separa de verdade.
+  if (url.origin !== self.location.origin) return
   if (!url.pathname.startsWith(SCOPE)) return
 
   if (url.pathname.startsWith(SCOPE + 'assets/')) {

@@ -274,6 +274,9 @@
   font-family: var(--serif);
   font-style: italic;
   font-size: 16px;
+  /* Sem limite a linha chegava a ~149 caracteres — mais que o dobro do
+     confortável. O resto da prosa do site fica entre 72 e 77. */
+  max-width: 620px;
   color: var(--paper-dim);
   padding: 24px 0;
   border-top: 1px solid var(--rule);
