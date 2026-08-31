@@ -329,3 +329,53 @@
   color: rgba(255, 216, 77, 0.55);
   text-transform: uppercase;
 }
+
+/* ================ colofão global ================ */
+
+.hk-colofao {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 32px;
+  padding: 32px 64px;
+  background: #0a0807;
+  border-top: 1px solid rgba(236, 228, 210, 0.10);
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.hk-colofao-marca {
+  margin: 0;
+  color: rgba(236, 228, 210, 0.45);
+}
+.hk-colofao-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+}
+.hk-colofao-links a {
+  color: rgba(255, 216, 77, 0.72);
+  text-decoration: none;
+  padding-bottom: 3px;
+  border-bottom: 1px solid transparent;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+.hk-colofao-links a:hover {
+  color: #ffd84d;
+  border-bottom-color: rgba(255, 216, 77, 0.5);
+}
+.hk-colofao-links a:focus-visible {
+  outline: 2px solid #ffd84d;
+  outline-offset: 3px;
+}
+@media (max-width: 640px) {
+  .hk-colofao {
+    padding: 24px;
+    gap: 12px 20px;
+  }
+  .hk-colofao-links {
+    gap: 20px;
+  }
+}

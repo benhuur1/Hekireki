@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
 import PrimeiraForma from './PrimeiraForma'
 import { MENU, ROTAS, SLUGS, rotaPorSlug, type Slug } from './routes'
+import { registrarPageview } from './analytics'
 import './App.css'
 
 const OCorte = lazy(() => import('./OCorte'))
@@ -46,6 +47,7 @@ function App() {
     document
       .querySelector('meta[name="description"]')
       ?.setAttribute('content', rota.description)
+    registrarPageview(rota.path, rota.title)
   }, [view])
 
   /* centra o botão ativo no topbar desktop — defesa pra deep-link onde a ativa
@@ -206,6 +208,20 @@ function App() {
           <KakuRaiNoKami />
         </Suspense>
       )}
+
+      {/* Colofão. Os rodapés das páginas são decorativos e não levam a lugar
+          nenhum — até aqui o site inteiro tinha um único link, para a
+          Crônica. Quem chegava não tinha para onde ir. Global de propósito:
+          vale também para o Trovão do Núcleo, que não tem rodapé próprio. */}
+      <footer className="hk-colofao">
+        <p className="hk-colofao-marca">霹靂一閃 · Hekireki</p>
+        <nav className="hk-colofao-links" aria-label="Links do autor">
+          <a href="https://github.com/benhuur1" target="_blank" rel="noopener noreferrer">
+            GitHub
+          </a>
+          <a href="#cronica">A Crônica</a>
+        </nav>
+      </footer>
     </>
   )
 }

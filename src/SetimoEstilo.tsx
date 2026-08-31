@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import './PrimeiraForma.css'
 import './SetimoEstilo.css'
+import { analyticsAtivo } from './analytics'
 import { Scar, SectionLabel, SignatureMark } from './marks'
 
 /* =================== TYPES & DATA =================== */
@@ -237,7 +238,20 @@ const direitos: { titulo: string; corpo: React.ReactNode }[] = [
   },
   {
     titulo: 'Dados do visitante',
-    corpo: (
+    /* Lê a mesma variável que liga o analytics, para o texto não poder
+       divergir do que o site realmente faz. Página sobre honestidade
+       técnica não pode afirmar "sem coleta" enquanto coleta. */
+    corpo: analyticsAtivo ? (
+      <>
+        Audiência agregada via Google Analytics 4 — quantas pessoas chegam, por
+        quais formas passam, de onde vieram. Usa os cookies <code>_ga</code>. Não há
+        formulário, login nem identificação pessoal, e nada do que você lê aqui é
+        associado a você. O contador de marteladas da Primeira Forma continua só no{' '}
+        <code>localStorage</code> do seu browser — fica com você, ninguém mais vê.
+        Um bloqueador como <em>uBlock Origin</em> derruba o analytics inteiro, e a
+        página funciona igual.
+      </>
+    ) : (
       <>
         Sem coleta. Nada de formulário, login, analytics, cookie próprio. O contador
         de marteladas da Primeira Forma vive no <code>localStorage</code> do seu próprio
