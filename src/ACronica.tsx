@@ -200,8 +200,8 @@ const marteladas: Martelada[] = [
   },
   {
     n: 37,
-    voce: 'Entre no modo primeira forma e confira os textos de descrição da PR aberta por outro dev no repo cliente.',
-    eu: 'Auditei descrição da PR de outro dev no repo cliente. Quatro impurezas: título carregando prefixo do branch (duplica o que GitHub mostra), typo "raíz", "3 marteladas" desonesta — PR toca 8 arquivos, com 3 mini-features escondidas em uma linha solta como "polimentos de borda", e claim falso no test plan ("toast is not defined em main"). Forja sugerida: título conventional, scope honesto, test plan auditável.',
+    voce: 'Entre no modo primeira forma e monte uma régua para revisar descrição de pull request.',
+    eu: 'Destilei a régua em quatro perguntas: o título repete o que a plataforma já mostra? o escopo declarado bate com o número de arquivos tocados? há feature escondida sob um rótulo vago? o test plan é auditável por outra pessoa? Forja: título conventional, escopo honesto, plano de teste verificável.',
   },
   {
     n: 38,

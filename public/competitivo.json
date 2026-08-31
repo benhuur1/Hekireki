@@ -2,34 +2,34 @@
   "totais": {
     "redeA": {
       "rede": "Rede A (ecossistema)",
-      "lojas": 5,
-      "paginas": 369,
+      "lojas": 4,
+      "paginas": 320,
       "composicao": [
         {
-          "label": "staging local",
-          "paginas": 242
+          "label": "catálogo principal",
+          "paginas": 210
         },
         {
           "fonte": "rede_a_producao",
-          "label": "produção (loja)",
-          "paginas": 43
+          "label": "unidades",
+          "paginas": 40
         },
         {
           "fonte": "rede_a_seminovos",
-          "label": "produção (seminovos)",
-          "paginas": 84
+          "label": "catálogo secundário",
+          "paginas": 70
         }
       ]
     },
     "redeB": {
       "rede": "Rede B",
       "lojas": 3,
-      "paginas": 400
+      "paginas": 355
     },
     "fabricante": {
-      "rede": "Fabricante",
-      "lojas": "fabricante",
-      "paginas": 5
+      "rede": "Referência",
+      "lojas": "referência",
+      "paginas": 6
     }
   },
   "matriz": [
@@ -53,28 +53,28 @@
       "feature": "simulador_consorcio",
       "label": "Simulador Consorcio",
       "redeA": 0,
-      "redeB": 16,
+      "redeB": 17,
       "fabricante": 0,
       "rede_a_eco": {}
     },
     {
       "feature": "estoque_online",
       "label": "Estoque Online",
-      "redeA": 83,
+      "redeA": 72,
       "redeB": 24,
       "fabricante": 0,
       "rede_a_eco": {
-        "rede_a_seminovos": 77
+        "rede_a_seminovos": 61
       }
     },
     {
       "feature": "estoque_seminovos",
       "label": "Estoque Seminovos",
-      "redeA": 84,
-      "redeB": 320,
+      "redeA": 67,
+      "redeB": 377,
       "fabricante": 0,
       "rede_a_eco": {
-        "rede_a_seminovos": 84
+        "rede_a_seminovos": 69
       }
     },
     {
@@ -88,21 +88,21 @@
     {
       "feature": "blog",
       "label": "Blog",
-      "redeA": 60,
+      "redeA": 56,
       "redeB": 0,
       "fabricante": 0,
       "rede_a_eco": {
-        "rede_a_producao": 30
+        "rede_a_producao": 32
       }
     },
     {
       "feature": "agendamento_online",
       "label": "Agendamento Online",
-      "redeA": 6,
+      "redeA": 5,
       "redeB": 0,
       "fabricante": 0,
       "rede_a_eco": {
-        "rede_a_producao": 1
+        "rede_a_producao": 2
       }
     },
     {
@@ -116,7 +116,7 @@
     {
       "feature": "pcd",
       "label": "Pcd",
-      "redeA": 6,
+      "redeA": 5,
       "redeB": 0,
       "fabricante": 0,
       "rede_a_eco": {
@@ -126,7 +126,7 @@
     {
       "feature": "ofertas",
       "label": "Ofertas",
-      "redeA": 19,
+      "redeA": 21,
       "redeB": 0,
       "fabricante": 0,
       "rede_a_eco": {
@@ -136,8 +136,8 @@
     {
       "feature": "pecas",
       "label": "Pecas",
-      "redeA": 6,
-      "redeB": 40,
+      "redeA": 5,
+      "redeB": 37,
       "fabricante": 0,
       "rede_a_eco": {
         "rede_a_producao": 1
@@ -157,5 +157,6 @@
     "estoque_online",
     "estoque_seminovos",
     "pecas"
-  ]
+  ],
+  "_nota": "Dados ILUSTRATIVOS. Gerados para demonstrar o formato da análise; não descrevem operação real nem identificam qualquer organização."
 }

@@ -85,36 +85,36 @@ python 7_diff.py                         # diff automático`,
   {
     numero: 'IV',
     titulo: 'Castelo do Infinito (mu-plugins)',
-    arquivo: 'wp-content/mu-plugins/castelo-infinito*.php',
+    arquivo: 'mu-plugins/castelo-infinito*.php',
     resumo:
-      'O ataque deixou de ser análise — virou correção. Seis mu-plugins WordPress que arrumam o site na mesma marretada: meta description, alt-text, H1 fallback, contatos canônicos, schema.org AutoDealer e bloco dinâmico de loja em página de veículo.',
+      'O ataque deixou de ser análise — virou correção. Seis mu-plugins WordPress que arrumam o site na mesma marretada: meta description, alt-text, H1 fallback, contatos canônicos, dados estruturados e bloco dinâmico de unidade em página de item.',
     bullets: [
-      'Parte 1 — meta description + alt-text via output buffer (Elementor não usa wp_get_attachment_image)',
-      'Parte 2 — REPLACEMENTS_SAFE normaliza WhatsApps canônicos por loja',
-      'Parte 3 — H1 fallback + Schema.org AutoDealer JSON-LD por loja',
-      'Parte 4 — bloco "endereço · telefone · horário" injetado em /veiculo/* (hooks Elementor)',
+      'Parte 1 — meta description + alt-text via output buffer (page builders não usam wp_get_attachment_image)',
+      'Parte 2 — tabela de substituição segura normaliza contatos canônicos por unidade',
+      'Parte 3 — H1 fallback + JSON-LD schema.org por unidade',
+      'Parte 4 — bloco "endereço · telefone · horário" injetado nas páginas de item',
       'Parte 5 — patch_img_alt_in_html() varre HTML e injeta alt derivado de title/figcaption/filename',
-      'Parte 6 — admin dashboard em Tools → Castelo do Infinito (per-site + visão rede agregada)',
+      'Parte 6 — admin dashboard em Tools → Castelo do Infinito (por site + visão agregada)',
     ],
-    codigo: `lando wp rede audit-summary --network
-lando wp rede contacts diff
-# Tools → Castelo do Infinito (visão rede)`,
+    codigo: `wp rede audit-summary --network
+wp rede contacts diff
+# Tools → Castelo do Infinito (visão agregada)`,
   },
   {
     numero: 'V',
     titulo: 'Inspetor de Conformidade',
     arquivo: 'app.py · modo Inspetor',
     resumo:
-      'A política da rede mudou em relação a preço. O Inspetor virou guardião da conformidade — extrai catálogo da rede vs catálogo do fabricante e expõe vazamentos, cobertura por loja, cores divergentes e spec hero inconsistente.',
+      'Quando a política editorial de um catálogo muda, alguém precisa verificar se as páginas acompanharam. O Inspetor compara o catálogo publicado com o catálogo de referência e aponta onde os dois divergem — campo a campo, página a página.',
     bullets: [
-      'Preço vazado contra política — lista cada URL que ainda mostra R$',
-      'Cobertura de modelos por loja (Modelo X ausente em 1 loja, Modelo Y legado em 3)',
-      'Cores publicadas vs oficiais — flagra grafias divergentes',
-      'Spec hero consistência — motor / potência batem entre lojas?',
-      'Tabela modelos_rede_a espelha modelos_fabricante (mesmas colunas, comparável)',
+      'Divergência de política — lista cada URL cujo conteúdo contraria a regra vigente',
+      'Cobertura de itens por unidade — o que falta, o que sobrou de versões antigas',
+      'Valores publicados vs oficiais — flagra grafias e variações divergentes',
+      'Consistência de especificação — os mesmos atributos batem entre as unidades?',
+      'A tabela extraída espelha a de referência: mesmas colunas, comparável direto',
     ],
-    codigo: `python 4b_extract_rede_a_models.py    # 28 páginas, ~10 leak detectados
-# app.py → Inspetor → "Preço vazado contra política"`,
+    codigo: `python extract_models.py          # extrai catálogo publicado
+# app.py → Inspetor → divergências contra a política vigente`,
   },
   {
     numero: 'VI',
@@ -155,7 +155,7 @@ const perguntas = [
   { titulo: 'Posicionamento competitivo', desc: 'Rede A vs Fabricante vs concorrência, com três movimentos.' },
   { titulo: 'Pauta para a direção', desc: 'Reunião de 30min — três dados + duas perguntas + uma recomendação.' },
   { titulo: 'Riscos e bombas-relógio', desc: 'Severidade, mitigação imediata e mitigação definitiva.' },
-  { titulo: 'Catálogo Rede A vs Fabricante', desc: 'Cobertura, preço vazado contra política, cores e spec divergentes.' },
+  { titulo: 'Catálogo publicado vs referência', desc: 'Cobertura, divergência de política, valores e specs inconsistentes.' },
 ]
 
 const arvore = `rag-rede/
@@ -187,7 +187,7 @@ const arvore = `rag-rede/
 
 const ritual = [
   { titulo: 'Sidebar · Logs do app', detalhe: 'Abre o painel. Cada movimento dali pra frente aparece colorido em tempo real — INFO azul, ERROR vermelho intenso.' },
-  { titulo: 'Modo Inspetor — preço vazado', detalhe: 'Flagra ~10 URLs que ainda mostram R$ contra a política da rede.' },
+  { titulo: 'Modo Inspetor — divergência de política', detalhe: 'Flagra as URLs cujo conteúdo contraria a regra editorial vigente.' },
   { titulo: 'Modo Inspetor — cobertura', detalhe: 'Confirma que Modelo X falta na matriz e Modelo Y é legado em 3 lojas.' },
   { titulo: 'Modo Estrategista — catálogo', detalhe: 'Sonnet cruza modelos_rede_a × modelos_fabricante e devolve plano executivo.' },
   { titulo: 'Modo Visual UX', detalhe: 'Roda Playwright em 375 / 1024 / 1920 — cada linha do crawler aparece no painel de logs ao vivo.' },
@@ -252,9 +252,9 @@ const direitos: { titulo: string; corpo: React.ReactNode }[] = [
     corpo: (
       <>
         <code>rag-rede</code> é projeto pessoal de demonstração de RAG aplicado a uma rede
-        multisite WordPress de varejo automotivo. Os dados raspados vêm de um ambiente
-        local de staging do cliente, não do site público. Catálogo do fabricante usado
-        apenas para comparação interna.
+        multisite WordPress. Os números exibidos aqui são <strong>ilustrativos</strong>,
+        gerados para demonstrar o formato da análise — não descrevem nenhuma operação real
+        nem identificam qualquer organização.
       </>
     ),
   },
@@ -478,11 +478,13 @@ function CompetitivoSection() {
   return (
     <section className="hk-section">
       <SectionLabel num="06" tag="Resultado competitivo" />
-      <h2 className="hk-h2">Rede A × Rede B × Fabricante.</h2>
+      <h2 className="hk-h2">Rede A × Rede B × Referência.</h2>
       <p className="hk-sub">
         Cruzamento direto entre <em>Rede A</em>, <em>Rede B</em>{' '}
-        (concorrente multisite) e <em>Fabricante</em> (catálogo oficial). Dados gerados
-        pelo <code>8_compare_concorrente.py</code>.
+        (concorrente multisite) e <em>Referência</em> (catálogo oficial), gerado pelo{' '}
+        <code>8_compare_concorrente.py</code>. Os números abaixo são{' '}
+        <strong>ilustrativos</strong>: demonstram o formato da análise e não descrevem
+        nenhuma operação real.
       </p>
 
       {!data && !erro && (
