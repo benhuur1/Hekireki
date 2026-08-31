@@ -35,11 +35,9 @@ self.addEventListener('fetch', (event) => {
     return
   }
 
-  if (
-    event.request.mode === 'navigate' ||
-    url.pathname === SCOPE ||
-    url.pathname === SCOPE + 'index.html'
-  ) {
+  // Com uma página por rota, os casos especiais de '/' e '/index.html'
+  // viraram ruído: 'navigate' já cobre as dez URLs.
+  if (event.request.mode === 'navigate') {
     event.respondWith(networkFirst(event.request))
   }
 })

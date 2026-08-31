@@ -1,8 +1,19 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 import './PrimeiraForma.css'
 import { Scar, SectionLabel, SignatureMark } from './marks'
 
+/**
+ * O contador de marteladas vive no localStorage, não no React — é estado
+ * externo, e ler estado externo durante o render é exatamente o que
+ * useSyncExternalStore existe para resolver.
+ *
+ * Importa aqui por causa do prerender: o HTML estático não pode conhecer o
+ * contador de ninguém, então o snapshot do servidor é sempre 0 e o valor
+ * salvo entra na hidratação, sem descompasso.
+ */
 const STORAGE_KEY = 'pf-marteladas'
+const ouvintes = new Set<() => void>()
+
 function readMarteladas(): number {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
@@ -12,6 +23,27 @@ function readMarteladas(): number {
     return 0
   }
 }
+
+function gravaMarteladas(n: number) {
+  try {
+    localStorage.setItem(STORAGE_KEY, String(n))
+  } catch {
+    /* localStorage indisponível — segue sem persistir */
+  }
+  ouvintes.forEach((cb) => cb())
+}
+
+function assinaMarteladas(cb: () => void) {
+  ouvintes.add(cb)
+  // 'storage' cobre a mesma página aberta em outra aba.
+  window.addEventListener('storage', cb)
+  return () => {
+    ouvintes.delete(cb)
+    window.removeEventListener('storage', cb)
+  }
+}
+
+const snapshotServidor = () => 0
 
 const SUSSURROS: Record<number, string> = {
   7: 'sete cortes — Hachiren se aproxima',
@@ -93,19 +125,18 @@ const impurezas: Impureza[] = [
 ]
 
 function PrimeiraForma() {
-  const [marteladas, setMarteladas] = useState(readMarteladas)
+  const marteladas = useSyncExternalStore(
+    assinaMarteladas,
+    readMarteladas,
+    snapshotServidor,
+  )
   const [sussurro, setSussurro] = useState<string | null>(null)
   const sussurroTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const anvilRef = useRef<HTMLButtonElement | null>(null)
 
   function bata() {
-    const next = marteladas + 1
-    setMarteladas(next)
-    try {
-      localStorage.setItem(STORAGE_KEY, String(next))
-    } catch {
-      /* localStorage indisponível — segue sem persistir */
-    }
+    const next = readMarteladas() + 1
+    gravaMarteladas(next)
     /* sussurro nos marcos — disparado pela ação do usuário, nunca na carga */
     const msg = SUSSURROS[next]
     if (msg) {

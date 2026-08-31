@@ -1,40 +1,64 @@
-import { lazy, Suspense, useEffect, useState } from 'react'
-import PrimeiraForma from './PrimeiraForma'
-import { MENU, ROTAS, SLUGS, rotaPorSlug, type Slug } from './routes'
+import { useEffect, useState } from 'react'
+import { MENU, ROTAS, rotaPorPath, rotaPorSlug, type Slug } from './routes'
+import { carregarPagina, paginaCarregada } from './pages'
 import { registrarPageview } from './analytics'
 import './App.css'
 
-const OCorte = lazy(() => import('./OCorte'))
-const OEspelho = lazy(() => import('./OEspelho'))
-const OLexico = lazy(() => import('./OLexico'))
-const OPortao = lazy(() => import('./OPortao'))
-const TanRen = lazy(() => import('./TanRen'))
-const ACronica = lazy(() => import('./ACronica'))
-const SetimoEstilo = lazy(() => import('./SetimoEstilo'))
-const KakuRaiNoKami = lazy(() => import('./KakuRaiNoKami'))
-const AsQuatroLentes = lazy(() => import('./AsQuatroLentes'))
-
 type View = Slug
 
-/* A view ativa vive no hash da URL (#/setimo) — toda forma é deep-linkable,
-   compartilhável, e back/forward do browser funcionam. */
-function viewFromHash(): View {
-  const slug = window.location.hash.replace(/^#\/?/, '')
-  return (SLUGS as readonly string[]).includes(slug) ? (slug as View) : 'primeira'
+type Props = {
+  /** Rota inicial. O prerender passa o path; no browser vem da URL. */
+  initialPath?: string
 }
 
-function App() {
-  const [view, setView] = useState<View>(viewFromHash)
-  const [drawerOpen, setDrawerOpen] = useState(false)
+/**
+ * Resolve a rota de entrada.
+ *
+ * Também normaliza links antigos com hash (#/corte) para o path canônico,
+ * sem recarregar — tudo que já foi compartilhado continua funcionando.
+ * Fica no inicializador do estado, e não num efeito, porque acontece uma
+ * única vez e não deve provocar um segundo render.
+ */
+function rotaInicial(initialPath?: string) {
+  if (initialPath) return rotaPorPath(initialPath)
+  if (typeof window === 'undefined') return rotaPorPath('/')
+  const m = window.location.hash.match(/^#\/?([\w-]+)$/)
+  const porHash = m ? ROTAS.find((r) => r.slug === m[1]) : undefined
+  if (porHash) {
+    window.history.replaceState(null, '', porHash.path)
+    return porHash
+  }
+  return rotaPorPath(window.location.pathname)
+}
 
+function App({ initialPath }: Props) {
+  const [view, setView] = useState<View>(() => rotaInicial(initialPath).slug)
+  const [drawerOpen, setDrawerOpen] = useState(false)
+  // Força re-render quando um chunk de rota termina de carregar.
+  const [, setCarregou] = useState(0)
+
+  /* back/forward do browser. A rota agora é um path de verdade, então o
+     evento é popstate — hashchange não é mais disparado. */
   useEffect(() => {
     function sync() {
-      setView(viewFromHash())
+      setView(rotaPorPath(window.location.pathname).slug)
       window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
     }
-    window.addEventListener('hashchange', sync)
-    return () => window.removeEventListener('hashchange', sync)
+    window.addEventListener('popstate', sync)
+    return () => window.removeEventListener('popstate', sync)
   }, [])
+
+  /* Garante que o componente da rota atual está carregado. */
+  useEffect(() => {
+    if (paginaCarregada(view)) return
+    let vivo = true
+    carregarPagina(view).then(() => {
+      if (vivo) setCarregou((n) => n + 1)
+    })
+    return () => {
+      vivo = false
+    }
+  }, [view])
 
   /* Título e description por rota. Sem isso as 10 formas dividiam o mesmo
      <title>, o histórico do navegador ficava com entradas idênticas e o
@@ -77,13 +101,27 @@ function App() {
   }, [drawerOpen])
 
   function navigateTo(v: View) {
-    // eslint-disable-next-line react-hooks/immutability
-    window.location.hash = `/${v}`
+    window.history.pushState(null, '', rotaPorSlug(v).path)
+    setView(v)
     setDrawerOpen(false)
+    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
   }
 
-  const currentForm = ROTAS.find((f) => f.slug === view)
-  const currentLabel = currentForm?.label ?? 'A Crônica'
+  /* Deixa o browser fazer o trabalho dele em ctrl/cmd/shift-clique, botão do
+     meio e "abrir em nova aba" — só intercepta o clique simples. */
+  function aoClicar(e: React.MouseEvent, v: View) {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return
+    e.preventDefault()
+    navigateTo(v)
+  }
+
+  const rotaAtual = rotaPorSlug(view)
+  const currentLabel = rotaAtual.label
+  /* O registro devolve sempre a MESMA referência de componente para um slug
+     (Map de módulo), então não há criação de componente por render — o que a
+     regra existe para impedir. Sem a supressão, o lookup dinâmico que a
+     hidratação exige seria impossível. */
+  const Pagina = paginaCarregada(view)
 
   return (
     <>
@@ -91,14 +129,16 @@ function App() {
         {/* Desktop: topbar horizontal com 9 botões */}
         <nav className="topbar" aria-label="Formas do manifesto">
           {MENU.map((f) => (
-            <button
+            <a
               key={f.slug}
+              href={f.path}
               className={view === f.slug ? 'topbar-btn active' : 'topbar-btn'}
-              onClick={() => navigateTo(f.slug)}
+              aria-current={view === f.slug ? 'page' : undefined}
+              onClick={(e) => aoClicar(e, f.slug)}
             >
               <span className="topbar-num" aria-hidden>{f.kanji}</span>
               <span className="topbar-label">{f.label}</span>
-            </button>
+            </a>
           ))}
         </nav>
 
@@ -144,17 +184,18 @@ function App() {
             <ul className="topbar-drawer-list">
               {MENU.map((f) => (
                 <li key={f.slug}>
-                  <button
-                    type="button"
+                  <a
+                    href={f.path}
                     className={view === f.slug ? 'topbar-drawer-item active' : 'topbar-drawer-item'}
-                    onClick={() => navigateTo(f.slug)}
+                    aria-current={view === f.slug ? 'page' : undefined}
+                    onClick={(e) => aoClicar(e, f.slug)}
                   >
                     <span className="topbar-drawer-kanji" aria-hidden>{f.kanji}</span>
                     <span className="topbar-drawer-meta">
                       <span className="topbar-drawer-label">{f.label}</span>
                       <span className="topbar-drawer-desc">{f.desc}</span>
                     </span>
-                  </button>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -162,51 +203,11 @@ function App() {
         </div>
       )}
 
-      {view === 'primeira' && <PrimeiraForma />}
-      {view === 'lentes' && (
-        <Suspense fallback={<div className="topbar-loading">carregando as quatro lentes…</div>}>
-          <AsQuatroLentes />
-        </Suspense>
-      )}
-      {view === 'corte' && (
-        <Suspense fallback={<div className="topbar-loading">carregando o corte…</div>}>
-          <OCorte />
-        </Suspense>
-      )}
-      {view === 'espelho' && (
-        <Suspense fallback={<div className="topbar-loading">carregando o espelho…</div>}>
-          <OEspelho />
-        </Suspense>
-      )}
-      {view === 'lexico' && (
-        <Suspense fallback={<div className="topbar-loading">carregando o léxico…</div>}>
-          <OLexico />
-        </Suspense>
-      )}
-      {view === 'portao' && (
-        <Suspense fallback={<div className="topbar-loading">carregando o portão…</div>}>
-          <OPortao />
-        </Suspense>
-      )}
-      {view === 'tanren' && (
-        <Suspense fallback={<div className="topbar-loading">carregando a têmpera…</div>}>
-          <TanRen />
-        </Suspense>
-      )}
-      {view === 'cronica' && (
-        <Suspense fallback={<div className="topbar-loading">carregando a crônica…</div>}>
-          <ACronica />
-        </Suspense>
-      )}
-      {view === 'setimo' && (
-        <Suspense fallback={<div className="topbar-loading">carregando sétima forma…</div>}>
-          <SetimoEstilo />
-        </Suspense>
-      )}
-      {view === 'kakurai' && (
-        <Suspense fallback={<div className="topbar-loading">carregando o trovão do núcleo…</div>}>
-          <KakuRaiNoKami />
-        </Suspense>
+      {Pagina ? (
+        // eslint-disable-next-line react-hooks/static-components
+        <Pagina />
+      ) : (
+        <div className="topbar-loading">carregando {rotaAtual.label.toLowerCase()}…</div>
       )}
 
       {/* Colofão. Os rodapés das páginas são decorativos e não levam a lugar
@@ -219,7 +220,7 @@ function App() {
           <a href="https://github.com/benhuur1" target="_blank" rel="noopener noreferrer">
             GitHub
           </a>
-          <a href="#cronica">A Crônica</a>
+          <a href="/cronica/" onClick={(e) => aoClicar(e, 'cronica')}>A Crônica</a>
         </nav>
       </footer>
     </>

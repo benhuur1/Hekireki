@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
 import './PrimeiraForma.css'
 import './SetimoEstilo.css'
 import { analyticsAtivo } from './analytics'
+import competitivo from './competitivo.json'
 import { Scar, SectionLabel, SignatureMark } from './marks'
 
 /* =================== TYPES & DATA =================== */
@@ -476,18 +476,13 @@ function SetimaForma() {
 /* =================== COMPETITIVO =================== */
 
 function CompetitivoSection() {
-  const [data, setData] = useState<Competitivo | null>(null)
-  const [erro, setErro] = useState<string | null>(null)
-
-  useEffect(() => {
-    fetch(`${import.meta.env.BASE_URL}competitivo.json`)
-      .then((r) => {
-        if (!r.ok) throw new Error(`HTTP ${r.status}`)
-        return r.json()
-      })
-      .then(setData)
-      .catch((e) => setErro(String(e)))
-  }, [])
+  /* Import estático, não fetch. Com o HTML prerenderizado, um fetch dentro
+     de useEffect não roda no servidor — o que iria para o ar (e para o
+     Google, e para o preview do link) seria o estado de "aguardando". Como
+     import, o dado entra no bundle e renderiza idêntico nos dois lados.
+     De quebra some o estado de erro, o estado de loading e a URL pública
+     do JSON. */
+  const data = competitivo as unknown as Competitivo
 
   return (
     <section className="hk-section">
@@ -500,18 +495,6 @@ function CompetitivoSection() {
         <strong>ilustrativos</strong>: demonstram o formato da análise e não descrevem
         nenhuma operação real.
       </p>
-
-      {!data && !erro && (
-        <p className="hk-comp-status">
-          Aguardando <code>public/competitivo.json</code>. Rode{' '}
-          <code>python 8_compare_concorrente.py</code> pra gerar.
-        </p>
-      )}
-      {erro && (
-        <p className="hk-comp-status erro">
-          Não consegui ler <code>/competitivo.json</code> ({erro}).
-        </p>
-      )}
 
       {data && (
         <>

@@ -1,11 +1,9 @@
 /**
  * Tabela única de rotas.
  *
- * Alimenta hoje: o menu (topbar + drawer), a resolução da view a partir da
- * URL, e o <title>/description por rota. Na fase de prerender vai alimentar
- * também o <head> estático de cada HTML e o sitemap.xml — por isso `path`,
- * `title` e `description` já existem aqui, mesmo que o roteamento atual
- * ainda seja por hash.
+ * Alimenta o menu (topbar + drawer), a resolução da rota a partir do path,
+ * o <title>/description em runtime, o <head> estático que o prerender
+ * escreve em cada HTML, e o sitemap.xml.
  *
  * Uma fonte, vários consumidores: título de aba, preview de link e sitemap
  * não podem divergir do menu.
@@ -129,4 +127,16 @@ const PADRAO = ROTAS[0]
 
 export function rotaPorSlug(slug: string): Rota {
   return ROTAS.find((r) => r.slug === slug) ?? PADRAO
+}
+
+/**
+ * Resolve um pathname para a rota. Aceita com e sem barra final, para que um
+ * link para /corte e um para /corte/ levem ao mesmo lugar — a forma canônica
+ * (com barra) é a que o `path` declara e a que vai no canonical e no sitemap.
+ */
+export function rotaPorPath(pathname: string): Rota {
+  const limpo = pathname.replace(/\/+$/, '') || '/'
+  return (
+    ROTAS.find((r) => (r.path.replace(/\/+$/, '') || '/') === limpo) ?? PADRAO
+  )
 }

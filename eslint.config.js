@@ -6,7 +6,7 @@ import tseslint from 'typescript-eslint'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores(['dist', 'dist-ssr']),
   {
     files: ['**/*.{ts,tsx}'],
     extends: [
@@ -17,6 +17,15 @@ export default defineConfig([
     ],
     languageOptions: {
       globals: globals.browser,
+    },
+  },
+  {
+    /* Entrada do prerender: roda em Node, no build, e nunca participa de
+       fast refresh — exportar a tabela de rotas junto do render é o ponto
+       dela, para o script de prerender ler tudo de um módulo só. */
+    files: ['src/entry-server.tsx'],
+    rules: {
+      'react-refresh/only-export-components': 'off',
     },
   },
 ])

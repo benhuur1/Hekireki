@@ -14,11 +14,6 @@ Options -Indexes
     Header set Cache-Control "no-cache, must-revalidate"
   </FilesMatch>
 
-  # competitivo.json muda pouco mas pode mudar; revalidar moderado
-  <FilesMatch "competitivo\.json$">
-    Header set Cache-Control "public, max-age=3600, must-revalidate"
-  </FilesMatch>
-
   # Service Worker — sempre fresco, senão usuários ficam presos numa versão antiga
   <FilesMatch "sw\.js$">
     Header set Cache-Control "no-cache, must-revalidate"
@@ -40,6 +35,12 @@ Options -Indexes
 </IfModule>
 
 AddDefaultCharset UTF-8
+
+# Cada rota é um diretório com index.html de verdade, então o Apache resolve
+# sozinho via mod_dir — não há RewriteRule de roteamento aqui, de propósito.
+# Um fallback de SPA devolveria 200 para qualquer URL inventada e faria o
+# Google indexar soft-404.
+ErrorDocument 404 /404.html
 
 # Compressão para clientes que aceitam
 <IfModule mod_deflate.c>

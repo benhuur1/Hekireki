@@ -19,25 +19,25 @@ A maioria dos problemas de software é servir um dono e esquecer outro: UX linda
 
 ## As formas (páginas)
 
-Cada forma tem URL própria via hash (`#/corte`) — deep-link e back/forward funcionam.
+Cada forma tem URL própria (`/corte/`) — um arquivo HTML de verdade, com título, descrição e preview próprios. Links antigos com hash (`#/corte`) são normalizados para o path canônico sem recarregar.
 
 | Forma | Rota | Sobre |
 | --- | --- | --- |
-| Primeira Forma | `#/primeira` | A essência: uma técnica, executada com perfeição |
-| As Quatro Lentes | `#/lentes` | Os quatro donos da qualidade |
-| O Corte | `#/corte` | A Primeira Forma aplicada a stack, infra e carreira |
-| O Espelho | `#/espelho` | Auto-audit: 20 perguntas pro próprio código |
-| O Léxico | `#/lexico` | Dicionário do trovão pra devs |
-| O Portão | `#/portao` | Onde o contrato é forjado (validação na borda) |
-| A Têmpera | `#/tanren` | A disciplina virando reflexo |
-| Sétima Forma | `#/setimo` | A forma que nasce da repetição da primeira |
-| Trovão do Núcleo | `#/kakurai` | A forma que nasce do limite — usar o que o runtime já tem |
+| Primeira Forma | `/` | A essência: uma técnica, executada com perfeição |
+| As Quatro Lentes | `/lentes/` | Os quatro donos da qualidade |
+| O Corte | `/corte/` | A Primeira Forma aplicada a stack, infra e carreira |
+| O Espelho | `/espelho/` | Auto-audit: 20 perguntas pro próprio código |
+| O Léxico | `/lexico/` | Dicionário do trovão pra devs |
+| O Portão | `/portao/` | Onde o contrato é forjado (validação na borda) |
+| A Têmpera | `/tanren/` | A disciplina virando reflexo |
+| Sétima Forma | `/setimo/` | A forma que nasce da repetição da primeira |
+| Trovão do Núcleo | `/kakurai/` | A forma que nasce do limite — usar o que o runtime já tem |
 
 > Esta régua e estas formas alimentam a skill `/primeira-forma` do Claude Code — cada pergunta dela tem seu gabarito numa destas páginas.
 
 ## Stack
 
-Vite 8 · React 19 · TypeScript 6. Sem framework de roteamento — a view vive no hash da URL. Zero dependência de runtime além do React.
+Vite 8 · React 19 · TypeScript 6. Sem framework de roteamento e sem gerador de site estático: o roteamento são ~20 linhas sobre `history.pushState`, e o prerender usa `react-dom/server`, que já vem com o React. Zero dependência de runtime além do React, e zero dependência de build além do Vite.
 
 ## Rodar
 
@@ -52,17 +52,40 @@ npm run lint     # ESLint
 
 Hospedado em **Hostinger** no subdomain `hekireki.infotechjs.com.br` (doc root próprio, isolado do WordPress na raiz).
 
-1. `npm run build` — gera `dist/` com paths apontando pra `/`.
-2. No **hPanel da Hostinger**, abrir o File Manager e navegar até o doc root do subdomain (geralmente `domains/hekireki.infotechjs.com.br/public_html/`).
-3. Subir **o conteúdo** de `dist/` (não a pasta) — sobrescreve se já houver versão anterior:
-   - `index.html`, `og-image.svg`, `favicon.svg`, `competitivo.json`, `sw.js`, `.htaccess`
-   - pasta `assets/` inteira
-4. Conferir https://hekireki.infotechjs.com.br no browser.
+1. `npm run build` — roda typecheck, bundle, bundle SSR, prerender e carimbo do
+   service worker. Gera em `dist/`: um `index.html` por rota (`corte/`,
+   `espelho/`, …), `sitemap.xml`, `404.html`, `robots.txt` e `assets/`.
+2. No **hPanel**, abrir o File Manager no doc root do subdomain.
+3. Subir o conteúdo de `dist/` **nesta ordem** — ela evita que uma aba aberta
+   quebre no meio do deploy:
+   1. `assets/` primeiro
+   2. depois as pastas de rota e o `404.html`
+   3. depois `index.html`, `sitemap.xml`, `robots.txt`
+   4. por último `sw.js`
+4. **Não apague a `assets/` antiga imediatamente.** Deixe os chunks com hash
+   antigo no ar por alguns dias: é isso que impede o 404 de chunk nas abas que
+   ficaram abertas — mais eficaz que o error boundary, porque previne em vez
+   de remediar.
+5. Conferir https://hekireki.infotechjs.com.br e, no Search Console, enviar o
+   `sitemap.xml`.
 
-O `public/.htaccess` (incluso no `dist/`) define:
-- `Cache-Control: public, max-age=31536000, immutable` em assets hashados (Vite já gera nome com hash → seguro)
-- `Cache-Control: no-cache, must-revalidate` em `index.html` e `sw.js` (deploy novo visto na hora)
-- `Options -Indexes` (sem listagem de diretório)
-- Compressão gzip via `mod_deflate`
+### Analytics (opcional)
 
-Pra rodar localmente em dev com a mesma base do prod, o `vite.config.ts` usa `base: '/'`. Se um dia mover pra subpasta ou outro host, ajuste `base` no `vite.config.ts` **e** `SCOPE` no `public/sw.js` para o mesmo valor.
+Sem `VITE_GA_ID`, nenhum script de analytics é carregado e o texto "Dados do
+visitante" da Sétima Forma continua dizendo "sem coleta" — os dois leem a mesma
+variável, então a página não tem como mentir. Para ligar, copie `.env.example`
+para `.env` e preencha o ID de medição do GA4.
+
+### O que o `public/.htaccess` define
+
+- `Cache-Control: public, max-age=31536000, immutable` em assets hashados
+- `Cache-Control: no-cache, must-revalidate` em `.html` e `sw.js`
+- `ErrorDocument 404 /404.html` — cada rota é um arquivo real, então **não há
+  fallback de SPA**: uma URL inventada devolve 404 de verdade, não um 200 que o
+  Google indexaria como soft-404
+- Headers de segurança: `X-Content-Type-Options`, `Referrer-Policy`,
+  `Permissions-Policy` e CSP
+- `Options -Indexes` e compressão gzip via `mod_deflate`
+
+Se um dia mover para subpasta ou outro host, ajuste `base` no `vite.config.ts`,
+`SCOPE` no `public/sw.js` e `ORIGEM` no `scripts/prerender.mjs` para o mesmo valor.
