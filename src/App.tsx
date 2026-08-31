@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
 import PrimeiraForma from './PrimeiraForma'
+import { MENU, ROTAS, SLUGS, rotaPorSlug, type Slug } from './routes'
 import './App.css'
 
 const OCorte = lazy(() => import('./OCorte'))
@@ -12,31 +13,13 @@ const SetimoEstilo = lazy(() => import('./SetimoEstilo'))
 const KakuRaiNoKami = lazy(() => import('./KakuRaiNoKami'))
 const AsQuatroLentes = lazy(() => import('./AsQuatroLentes'))
 
-const VIEWS = [
-  'primeira', 'lentes', 'corte', 'espelho', 'lexico',
-  'portao', 'tanren', 'setimo', 'kakurai', 'cronica',
-] as const
-type View = (typeof VIEWS)[number]
-
-/* As 9 formas do menu (a Crônica fica fora — só acessível por #cronica direto).
-   Centralizado aqui pra alimentar topbar (desktop) + drawer (mobile) da mesma fonte. */
-const FORMS = [
-  { view: 'primeira', kanji: '壱', label: 'Primeira Forma',   desc: 'A essência — uma técnica, executada com perfeição' },
-  { view: 'lentes',   kanji: '質', label: 'As Quatro Lentes', desc: 'Os quatro donos da qualidade' },
-  { view: 'corte',    kanji: '道', label: 'O Corte',          desc: 'A Primeira Forma aplicada a stack, infra e carreira' },
-  { view: 'espelho',  kanji: '鏡', label: 'O Espelho',        desc: 'Auto-audit: 20 perguntas pro próprio código' },
-  { view: 'lexico',   kanji: '辞', label: 'O Léxico',         desc: 'Dicionário do trovão pra devs' },
-  { view: 'portao',   kanji: '門', label: 'O Portão',         desc: 'Onde o contrato é forjado' },
-  { view: 'tanren',   kanji: '鍛', label: 'A Têmpera',        desc: 'A disciplina virando reflexo' },
-  { view: 'setimo',   kanji: '漆', label: 'Sétima Forma',     desc: 'A forma que nasce da repetição da primeira' },
-  { view: 'kakurai',  kanji: '核', label: 'Trovão do Núcleo', desc: 'A forma que nasce do limite — usar o que o runtime já tem' },
-] as const
+type View = Slug
 
 /* A view ativa vive no hash da URL (#/setimo) — toda forma é deep-linkable,
    compartilhável, e back/forward do browser funcionam. */
 function viewFromHash(): View {
   const slug = window.location.hash.replace(/^#\/?/, '')
-  return (VIEWS as readonly string[]).includes(slug) ? (slug as View) : 'primeira'
+  return (SLUGS as readonly string[]).includes(slug) ? (slug as View) : 'primeira'
 }
 
 function App() {
@@ -51,6 +34,19 @@ function App() {
     window.addEventListener('hashchange', sync)
     return () => window.removeEventListener('hashchange', sync)
   }, [])
+
+  /* Título e description por rota. Sem isso as 10 formas dividiam o mesmo
+     <title>, o histórico do navegador ficava com entradas idênticas e o
+     leitor de tela não tinha como saber que a página mudou.
+     Ressalva honesta: crawler social não executa JS, então isso muda a aba
+     e a telemetria — o preview por rota só chega com o prerender. */
+  useEffect(() => {
+    const rota = rotaPorSlug(view)
+    document.title = rota.title
+    document
+      .querySelector('meta[name="description"]')
+      ?.setAttribute('content', rota.description)
+  }, [view])
 
   /* centra o botão ativo no topbar desktop — defesa pra deep-link onde a ativa
      pode estar fora da viewport horizontal. scrollLeft direto no .topbar evita
@@ -84,7 +80,7 @@ function App() {
     setDrawerOpen(false)
   }
 
-  const currentForm = FORMS.find((f) => f.view === view)
+  const currentForm = ROTAS.find((f) => f.slug === view)
   const currentLabel = currentForm?.label ?? 'A Crônica'
 
   return (
@@ -92,11 +88,11 @@ function App() {
       <div className="topbar-wrap">
         {/* Desktop: topbar horizontal com 9 botões */}
         <nav className="topbar" aria-label="Formas do manifesto">
-          {FORMS.map((f) => (
+          {MENU.map((f) => (
             <button
-              key={f.view}
-              className={view === f.view ? 'topbar-btn active' : 'topbar-btn'}
-              onClick={() => navigateTo(f.view)}
+              key={f.slug}
+              className={view === f.slug ? 'topbar-btn active' : 'topbar-btn'}
+              onClick={() => navigateTo(f.slug)}
             >
               <span className="topbar-num" aria-hidden>{f.kanji}</span>
               <span className="topbar-label">{f.label}</span>
@@ -144,12 +140,12 @@ function App() {
               </button>
             </header>
             <ul className="topbar-drawer-list">
-              {FORMS.map((f) => (
-                <li key={f.view}>
+              {MENU.map((f) => (
+                <li key={f.slug}>
                   <button
                     type="button"
-                    className={view === f.view ? 'topbar-drawer-item active' : 'topbar-drawer-item'}
-                    onClick={() => navigateTo(f.view)}
+                    className={view === f.slug ? 'topbar-drawer-item active' : 'topbar-drawer-item'}
+                    onClick={() => navigateTo(f.slug)}
                   >
                     <span className="topbar-drawer-kanji" aria-hidden>{f.kanji}</span>
                     <span className="topbar-drawer-meta">
