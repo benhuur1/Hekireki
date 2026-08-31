@@ -6,9 +6,12 @@ Sessão anterior auditou o site `hekireki.infotechjs.com.br` em quatro eixos (le
 aquisição de visitantes, métricas e indexação no Google), encontrou conteúdo sensível de
 dois clientes publicado, e executou a correção completa em três fases.
 
-**Todo o código está commitado e no GitHub.** O que falta são decisões e ações que
-dependem de você (IDs, URLs, deletar o repositório) e o deploy, que **ainda não foi feito**
-— o site no ar continua sendo a versão antiga.
+**Todo o código está commitado e no GitHub, e o deploy já foi feito.** Verifiquei o
+servidor: as 10 páginas prerenderizadas, o `sitemap.xml`, o `robots.txt`, o `404.html` e o
+`.htaccess` novo estão no ar — e o `competitivo.json` com dados reais de cliente, que estava
+sendo servido publicamente, **foi removido**. O cache do servidor e do CDN foi purgado.
+
+O que falta são decisões e ações que dependem de você: IDs, URLs e deletar o repositório.
 
 Este documento existe porque você trocou de máquina e o container da sessão é efêmero.
 
@@ -110,14 +113,17 @@ sitemap; 1 → 9 âncoras rastreáveis. Hidratação sem um único mismatch no C
 
 | # | Pendência | Depende de | Bloqueia |
 | --- | --- | --- | --- |
-| 1 | **Deploy na Hostinger** | você | tudo — o site no ar é a versão antiga |
+| ~~1~~ | ~~Deploy na Hostinger~~ | — | **feito e verificado** |
+| 1 | Enviar sitemap no Search Console | você | indexação |
 | 2 | Recriar o repositório no GitHub | você (irreversível) | limpar o histórico |
-| 3 | ID do GA4 no `.env` | criar a propriedade | métricas |
+| 3 | ID do GA4 no `.env`, rebuild e novo deploy | criar a propriedade | métricas |
 | 4 | URL do LinkedIn no colofão | você | aquisição |
-| 5 | Enviar sitemap no Search Console | deploy | indexação |
 
 Notas:
 
+- **(1)** O DNS de `infotechjs.com.br` já tem um `google-site-verification`. Se a
+  propriedade no Search Console for do tipo **Domínio**, o subdomínio já está coberto e
+  basta enviar `https://hekireki.infotechjs.com.br/sitemap.xml`.
 - **(2)** Você aprovou recriar o histórico. Não deletei o repositório porque não tenho
   ferramenta para isso e é irreversível — comandos em §4.
 - **(4)** Não publiquei seu e-mail sem perguntar. Se quiser, é uma linha em `App.tsx`.
@@ -220,6 +226,12 @@ rotas distintas, conferindo na aba **HTML** (não "renderizado") que a prosa est
 - **Nenhum `useEffect` pode produzir conteúdo visível.** Ele não roda no `renderToString`,
   então vira buraco no HTML estático. Foi exatamente isso com o `competitivo.json`, que era
   `fetch` e virou import estático. Hoje só `App` e `PrimeiraForma` têm estado.
+- **O site está atrás do CDN da Hostinger** (`cdn.hstgr.net`). Depois de subir arquivos, o
+  CDN pode continuar servindo a versão anterior — inclusive para o Googlebot. Limpe o cache
+  (hPanel → Cache → Limpar, ou pelo conector) sempre que fizer deploy.
+- **`hekireki.infotechjs.com.br` é domínio addon, não subdomínio.** Tem zona DNS própria e
+  doc root próprio (`domains/hekireki.infotechjs.com.br/public_html`) — por isso não aparece
+  na lista de subdomínios de `infotechjs.com.br` nem na zona DNS do domínio pai.
 - **`scripts/og-image.mjs` precisa de Chromium local.** Roda sob demanda, não no build.
   Aponte com `CHROMIUM=/caminho/para/chrome` se necessário.
 - **Regenerar o `og-image.svg`**: o canvas é 1200×630 e a fonte é mais larga que o design
